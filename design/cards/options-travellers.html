@@ -1,0 +1,90 @@
+<!-- @dsCard group="Options" name="Options · travellers" viewport="1100x760" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Options travellers</title>
+<style>
+:root{--bg:#F7F7F4;--surface:#FFF;--surface-2:#F0F1EC;--line:#DCDED6;--text:#1C1F1A;--text-2:#5B6157;--accent:#1F6F43;--accent-soft:#E3F1E8;--handoff:#E0B400;--handoff-soft:#FFF6D6;--handoff-text:#3D3000;--danger:#B42318;--radius:10px;--radius-sm:7px;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font:14px/1.45 var(--font);color:var(--text)}
+.top{display:flex;align-items:center;gap:12px;padding:18px 28px;border-bottom:1px solid var(--line);background:var(--surface)}
+.logo{width:32px;height:32px;border-radius:9px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800}
+.top h1{font-size:17px;margin:0}
+.top .sub{font-size:12.5px;color:var(--text-2)}
+.privacy{margin-left:auto;font-size:12.5px;color:var(--text-2)}
+.wrap{display:grid;grid-template-columns:200px 300px 1fr;min-height:690px}
+nav{padding:20px 12px;border-right:1px solid var(--line)}
+nav a{display:flex;justify-content:space-between;padding:9px 12px;border-radius:var(--radius-sm);color:var(--text);text-decoration:none;font-weight:600}
+nav a.on{background:var(--accent-soft);color:var(--accent)}
+nav a span{color:var(--text-2);font-weight:500}
+.list{padding:20px 16px;border-right:1px solid var(--line);display:grid;align-content:start;gap:8px}
+.add{border:1px dashed var(--accent);background:none;color:var(--accent);font:600 14px var(--font);border-radius:var(--radius-sm);padding:10px;cursor:pointer}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:11px 12px}
+.item.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.item b{display:block}
+.item small{color:var(--text-2)}
+.editor{padding:24px 32px;max-width:720px}
+.editor h2{margin:0 0 4px;font-size:20px}
+.editor .hint{color:var(--text-2);margin:0 0 20px}
+fieldset{border:0;padding:0;margin:0 0 22px;display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+legend{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:10px}
+.f{display:grid;gap:5px}
+.f.wide{grid-column:1/-1}
+.f label{font-weight:600;font-size:13px}
+input,select{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 10px;width:100%}
+.f .note{font-size:12px;color:var(--text-2)}
+.f.bad input{border-color:var(--handoff);background:var(--handoff-soft)}
+.f.bad .note{color:var(--handoff-text)}
+.phone{display:grid;grid-template-columns:130px 1fr;gap:8px}
+.bar{display:flex;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.save{border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font:700 14px var(--font);padding:10px 20px}
+.del{margin-left:auto;border:0;background:none;color:var(--danger);font:600 13px var(--font)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">M1</div>
+  <div><h1>MDAC One-Click</h1><div class="sub">Travellers and trip presets</div></div>
+  <div class="privacy">🔒 Saved only in this browser</div>
+</div>
+<div class="wrap">
+  <nav>
+    <a class="on" href="#">Travellers <span>3</span></a>
+    <a href="#">Trip presets <span>6</span></a>
+    <a href="#">Backup &amp; import</a>
+  </nav>
+  <div class="list">
+    <button class="add">+ Add traveller</button>
+    <div class="item on"><b>ARJUN KUMAR</b><small>India · Z1234567</small></div>
+    <div class="item"><b>PRIYA KUMAR</b><small>India · Z7654321</small></div>
+    <div class="item"><b>MEERA KUMAR</b><small>Singapore · K0011223</small></div>
+  </div>
+  <div class="editor">
+    <h2>Arjun Kumar</h2>
+    <p class="hint">Enter everything exactly as printed in the passport.</p>
+    <fieldset>
+      <legend>Passport</legend>
+      <div class="f wide"><label>Full name</label><input value="ARJUN KUMAR"></div>
+      <div class="f"><label>Passport no.</label><input value="Z1234567"></div>
+      <div class="f"><label>Sex</label><select><option>Male</option></select></div>
+      <div class="f"><label>Nationality</label><select><option>INDIA</option></select></div>
+      <div class="f"><label>Place of birth</label><select><option>INDIA</option></select></div>
+      <div class="f"><label>Date of birth</label><input value="12/04/1990"></div>
+      <div class="f bad"><label>Passport expiry</label><input value="02/03/2027"><span class="note">Expires within 6 months of a trip after Sep 2026.</span></div>
+    </fieldset>
+    <fieldset>
+      <legend>Contact (MDAC confirmation is emailed here)</legend>
+      <div class="f wide"><label>Email</label><input value="arjun@example.com"></div>
+      <div class="f wide"><label>Mobile</label><div class="phone"><select><option>+65 Singapore</option></select><input value="91234567"></div></div>
+    </fieldset>
+    <div class="bar">
+      <button class="save">Save traveller</button>
+      <span class="note" style="color:var(--text-2);font-size:12.5px">Saved 2 min ago</span>
+      <button class="del">Delete</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

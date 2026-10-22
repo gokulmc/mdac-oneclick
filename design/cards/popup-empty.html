@@ -1,0 +1,38 @@
+<!-- @dsCard group="Popup" name="Popup · first run" viewport="380x330" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popup empty</title>
+<style>
+:root{--bg:#F7F7F4;--text:#1C1F1A;--text-2:#5B6157;--accent:#1F6F43;--radius:10px;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#D9DBD3;font:14px/1.4 var(--font);color:var(--text);display:grid;place-items:start center;padding:10px}
+.popup{width:360px;background:var(--bg);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.18);overflow:hidden}
+header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px}
+.logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+h1{font-size:15px;margin:0;font-weight:700}
+.sub{font-size:12px;color:var(--text-2)}
+main{padding:8px 24px 24px;text-align:center;display:grid;gap:12px}
+h2{font-size:17px;margin:6px 0 0}
+p{margin:0;color:var(--text-2)}
+.fill{border:0;border-radius:var(--radius);background:var(--accent);color:#fff;font:700 15px var(--font);padding:12px;cursor:pointer}
+.small{font-size:12px}
+</style>
+</head>
+<body>
+<div class="popup">
+  <header>
+    <div class="logo">M1</div>
+    <div><h1>MDAC One-Click</h1><div class="sub">Malaysia Digital Arrival Card</div></div>
+  </header>
+  <main>
+    <h2>Add your first traveller</h2>
+    <p>Save passport details once. Next time, the whole MDAC form fills in one click.</p>
+    <button class="fill">Add traveller</button>
+    <p class="small">Stored only in this browser. Nothing is sent anywhere except the MDAC form itself.</p>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDAC One-Click settings</title>
+</head>
+<body>
+<div class="top">
+  <div class="logo" aria-hidden="true">M1</div>
+  <div><h1>MDAC One-Click</h1><div class="sub">Travellers and trip presets</div></div>
+  <div class="privacy">🔒 Saved only in this browser</div>
+</div>
+<div class="wrap" id="wrap">
+  <nav id="nav" aria-label="Sections">
+    <a href="#travellers" data-view="travellers">Travellers <span id="count-travellers"></span></a>
+    <a href="#presets" data-view="presets">Trip presets <span id="count-presets"></span></a>
+    <a href="#data" data-view="data">Backup &amp; import</a>
+  </nav>
+  <div class="list" id="list"></div>
+  <div class="editor" id="editor"></div>
+</div>
+<script type="module" src="./options/main.ts"></script>
+</body>
+</html>

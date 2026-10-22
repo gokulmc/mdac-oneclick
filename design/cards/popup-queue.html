@@ -1,0 +1,63 @@
+<!-- @dsCard group="Popup" name="Popup · queue in progress" viewport="380x520" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popup queue</title>
+<style>
+:root{--bg:#F7F7F4;--surface:#FFF;--line:#DCDED6;--text:#1C1F1A;--text-2:#5B6157;--accent:#1F6F43;--accent-soft:#E3F1E8;--handoff:#E0B400;--handoff-soft:#FFF6D6;--handoff-text:#3D3000;--danger:#B42318;--danger-soft:#FDECEA;--radius:10px;--radius-sm:7px;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#D9DBD3;font:14px/1.4 var(--font);color:var(--text);display:grid;place-items:start center;padding:10px}
+.popup{width:360px;background:var(--bg);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.18);overflow:hidden}
+header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px}
+.logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+h1{font-size:15px;margin:0;font-weight:700}
+.sub{font-size:12px;color:var(--text-2)}
+main{padding:0 16px 16px;display:grid;gap:12px}
+.trip{font-size:12.5px;color:var(--text-2)}
+.trip b{color:var(--text)}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+li{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 11px}
+li .name{font-weight:600}
+li small{display:block;font-size:12px;color:var(--text-2)}
+.pill{margin-left:auto;font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.done .pill{background:var(--accent-soft);color:var(--accent)}
+.now{border-color:var(--handoff);background:var(--handoff-soft)}
+.now .pill{background:var(--handoff);color:#2A2100}
+.next .pill{background:#ECEDE8;color:var(--text-2)}
+.attn{border-color:var(--danger);background:var(--danger-soft)}
+.attn .pill{background:var(--danger);color:#fff}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none;background:#ECEDE8;color:var(--text-2)}
+.done .dot{background:var(--accent);color:#fff}
+.now .dot{background:var(--handoff);color:#2A2100}
+.attn .dot{background:var(--danger);color:#fff}
+.hint{font-size:12.5px;color:var(--handoff-text);background:var(--handoff-soft);border-radius:var(--radius-sm);padding:9px 11px}
+.actions{display:flex;gap:8px}
+.btn{flex:1;font:600 13px var(--font);border-radius:var(--radius-sm);padding:9px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
+.btn.quiet{flex:none;border:0;background:none;color:var(--text-2)}
+</style>
+</head>
+<body>
+<div class="popup">
+  <header>
+    <div class="logo">M1</div>
+    <div><h1>MDAC One-Click</h1><div class="sub">Filing 2 of 3</div></div>
+  </header>
+  <main>
+    <div class="trip"><b>Drive via Causeway → Johor Bahru</b> · 23–25 Oct</div>
+    <ol>
+      <li class="done"><span class="dot">✓</span><span><span class="name">ARJUN KUMAR</span><small>Confirmed</small></span><span class="pill">Done</span></li>
+      <li class="now"><span class="dot">2</span><span><span class="name">PRIYA KUMAR</span><small>Form filled, check it</small></span><span class="pill">Your turn</span></li>
+      <li class="next"><span class="dot">3</span><span><span class="name">MEERA KUMAR</span><small>Fills after Priya's confirmation</small></span><span class="pill">Next</span></li>
+    </ol>
+    <div class="hint">On the MDAC tab: complete the slider, then press <b>Submit</b>. The next traveller fills automatically.</div>
+    <div class="actions">
+      <button class="btn">Refill</button>
+      <button class="btn">Skip</button>
+      <button class="btn quiet">Cancel run</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

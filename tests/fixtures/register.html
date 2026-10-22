@@ -1,0 +1,144 @@
+<!doctype html>
+<!--
+  Hand-written stand-in for the MDAC register page. It reproduces only the CONTRACT the
+  extension depends on (element ids, option values, AJAX lookups, datepicker rules),
+  observed on the live form on 2026-10-22. It is NOT a copy of the government page.
+  {{...}} placeholders are filled in by tests/fixtures/mdac-site.ts from src/reference/data.json.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDAC fixture - Register</title>
+<link rel="stylesheet" href="/mdac/vendor/bootstrap-datepicker3.css">
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 0; background: #f4f4f4; color: #222; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 24px 16px 80px; }
+  h2 { margin: 28px 0 8px; font-size: 18px; }
+  label { display: block; font-weight: 600; margin-top: 10px; }
+  input[type=text], select { width: 100%; box-sizing: border-box; padding: 7px 8px; border: 1px solid #aaa; border-radius: 4px; background: #fff; }
+  .card { background: #fff; border: 1px solid #ccc; border-radius: 6px; margin: 24px 0; }
+  .card-body { padding: 16px; }
+  #captcha { height: 48px; border: 1px dashed #888; display: flex; align-items: center; justify-content: center; color: #555; }
+  .actions { display: flex; gap: 12px; margin-top: 12px; }
+  .banner { background: #fff3cd; border: 1px solid #e0b400; padding: 8px 12px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Malaysia Digital Arrival Card</h1>
+  {{ERROR_BANNER}}
+  <form method="post" name="permohonan" action="/mdac/register" onsubmit="return validateSubmit();">
+    <input type="hidden" name="mdacVisaCountry" id="mdacVisaCountry" value="ALL">
+
+    <h2>Personal information</h2>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" maxlength="60" class="uppercase">
+    <label for="passNo">Passport No.</label>
+    <input type="text" id="passNo" name="passNo" maxlength="12" class="uppercase">
+    <label for="dob">Date of birth</label>
+    <input type="text" id="dob" name="dob" autocomplete="off">
+    <label for="sex">Sex</label>
+    <select id="sex" name="sex"><option value="">Please Choose</option><option value="1">MALE</option><option value="2">FEMALE</option></select>
+    <label for="pob">Place of birth</label>
+    <select id="pob" name="pob" onchange="retrieveCountryPhone(this.value)"><option value="">Please Choose</option>{{COUNTRY_OPTIONS}}</select>
+    <label for="nationality">Nationality</label>
+    <select id="nationality" name="nationality" onchange="retrieveCountryPhone(this.value)"><option value="">Please Choose</option>{{COUNTRY_OPTIONS}}</select>
+    <label for="passExpDte">Passport expiry date</label>
+    <input type="text" id="passExpDte" name="passExpDte" autocomplete="off">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" maxlength="100">
+    <label for="confirmEmail">Confirm email</label>
+    <input type="text" id="confirmEmail" name="confirmEmail" maxlength="100">
+    <label for="region">Country code</label>
+    <select id="region" name="region" class="region"><option value="">Please Choose</option>{{DIAL_OPTIONS}}</select>
+    <label for="mobile">Mobile</label>
+    <input type="text" id="mobile" name="mobile" maxlength="12">
+
+    <h2>Travelling information</h2>
+    <label for="arrDt">Date of arrival</label>
+    <input type="text" id="arrDt" name="arrDt" autocomplete="off">
+    <label for="depDt">Date of departure</label>
+    <input type="text" id="depDt" name="depDt" autocomplete="off">
+    <label for="vesselNm">Flight / vessel / vehicle no.</label>
+    <input type="text" id="vesselNm" name="vesselNm" maxlength="30" class="uppercase">
+    <label for="trvlMode">Mode of travel</label>
+    <select id="trvlMode" name="trvlMode"><option value="">Please Choose</option><option value="1">AIR</option><option value="2">LAND</option><option value="3">SEA</option></select>
+    <label for="embark">Last port of embarkation</label>
+    <select id="embark" name="embark"><option value="">Please Choose</option>{{COUNTRY_OPTIONS}}</select>
+
+    <div id="formAccommodation">
+      <label for="accommodationStay">Accommodation</label>
+      <select id="accommodationStay" name="accommodationStay"><option value="">Please Choose</option><option value="01">HOTEL/MOTEL/REST HOUSE</option><option value="02">RESIDENCE OF FRIENDS/RELATIVES</option><option value="99">OTHERS</option></select>
+      <label for="accommodationAddress1">Address 1</label>
+      <input type="text" id="accommodationAddress1" name="accommodationAddress1" maxlength="100" class="uppercase">
+      <label for="accommodationAddress2">Address 2</label>
+      <input type="text" id="accommodationAddress2" name="accommodationAddress2" maxlength="100" class="uppercase">
+      <label for="accommodationState">State</label>
+      <select id="accommodationState" name="accommodationState" onchange="retrieveRefCity(this.value)"><option value="">Please Choose</option>{{STATE_OPTIONS}}</select>
+      <label for="accommodationCity">City</label>
+      <select id="accommodationCity" name="accommodationCity" class="accommodationCity" onchange="retrievePostcode(this.value)"><option value="">Please Choose</option></select>
+      <label for="accommodationPostcode">Postcode</label>
+      <input type="text" id="accommodationPostcode" name="accommodationPostcode" maxlength="5" class="accommodationPostcode">
+    </div>
+
+    <div class="slidercaptcha card"><div class="card-body"><div id="captcha">Drag To Verify (fixture placeholder)</div></div></div>
+    <div class="actions">
+      <input type="submit" id="submit" name="submitRegistration" value="Submit">
+      <input type="submit" id="reset" name="showForm" value="Reset">
+    </div>
+  </form>
+</div>
+
+<script src="/mdac/vendor/jquery.js"></script>
+<script src="/mdac/vendor/bootstrap-datepicker.js"></script>
+<script>
+  var verifyResult = null;
+  window.__lastValidation = null;
+  /** Test hook: stands in for a human completing the slider. */
+  window.__fixtureVerify = function () { verifyResult = true; };
+
+  function retrieveCountryPhone(c) {
+    $.get('/mdac/register?retrieveCountryPhoneCode&ctryCd=' + c, function (data) { $('.region').html(data); });
+  }
+  function retrieveRefCity(s) {
+    $.get('/mdac/register?retrieveRefCity&state=' + s, function (data) { $('.accommodationCity').html(data); });
+  }
+  function retrievePostcode(c) {
+    $.get('/mdac/register?retrievePostcode&cityCd=' + c, function (data) { $('.accommodationPostcode').html(data); });
+  }
+
+  var REQUIRED = ['name', 'passNo', 'dob', 'sex', 'pob', 'nationality', 'passExpDte', 'email', 'confirmEmail', 'region',
+    'mobile', 'arrDt', 'depDt', 'vesselNm', 'trvlMode', 'embark', 'accommodationStay', 'accommodationAddress1',
+    'accommodationState', 'accommodationCity', 'accommodationPostcode'];
+
+  /** Mirrors the site: required fields, matching emails, then the slider. No alert(): record the reason instead. */
+  function validateSubmit() {
+    window.__lastValidation = null;
+    for (var i = 0; i < REQUIRED.length; i++) {
+      var el = document.getElementById(REQUIRED[i]);
+      if (!el || String(el.value).trim() === '') { window.__lastValidation = 'missing:' + REQUIRED[i]; return false; }
+    }
+    if (document.getElementById('email').value !== document.getElementById('confirmEmail').value) {
+      window.__lastValidation = 'email-mismatch'; return false;
+    }
+    if (verifyResult === null) { window.__lastValidation = 'not-verified'; return false; }
+    window.__lastValidation = 'ok';
+    return true;
+  }
+
+  $(function () {
+    $('.uppercase').on('blur', function () { this.value = this.value.toUpperCase(); });
+    var fmt = 'dd/mm/yyyy';
+    $('#dob').datepicker({ format: fmt, endDate: '-1d', autoclose: true });
+    $('#passExpDte').datepicker({ format: fmt, startDate: new Date(), autoclose: true });
+    $('#arrDt').datepicker({ format: fmt, startDate: new Date(), endDate: '+2d', autoclose: true })
+      .on('changeDate', function (e) {
+        $('#depDt').datepicker('setStartDate', e.date);
+        $('#depDt').val('');
+      });
+    $('#depDt').datepicker({ format: fmt, startDate: new Date(), autoclose: true });
+  });
+</script>
+</body>
+</html>

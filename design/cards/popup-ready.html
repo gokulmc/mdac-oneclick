@@ -1,0 +1,71 @@
+<!-- @dsCard group="Popup" name="Popup · ready to fill" viewport="380x620" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popup ready</title>
+<style>
+:root{--bg:#F7F7F4;--surface:#FFF;--surface-2:#F0F1EC;--line:#DCDED6;--text:#1C1F1A;--text-2:#5B6157;--accent:#1F6F43;--accent-soft:#E3F1E8;--handoff:#E0B400;--handoff-soft:#FFF6D6;--handoff-text:#3D3000;--radius:10px;--radius-sm:7px;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#D9DBD3;font:14px/1.4 var(--font);color:var(--text);display:grid;place-items:start center;padding:10px}
+.popup{width:360px;background:var(--bg);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.18);overflow:hidden}
+header{display:flex;align-items:center;gap:10px;padding:14px 16px 10px}
+.logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+h1{font-size:15px;margin:0;font-weight:700}
+.sub{font-size:12px;color:var(--text-2)}
+.gear{margin-left:auto;border:0;background:none;color:var(--text-2);font-size:18px;cursor:pointer}
+main{padding:0 16px 16px;display:grid;gap:14px}
+.label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:6px}
+.travellers{display:grid;gap:6px}
+.trav{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 11px}
+.trav.on{border-color:var(--accent);background:var(--accent-soft)}
+.box{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--line);display:grid;place-items:center;flex:none;background:var(--surface)}
+.on .box{background:var(--accent);border-color:var(--accent);color:#fff;font-size:12px;font-weight:800}
+.trav b{font-weight:600}
+.trav small{display:block;color:var(--text-2);font-size:12px}
+select,input{width:100%;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 10px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.field small{display:block;font-size:12px;color:var(--text-2);margin-bottom:4px}
+.warn{background:var(--handoff-soft);border:1px solid var(--handoff);color:var(--handoff-text);border-radius:var(--radius-sm);padding:9px 11px;font-size:12.5px;display:grid;gap:4px}
+.warn b{font-weight:700}
+.fill{width:100%;border:0;border-radius:var(--radius);background:var(--accent);color:#fff;font:700 15px var(--font);padding:13px;cursor:pointer}
+.foot{font-size:12px;color:var(--text-2);text-align:center;margin-top:-6px}
+</style>
+</head>
+<body>
+<div class="popup">
+  <header>
+    <div class="logo">M1</div>
+    <div><h1>MDAC One-Click</h1><div class="sub">Malaysia Digital Arrival Card</div></div>
+    <button class="gear" aria-label="Manage travellers and presets">⚙</button>
+  </header>
+  <main>
+    <section>
+      <div class="label">Who's travelling</div>
+      <div class="travellers">
+        <label class="trav on"><span class="box">✓</span><span><b>ARJUN KUMAR</b><small>India · Z1234567</small></span></label>
+        <label class="trav on"><span class="box">✓</span><span><b>PRIYA KUMAR</b><small>India · Z7654321</small></span></label>
+        <label class="trav"><span class="box"></span><span><b>MEERA KUMAR</b><small>Singapore · K0011223</small></span></label>
+      </div>
+    </section>
+    <section class="field">
+      <div class="label">Trip preset</div>
+      <select><option>Drive via Causeway → Johor Bahru</option></select>
+    </section>
+    <section class="row">
+      <div class="field"><small>Arrival</small><input value="23/10/2026"></div>
+      <div class="field"><small>Departure</small><input value="25/10/2026"></div>
+    </section>
+    <section class="field">
+      <small>Vehicle no.</small><input value="SGX1234A">
+    </section>
+    <div class="warn">
+      <span><b>Starting-point preset.</b> Change the address to where you'll actually stay.</span>
+    </div>
+    <button class="fill">Fill MDAC for 2 travellers</button>
+    <div class="foot">You'll complete the slider and press Submit yourself.</div>
+  </main>
+</div>
+</body>
+</html>

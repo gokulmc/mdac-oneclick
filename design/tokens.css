@@ -1,0 +1,41 @@
+/* MDAC One-Click design tokens. Deliberately NOT Malaysian government colours or crest:
+   this is an independent tool and must never look like the official site. */
+:root {
+  --bg: #F7F7F4;
+  --surface: #FFFFFF;
+  --surface-2: #F0F1EC;
+  --line: #DCDED6;
+  --text: #1C1F1A;
+  --text-2: #5B6157;
+  --accent: #1F6F43;          /* deep green: primary action */
+  --accent-press: #17583A;
+  --accent-soft: #E3F1E8;
+  --handoff: #E0B400;         /* the slider hand-off cue, same as the in-page banner */
+  --handoff-soft: #FFF6D6;
+  --handoff-text: #3D3000;
+  --danger: #B42318;
+  --danger-soft: #FDECEA;
+  --radius: 10px;
+  --radius-sm: 7px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141613;
+    --surface: #1C1F1B;
+    --surface-2: #252923;
+    --line: #353A33;
+    --text: #ECEEE8;
+    --text-2: #A3AA9E;
+    --accent: #3FA56C;
+    --accent-press: #358D5C;
+    --accent-soft: #1E3326;
+    --handoff: #E0B400;
+    --handoff-soft: #3A3210;
+    --handoff-text: #FBEAA8;
+    --danger: #F97066;
+    --danger-soft: #3A1D1A;
+  }
+}

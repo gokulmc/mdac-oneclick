@@ -1,0 +1,85 @@
+@import '../shared/ui.css';
+
+html, body { width: 360px; }
+header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+h1 { font-size: 15px; font-weight: 700; }
+.gear { margin-left: auto; border: 0; background: none; color: var(--text-2); font-size: 18px; }
+.gear:hover { color: var(--text); }
+main { padding: 0 16px 16px; display: grid; gap: 14px; }
+p { color: var(--text-2); }
+
+/* first run */
+#empty { padding: 8px 24px 24px; text-align: center; gap: 12px; }
+#empty h2 { font-size: 17px; margin-top: 6px; }
+.small { font-size: 12px; }
+
+/* ready */
+.travellers { display: grid; gap: 6px; }
+.trav {
+  display: flex; align-items: center; gap: 10px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 9px 11px; cursor: pointer;
+}
+.trav:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.trav input {
+  appearance: none; width: 18px; height: 18px; margin: 0; flex: none; display: grid; place-items: center;
+  border-radius: 5px; border: 1.5px solid var(--line); background: var(--surface); cursor: pointer;
+}
+.trav input:checked { background: var(--accent); border-color: var(--accent); }
+.trav input:checked::after { content: "✓"; color: #fff; font-size: 12px; font-weight: 800; line-height: 1; }
+.trav b { font-weight: 600; }
+.trav small { display: block; color: var(--text-2); font-size: 12px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.field > label, .field > small { display: block; font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
+.warn {
+  background: var(--handoff-soft); border: 1px solid var(--handoff); color: var(--handoff-text);
+  border-radius: var(--radius-sm); padding: 9px 11px; font-size: 12.5px; display: grid; gap: 4px;
+}
+.warn b { font-weight: 700; }
+.error {
+  background: var(--danger-soft); border: 1px solid var(--danger); color: var(--danger);
+  border-radius: var(--radius-sm); padding: 9px 11px; font-size: 12.5px;
+}
+.fill { width: 100%; }
+/* Keep Fill on screen when warnings push it below the fold (found by tests/e2e/ui.qc.ts). */
+#ready .fill { position: sticky; bottom: 8px; box-shadow: 0 0 0 8px var(--bg); }
+.foot { font-size: 12px; color: var(--text-2); text-align: center; margin-top: -6px; }
+
+/* queue */
+.trip { font-size: 12.5px; color: var(--text-2); }
+.trip b { color: var(--text); }
+ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+li {
+  display: flex; align-items: center; gap: 10px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 11px;
+}
+li > span:nth-child(2) { min-width: 0; }
+li .name { font-weight: 600; }
+li small { display: block; font-size: 12px; color: var(--text-2); overflow-wrap: anywhere; }
+.pill {
+  margin-left: auto; font-size: 11.5px; font-weight: 700; border-radius: 999px; padding: 3px 9px;
+  white-space: nowrap; background: var(--pill); color: var(--text-2);
+}
+.dot {
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px;
+  font-weight: 800; flex: none; background: var(--pill); color: var(--text-2);
+}
+li[data-status=confirmed] .pill { background: var(--accent-soft); color: var(--accent); }
+li[data-status=confirmed] .dot { background: var(--accent); color: #fff; }
+li.now { border-color: var(--handoff); background: var(--handoff-soft); }
+li.now .pill, li.now .dot { background: var(--handoff); color: var(--on-handoff); }
+li[data-status=needs-attention] { border-color: var(--danger); background: var(--danger-soft); }
+li[data-status=needs-attention] .pill, li[data-status=needs-attention] .dot { background: var(--danger); color: #fff; }
+li[data-status=skipped] { opacity: 0.7; }
+.hint {
+  font-size: 12.5px; color: var(--handoff-text); background: var(--handoff-soft);
+  border-radius: var(--radius-sm); padding: 9px 11px;
+}
+.hint.done { color: var(--accent); background: var(--accent-soft); }
+.hint.bad { color: var(--danger); background: var(--danger-soft); }
+.actions { display: flex; gap: 8px; }
+.btn {
+  flex: 1; font: 600 13px var(--font); border-radius: var(--radius-sm); padding: 9px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+}
+.btn:hover:not(:disabled) { background: var(--surface-2); }
+.btn.quiet { flex: none; border: 0; background: none; color: var(--text-2); }

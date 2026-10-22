@@ -1,0 +1,5343 @@
+{
+ "capturedOn": "2026-10-22",
+ "sexes": [
+  {
+   "code": "1",
+   "label": "MALE"
+  },
+  {
+   "code": "2",
+   "label": "FEMALE"
+  }
+ ],
+ "travelModes": [
+  {
+   "code": "1",
+   "label": "AIR"
+  },
+  {
+   "code": "2",
+   "label": "LAND"
+  },
+  {
+   "code": "3",
+   "label": "SEA"
+  }
+ ],
+ "stayTypes": [
+  {
+   "code": "01",
+   "label": "HOTEL/MOTEL/REST HOUSE"
+  },
+  {
+   "code": "02",
+   "label": "RESIDENCE OF FRIENDS/RELATIVES"
+  },
+  {
+   "code": "99",
+   "label": "OTHERS"
+  }
+ ],
+ "states": [
+  {
+   "code": "01",
+   "label": "JOHOR"
+  },
+  {
+   "code": "02",
+   "label": "KEDAH"
+  },
+  {
+   "code": "03",
+   "label": "KELANTAN"
+  },
+  {
+   "code": "04",
+   "label": "MELAKA"
+  },
+  {
+   "code": "05",
+   "label": "NEGERI SEMBILAN"
+  },
+  {
+   "code": "06",
+   "label": "PAHANG"
+  },
+  {
+   "code": "07",
+   "label": "PULAU PINANG"
+  },
+  {
+   "code": "08",
+   "label": "PERAK"
+  },
+  {
+   "code": "09",
+   "label": "PERLIS"
+  },
+  {
+   "code": "10",
+   "label": "SELANGOR"
+  },
+  {
+   "code": "11",
+   "label": "TERENGGANU"
+  },
+  {
+   "code": "12",
+   "label": "SABAH"
+  },
+  {
+   "code": "13",
+   "label": "SARAWAK"
+  },
+  {
+   "code": "14",
+   "label": "WP KUALA LUMPUR"
+  },
+  {
+   "code": "15",
+   "label": "WP LABUAN"
+  },
+  {
+   "code": "16",
+   "label": "WP PUTRAJAYA"
+  }
+ ],
+ "nationalities": [
+  {
+   "code": "AFG",
+   "label": "AFGHANISTAN"
+  },
+  {
+   "code": "ALB",
+   "label": "ALBANIA"
+  },
+  {
+   "code": "DZA",
+   "label": "ALGERIA"
+  },
+  {
+   "code": "ASM",
+   "label": "AMERICAN SAMOA"
+  },
+  {
+   "code": "AND",
+   "label": "ANDORRA"
+  },
+  {
+   "code": "AGO",
+   "label": "ANGOLA"
+  },
+  {
+   "code": "AIA",
+   "label": "ANGUILLA"
+  },
+  {
+   "code": "ATA",
+   "label": "ANTARCTICA"
+  },
+  {
+   "code": "ATG",
+   "label": "ANTIGUA AND BARBUDA"
+  },
+  {
+   "code": "ARG",
+   "label": "ARGENTINA"
+  },
+  {
+   "code": "ARM",
+   "label": "ARMENIA"
+  },
+  {
+   "code": "ABW",
+   "label": "ARUBA"
+  },
+  {
+   "code": "AUS",
+   "label": "AUSTRALIA"
+  },
+  {
+   "code": "AUT",
+   "label": "AUSTRIA"
+  },
+  {
+   "code": "AZE",
+   "label": "AZERBAIJAN"
+  },
+  {
+   "code": "BHS",
+   "label": "BAHAMAS"
+  },
+  {
+   "code": "BHR",
+   "label": "BAHRAIN"
+  },
+  {
+   "code": "BGD",
+   "label": "BANGLADESH"
+  },
+  {
+   "code": "BRB",
+   "label": "BARBADOS"
+  },
+  {
+   "code": "BLR",
+   "label": "BELARUS"
+  },
+  {
+   "code": "BEL",
+   "label": "BELGIUM"
+  },
+  {
+   "code": "BLZ",
+   "label": "BELIZE"
+  },
+  {
+   "code": "BEN",
+   "label": "BENIN"
+  },
+  {
+   "code": "BMU",
+   "label": "BERMUDA"
+  },
+  {
+   "code": "BTN",
+   "label": "BHUTAN"
+  },
+  {
+   "code": "BOL",
+   "label": "BOLIVIA"
+  },
+  {
+   "code": "BIH",
+   "label": "BOSNIA AND HERZEGOVINA"
+  },
+  {
+   "code": "BWA",
+   "label": "BOTSWANA"
+  },
+  {
+   "code": "BVT",
+   "label": "BOUVET ISLAND"
+  },
+  {
+   "code": "BRA",
+   "label": "BRAZIL"
+  },
+  {
+   "code": "IOT",
+   "label": "BRITISH INDIAN OCEAN TERRITORY"
+  },
+  {
+   "code": "GBN",
+   "label": "BRITISH NATIONAL OVERSEAS"
+  },
+  {
+   "code": "GBO",
+   "label": "BRITISH OVERSEAS CITIZENS"
+  },
+  {
+   "code": "GBP",
+   "label": "BRITISH PROTECTED PERSON"
+  },
+  {
+   "code": "GBS",
+   "label": "BRITISH SUBJECT"
+  },
+  {
+   "code": "BRN",
+   "label": "BRUNEI DARUSSALAM"
+  },
+  {
+   "code": "BGR",
+   "label": "BULGARIA"
+  },
+  {
+   "code": "BFA",
+   "label": "BURKINA FASO"
+  },
+  {
+   "code": "BDI",
+   "label": "BURUNDI"
+  },
+  {
+   "code": "KHM",
+   "label": "CAMBODIA"
+  },
+  {
+   "code": "CMR",
+   "label": "CAMEROON"
+  },
+  {
+   "code": "CAN",
+   "label": "CANADA"
+  },
+  {
+   "code": "CPV",
+   "label": "CAPE VERDE"
+  },
+  {
+   "code": "CYM",
+   "label": "CAYMAN ISLANDS"
+  },
+  {
+   "code": "CAF",
+   "label": "CENTRAL AFRICAN REPUBLIC"
+  },
+  {
+   "code": "TCD",
+   "label": "CHAD"
+  },
+  {
+   "code": "CHL",
+   "label": "CHILE"
+  },
+  {
+   "code": "CHN",
+   "label": "CHINA"
+  },
+  {
+   "code": "CXR",
+   "label": "CHRISTMAS ISLAND"
+  },
+  {
+   "code": "CCK",
+   "label": "COCOS ISLANDS"
+  },
+  {
+   "code": "COL",
+   "label": "COLOMBIA"
+  },
+  {
+   "code": "COM",
+   "label": "COMOROS"
+  },
+  {
+   "code": "COG",
+   "label": "CONGO"
+  },
+  {
+   "code": "COK",
+   "label": "COOK ISLANDS"
+  },
+  {
+   "code": "CRI",
+   "label": "COSTA RICA"
+  },
+  {
+   "code": "CIV",
+   "label": "COTE D'IVOIRE"
+  },
+  {
+   "code": "HRV",
+   "label": "CROATIA"
+  },
+  {
+   "code": "CUB",
+   "label": "CUBA"
+  },
+  {
+   "code": "CYP",
+   "label": "CYPRUS"
+  },
+  {
+   "code": "CZE",
+   "label": "CZECH REPUBLIC"
+  },
+  {
+   "code": "PRK",
+   "label": "DEMOCRATIC PEOPLE'S REPUBLIC OF KOREA"
+  },
+  {
+   "code": "DPR",
+   "label": "DEMOCRATIC PEOPLES REPUBLIC OF KOREA"
+  },
+  {
+   "code": "COD",
+   "label": "DEMOCRATIC REPUBLIC OF THE CONGO"
+  },
+  {
+   "code": "DNK",
+   "label": "DENMARK"
+  },
+  {
+   "code": "DJI",
+   "label": "DJIBOUTI"
+  },
+  {
+   "code": "DMA",
+   "label": "DOMINICA"
+  },
+  {
+   "code": "DOM",
+   "label": "DOMINICAN REPUBLIC"
+  },
+  {
+   "code": "ECU",
+   "label": "ECUADOR"
+  },
+  {
+   "code": "EGY",
+   "label": "EGYPT"
+  },
+  {
+   "code": "SLV",
+   "label": "EL SALVADOR"
+  },
+  {
+   "code": "GNQ",
+   "label": "EQUATORIAL GUINEA"
+  },
+  {
+   "code": "ERI",
+   "label": "ERITREA"
+  },
+  {
+   "code": "EST",
+   "label": "ESTONIA"
+  },
+  {
+   "code": "ETH",
+   "label": "ETHIOPIA"
+  },
+  {
+   "code": "EUE",
+   "label": "EUROPEAN UNION LAISSER PASSER"
+  },
+  {
+   "code": "FLK",
+   "label": "FALKLAND ISLAND (MALVINAS)"
+  },
+  {
+   "code": "FRO",
+   "label": "FAROE ISLANDS"
+  },
+  {
+   "code": "FJI",
+   "label": "FIJI"
+  },
+  {
+   "code": "FIN",
+   "label": "FINLAND"
+  },
+  {
+   "code": "FXX",
+   "label": "FINLAND, METROPOLITAN"
+  },
+  {
+   "code": "FRA",
+   "label": "FRANCE"
+  },
+  {
+   "code": "GUF",
+   "label": "FRENCH GUIANA"
+  },
+  {
+   "code": "PYF",
+   "label": "FRENCH POLYNESIA"
+  },
+  {
+   "code": "ATF",
+   "label": "FRENCH SOUTHERN TERRITORIES"
+  },
+  {
+   "code": "GAB",
+   "label": "GABON"
+  },
+  {
+   "code": "GMB",
+   "label": "GAMBIA"
+  },
+  {
+   "code": "GEO",
+   "label": "GEORGIA"
+  },
+  {
+   "code": "DEU",
+   "label": "GERMANY"
+  },
+  {
+   "code": "GHA",
+   "label": "GHANA"
+  },
+  {
+   "code": "GIB",
+   "label": "GIBRALTAR"
+  },
+  {
+   "code": "GRC",
+   "label": "GREECE"
+  },
+  {
+   "code": "GRL",
+   "label": "GREENLAND"
+  },
+  {
+   "code": "GRD",
+   "label": "GRENADA"
+  },
+  {
+   "code": "GLP",
+   "label": "GUADELOUPE"
+  },
+  {
+   "code": "GUM",
+   "label": "GUAM"
+  },
+  {
+   "code": "GTM",
+   "label": "GUATEMALA"
+  },
+  {
+   "code": "GNB",
+   "label": "GUIENA-BISSAU"
+  },
+  {
+   "code": "GIN",
+   "label": "GUINEA"
+  },
+  {
+   "code": "GUY",
+   "label": "GUYANA"
+  },
+  {
+   "code": "HTI",
+   "label": "HAITI"
+  },
+  {
+   "code": "HMD",
+   "label": "HEARD AND MCDONALD ISLANDS"
+  },
+  {
+   "code": "VAT",
+   "label": "HOLY SEE (VATICAN CITY STATE)"
+  },
+  {
+   "code": "HND",
+   "label": "HONDURAS"
+  },
+  {
+   "code": "HKG",
+   "label": "HONG KONG SAR"
+  },
+  {
+   "code": "HUN",
+   "label": "HUNGARY"
+  },
+  {
+   "code": "ISL",
+   "label": "ICELAND"
+  },
+  {
+   "code": "IND",
+   "label": "INDIA"
+  },
+  {
+   "code": "IDN",
+   "label": "INDONESIA"
+  },
+  {
+   "code": "IRN",
+   "label": "IRAN"
+  },
+  {
+   "code": "IRQ",
+   "label": "IRAQ"
+  },
+  {
+   "code": "IRL",
+   "label": "IRELAND"
+  },
+  {
+   "code": "ISR",
+   "label": "ISRAEL"
+  },
+  {
+   "code": "ITA",
+   "label": "ITALY"
+  },
+  {
+   "code": "JAM",
+   "label": "JAMAICA"
+  },
+  {
+   "code": "JPN",
+   "label": "JAPAN"
+  },
+  {
+   "code": "JOR",
+   "label": "JORDAN"
+  },
+  {
+   "code": "KAZ",
+   "label": "KAZAKHSTAN"
+  },
+  {
+   "code": "KEN",
+   "label": "KENYA"
+  },
+  {
+   "code": "KIR",
+   "label": "KIRIBATI"
+  },
+  {
+   "code": "KWT",
+   "label": "KUWAIT"
+  },
+  {
+   "code": "KGZ",
+   "label": "KYRGYZSTAN"
+  },
+  {
+   "code": "LAO",
+   "label": "LAO PDR"
+  },
+  {
+   "code": "LVA",
+   "label": "LATVIA"
+  },
+  {
+   "code": "LBN",
+   "label": "LEBANON"
+  },
+  {
+   "code": "LSO",
+   "label": "LESOTHO"
+  },
+  {
+   "code": "LBR",
+   "label": "LIBERIA"
+  },
+  {
+   "code": "LBY",
+   "label": "LIBYA"
+  },
+  {
+   "code": "LIE",
+   "label": "LIECHTENSTEIN"
+  },
+  {
+   "code": "LTU",
+   "label": "LITHUANIA"
+  },
+  {
+   "code": "LUX",
+   "label": "LUXEMBOURG"
+  },
+  {
+   "code": "MAC",
+   "label": "MACAO SAR"
+  },
+  {
+   "code": "MDG",
+   "label": "MADAGASCAR"
+  },
+  {
+   "code": "MWI",
+   "label": "MALAWI"
+  },
+  {
+   "code": "MYS",
+   "label": "MALAYSIA"
+  },
+  {
+   "code": "MDV",
+   "label": "MALDIVES"
+  },
+  {
+   "code": "MLI",
+   "label": "MALI"
+  },
+  {
+   "code": "MLT",
+   "label": "MALTA"
+  },
+  {
+   "code": "MHL",
+   "label": "MARSHALL ISLANDS"
+  },
+  {
+   "code": "MTQ",
+   "label": "MARTINIQUE"
+  },
+  {
+   "code": "MRT",
+   "label": "MAURITANIA"
+  },
+  {
+   "code": "MUS",
+   "label": "MAURITIUS"
+  },
+  {
+   "code": "MYT",
+   "label": "MAYOTTE"
+  },
+  {
+   "code": "MEX",
+   "label": "MEXICO"
+  },
+  {
+   "code": "FSM",
+   "label": "MICRONESIA,FEDERATED STATES OF"
+  },
+  {
+   "code": "MCO",
+   "label": "MONACO"
+  },
+  {
+   "code": "MNG",
+   "label": "MONGOLIA"
+  },
+  {
+   "code": "MNE",
+   "label": "MONTENEGRO"
+  },
+  {
+   "code": "MSR",
+   "label": "MONTSERRAT"
+  },
+  {
+   "code": "MAR",
+   "label": "MOROCCO"
+  },
+  {
+   "code": "MOZ",
+   "label": "MOZAMBIQUE"
+  },
+  {
+   "code": "MMR",
+   "label": "MYANMAR"
+  },
+  {
+   "code": "NAM",
+   "label": "NAMIBIA"
+  },
+  {
+   "code": "NRU",
+   "label": "NAURU"
+  },
+  {
+   "code": "NNS",
+   "label": "NEGARA-NEGARA SUMBER"
+  },
+  {
+   "code": "NPL",
+   "label": "NEPAL"
+  },
+  {
+   "code": "NLD",
+   "label": "NETHERLANDS"
+  },
+  {
+   "code": "ANT",
+   "label": "NETHERLANDS ANTILLES"
+  },
+  {
+   "code": "NTZ",
+   "label": "NEUTRAL ZONE"
+  },
+  {
+   "code": "NCL",
+   "label": "NEW CELEDONIA"
+  },
+  {
+   "code": "NZL",
+   "label": "NEW ZEALAND"
+  },
+  {
+   "code": "NIC",
+   "label": "NICARAGUA"
+  },
+  {
+   "code": "NER",
+   "label": "NIGER"
+  },
+  {
+   "code": "NGA",
+   "label": "NIGERIA"
+  },
+  {
+   "code": "ZZD",
+   "label": "NIL"
+  },
+  {
+   "code": "NIU",
+   "label": "NIUE"
+  },
+  {
+   "code": "NFK",
+   "label": "NORFOLK ISLAND"
+  },
+  {
+   "code": "MNP",
+   "label": "NORTHERN MARIANA ISLANDS"
+  },
+  {
+   "code": "NOR",
+   "label": "NORWAY"
+  },
+  {
+   "code": "OMN",
+   "label": "OMAN"
+  },
+  {
+   "code": "PAK",
+   "label": "PAKISTAN"
+  },
+  {
+   "code": "PLW",
+   "label": "PALAU"
+  },
+  {
+   "code": "PAL",
+   "label": "PALESTINE"
+  },
+  {
+   "code": "PSE",
+   "label": "PALESTINE"
+  },
+  {
+   "code": "PAN",
+   "label": "PANAMA"
+  },
+  {
+   "code": "PNG",
+   "label": "PAPUA NEW GUINEA"
+  },
+  {
+   "code": "PRY",
+   "label": "PARAGUAY"
+  },
+  {
+   "code": "PER",
+   "label": "PERU"
+  },
+  {
+   "code": "PHL",
+   "label": "PHILIPPINES"
+  },
+  {
+   "code": "PCN",
+   "label": "PITCAIRN ISLAND"
+  },
+  {
+   "code": "POL",
+   "label": "POLAND"
+  },
+  {
+   "code": "PRT",
+   "label": "PORTUGAL"
+  },
+  {
+   "code": "PRI",
+   "label": "PUERTO RICO"
+  },
+  {
+   "code": "QAT",
+   "label": "QATAR"
+  },
+  {
+   "code": "XXC",
+   "label": "REFUGEE"
+  },
+  {
+   "code": "XXB",
+   "label": "REFUGEE ARTICLE 1/1951"
+  },
+  {
+   "code": "MDA",
+   "label": "REP OF MOLDOVA"
+  },
+  {
+   "code": "RKS",
+   "label": "REP. KOSOVO"
+  },
+  {
+   "code": "KOR",
+   "label": "REPUBLIC OF KOREA"
+  },
+  {
+   "code": "KOS",
+   "label": "REPUBLIC OF KOSOVO"
+  },
+  {
+   "code": "MKD",
+   "label": "REPUBLIC OF MACEDONIA"
+  },
+  {
+   "code": "SSD",
+   "label": "REPUBLIC OF SOUTH SUDAN"
+  },
+  {
+   "code": "REU",
+   "label": "REUNION"
+  },
+  {
+   "code": "ROM",
+   "label": "ROMANIA"
+  },
+  {
+   "code": "ROU",
+   "label": "ROMANIA"
+  },
+  {
+   "code": "RUS",
+   "label": "RUSSIA"
+  },
+  {
+   "code": "RWA",
+   "label": "RWANDA"
+  },
+  {
+   "code": "SHN",
+   "label": "SAINT HELENA"
+  },
+  {
+   "code": "KNA",
+   "label": "SAINT KITTS AND NEVIS"
+  },
+  {
+   "code": "LCA",
+   "label": "SAINT LUCIA"
+  },
+  {
+   "code": "SPM",
+   "label": "SAINT PIERRE AND MIQUELON"
+  },
+  {
+   "code": "VCT",
+   "label": "SAINT VINCENT AND THE GRENADINES"
+  },
+  {
+   "code": "WSM",
+   "label": "SAMOA"
+  },
+  {
+   "code": "SMR",
+   "label": "SAN MARINO"
+  },
+  {
+   "code": "STP",
+   "label": "SAO TOME AND PRINCIPE"
+  },
+  {
+   "code": "SAU",
+   "label": "SAUDI ARABIA"
+  },
+  {
+   "code": "SEN",
+   "label": "SENEGAL"
+  },
+  {
+   "code": "SER",
+   "label": "SERBIA"
+  },
+  {
+   "code": "SRB",
+   "label": "SERBIA"
+  },
+  {
+   "code": "SCG",
+   "label": "SERBIA AND MONTENEGRO"
+  },
+  {
+   "code": "SYC",
+   "label": "SEYCHELLES"
+  },
+  {
+   "code": "SLE",
+   "label": "SIERRA LEONE"
+  },
+  {
+   "code": "SGP",
+   "label": "SINGAPORE"
+  },
+  {
+   "code": "SVK",
+   "label": "SLOVAKIA"
+  },
+  {
+   "code": "SVN",
+   "label": "SLOVENIA"
+  },
+  {
+   "code": "SLB",
+   "label": "SOLOMON ISLANDS"
+  },
+  {
+   "code": "SOM",
+   "label": "SOMALIA"
+  },
+  {
+   "code": "ZAF",
+   "label": "SOUTH AFRICA"
+  },
+  {
+   "code": "SGS",
+   "label": "SOUTH GEORGIA & THE SOUTH SANDWICH IS"
+  },
+  {
+   "code": "ESP",
+   "label": "SPAIN"
+  },
+  {
+   "code": "LKA",
+   "label": "SRI LANKA"
+  },
+  {
+   "code": "ZZA",
+   "label": "STATELESS"
+  },
+  {
+   "code": "XXA",
+   "label": "STATELESS PERSON ARTICLE 1/1954"
+  },
+  {
+   "code": "SDN",
+   "label": "SUDAN"
+  },
+  {
+   "code": "SUR",
+   "label": "SURINAME"
+  },
+  {
+   "code": "SJM",
+   "label": "SVALBARD AND JAN MAYEN ISLANDS"
+  },
+  {
+   "code": "SWZ",
+   "label": "SWAZILAND"
+  },
+  {
+   "code": "SWE",
+   "label": "SWEDEN"
+  },
+  {
+   "code": "CHE",
+   "label": "SWITZERLAND"
+  },
+  {
+   "code": "SYR",
+   "label": "SYRIA"
+  },
+  {
+   "code": "TWN",
+   "label": "TAIWAN"
+  },
+  {
+   "code": "TJK",
+   "label": "TAJIKISTAN"
+  },
+  {
+   "code": "TZA",
+   "label": "TANZANIA"
+  },
+  {
+   "code": "THA",
+   "label": "THAILAND"
+  },
+  {
+   "code": "FYR",
+   "label": "THE FORMER YUGOSLAV REP. OF MACEDONIA"
+  },
+  {
+   "code": "ZZB",
+   "label": "TIDAK DINYATAKAN OLEH KLN"
+  },
+  {
+   "code": "TLS",
+   "label": "TIMOR LESTE"
+  },
+  {
+   "code": "TMP",
+   "label": "TIMOR LESTE"
+  },
+  {
+   "code": "TGO",
+   "label": "TOGO"
+  },
+  {
+   "code": "TKL",
+   "label": "TOKELAU"
+  },
+  {
+   "code": "TON",
+   "label": "TONGA"
+  },
+  {
+   "code": "TTO",
+   "label": "TRINIDAD AND TOBAGO"
+  },
+  {
+   "code": "TUN",
+   "label": "TUNISIA"
+  },
+  {
+   "code": "TUR",
+   "label": "TURKIYE"
+  },
+  {
+   "code": "TKM",
+   "label": "TURKMENISTAN"
+  },
+  {
+   "code": "TCA",
+   "label": "TURKS AND CAICOS ISLANDS"
+  },
+  {
+   "code": "TUV",
+   "label": "TUVALU"
+  },
+  {
+   "code": "UGA",
+   "label": "UGANDA"
+  },
+  {
+   "code": "GBD",
+   "label": "UK-DEPENDENT"
+  },
+  {
+   "code": "UKR",
+   "label": "UKRAINE"
+  },
+  {
+   "code": "UNA",
+   "label": "UN SPECIALIZED AGENCY"
+  },
+  {
+   "code": "UNH",
+   "label": "UNHCR"
+  },
+  {
+   "code": "ARE",
+   "label": "UNITED ARAB EMIRATES"
+  },
+  {
+   "code": "GBR",
+   "label": "UNITED KINGDOM"
+  },
+  {
+   "code": "UNO",
+   "label": "UNITED NATIONS ORGANIZATION"
+  },
+  {
+   "code": "UMI",
+   "label": "UNITED STATES MINOR OUTLYING ISLANDS"
+  },
+  {
+   "code": "ZZZ",
+   "label": "UNKNOWN"
+  },
+  {
+   "code": "ESH",
+   "label": "UNKNOWN / UNSPECIFIED NATIONALITY"
+  },
+  {
+   "code": "XXX",
+   "label": "UNSPECIFIED NATIONALITY"
+  },
+  {
+   "code": "URY",
+   "label": "URUGUAY"
+  },
+  {
+   "code": "USA",
+   "label": "USA"
+  },
+  {
+   "code": "UZB",
+   "label": "UZBEKISTAN"
+  },
+  {
+   "code": "VUT",
+   "label": "VANUATU"
+  },
+  {
+   "code": "VEN",
+   "label": "VENEZUELA"
+  },
+  {
+   "code": "VNM",
+   "label": "VIETNAM"
+  },
+  {
+   "code": "VGB",
+   "label": "VIRGIN ISLANDS (BRITISH)"
+  },
+  {
+   "code": "VIR",
+   "label": "VIRGIN ISLANDS (USA)"
+  },
+  {
+   "code": "WLF",
+   "label": "WALLIS AND FUTURA ISLANDS"
+  },
+  {
+   "code": "YEM",
+   "label": "YEMEN"
+  },
+  {
+   "code": "YUG",
+   "label": "YUGOSLAVIA"
+  },
+  {
+   "code": "ZAR",
+   "label": "ZAIRE"
+  },
+  {
+   "code": "ZMB",
+   "label": "ZAMBIA"
+  },
+  {
+   "code": "ZWE",
+   "label": "ZIMBABWE"
+  },
+  {
+   "code": "ZIM",
+   "label": "ZIMBABWE"
+  },
+  {
+   "code": "ROS",
+   "label": "REPUBLIC OF SOMALILAND"
+  }
+ ],
+ "ports": [
+  {
+   "code": "AFG",
+   "label": "AFGHANISTAN"
+  },
+  {
+   "code": "ALB",
+   "label": "ALBANIA"
+  },
+  {
+   "code": "DZA",
+   "label": "ALGERIA"
+  },
+  {
+   "code": "ASM",
+   "label": "AMERICAN SAMOA"
+  },
+  {
+   "code": "AND",
+   "label": "ANDORRA"
+  },
+  {
+   "code": "AGO",
+   "label": "ANGOLA"
+  },
+  {
+   "code": "AIA",
+   "label": "ANGUILLA"
+  },
+  {
+   "code": "ATA",
+   "label": "ANTARCTICA"
+  },
+  {
+   "code": "ATG",
+   "label": "ANTIGUA AND BARBUDA"
+  },
+  {
+   "code": "ARG",
+   "label": "ARGENTINA"
+  },
+  {
+   "code": "ARM",
+   "label": "ARMENIA"
+  },
+  {
+   "code": "ABW",
+   "label": "ARUBA"
+  },
+  {
+   "code": "AUS",
+   "label": "AUSTRALIA"
+  },
+  {
+   "code": "AUT",
+   "label": "AUSTRIA"
+  },
+  {
+   "code": "AZE",
+   "label": "AZERBAIJAN"
+  },
+  {
+   "code": "BHS",
+   "label": "BAHAMAS"
+  },
+  {
+   "code": "BHR",
+   "label": "BAHRAIN"
+  },
+  {
+   "code": "BGD",
+   "label": "BANGLADESH"
+  },
+  {
+   "code": "BRB",
+   "label": "BARBADOS"
+  },
+  {
+   "code": "BLR",
+   "label": "BELARUS"
+  },
+  {
+   "code": "BEL",
+   "label": "BELGIUM"
+  },
+  {
+   "code": "BLZ",
+   "label": "BELIZE"
+  },
+  {
+   "code": "BEN",
+   "label": "BENIN"
+  },
+  {
+   "code": "BMU",
+   "label": "BERMUDA"
+  },
+  {
+   "code": "BTN",
+   "label": "BHUTAN"
+  },
+  {
+   "code": "BOL",
+   "label": "BOLIVIA"
+  },
+  {
+   "code": "BIH",
+   "label": "BOSNIA AND HERZEGOVINA"
+  },
+  {
+   "code": "BWA",
+   "label": "BOTSWANA"
+  },
+  {
+   "code": "BVT",
+   "label": "BOUVET ISLAND"
+  },
+  {
+   "code": "BRA",
+   "label": "BRAZIL"
+  },
+  {
+   "code": "IOT",
+   "label": "BRITISH INDIAN OCEAN TERRITORY"
+  },
+  {
+   "code": "GBN",
+   "label": "BRITISH NATIONAL OVERSEAS"
+  },
+  {
+   "code": "GBO",
+   "label": "BRITISH OVERSEAS CITIZENS"
+  },
+  {
+   "code": "GBP",
+   "label": "BRITISH PROTECTED PERSON"
+  },
+  {
+   "code": "GBS",
+   "label": "BRITISH SUBJECT"
+  },
+  {
+   "code": "BRN",
+   "label": "BRUNEI DARUSSALAM"
+  },
+  {
+   "code": "BGR",
+   "label": "BULGARIA"
+  },
+  {
+   "code": "BFA",
+   "label": "BURKINA FASO"
+  },
+  {
+   "code": "BDI",
+   "label": "BURUNDI"
+  },
+  {
+   "code": "KHM",
+   "label": "CAMBODIA"
+  },
+  {
+   "code": "CMR",
+   "label": "CAMEROON"
+  },
+  {
+   "code": "CAN",
+   "label": "CANADA"
+  },
+  {
+   "code": "CPV",
+   "label": "CAPE VERDE"
+  },
+  {
+   "code": "CYM",
+   "label": "CAYMAN ISLANDS"
+  },
+  {
+   "code": "CAF",
+   "label": "CENTRAL AFRICAN REPUBLIC"
+  },
+  {
+   "code": "TCD",
+   "label": "CHAD"
+  },
+  {
+   "code": "CHL",
+   "label": "CHILE"
+  },
+  {
+   "code": "CHN",
+   "label": "CHINA"
+  },
+  {
+   "code": "CXR",
+   "label": "CHRISTMAS ISLAND"
+  },
+  {
+   "code": "CCK",
+   "label": "COCOS ISLANDS"
+  },
+  {
+   "code": "COL",
+   "label": "COLOMBIA"
+  },
+  {
+   "code": "COM",
+   "label": "COMOROS"
+  },
+  {
+   "code": "COG",
+   "label": "CONGO"
+  },
+  {
+   "code": "COK",
+   "label": "COOK ISLANDS"
+  },
+  {
+   "code": "CRI",
+   "label": "COSTA RICA"
+  },
+  {
+   "code": "CIV",
+   "label": "COTE D'IVOIRE"
+  },
+  {
+   "code": "HRV",
+   "label": "CROATIA"
+  },
+  {
+   "code": "CUB",
+   "label": "CUBA"
+  },
+  {
+   "code": "CYP",
+   "label": "CYPRUS"
+  },
+  {
+   "code": "CZE",
+   "label": "CZECH REPUBLIC"
+  },
+  {
+   "code": "PRK",
+   "label": "DEMOCRATIC PEOPLE'S REPUBLIC OF KOREA"
+  },
+  {
+   "code": "DPR",
+   "label": "DEMOCRATIC PEOPLES REPUBLIC OF KOREA"
+  },
+  {
+   "code": "COD",
+   "label": "DEMOCRATIC REPUBLIC OF THE CONGO"
+  },
+  {
+   "code": "DNK",
+   "label": "DENMARK"
+  },
+  {
+   "code": "DJI",
+   "label": "DJIBOUTI"
+  },
+  {
+   "code": "DMA",
+   "label": "DOMINICA"
+  },
+  {
+   "code": "DOM",
+   "label": "DOMINICAN REPUBLIC"
+  },
+  {
+   "code": "ECU",
+   "label": "ECUADOR"
+  },
+  {
+   "code": "EGY",
+   "label": "EGYPT"
+  },
+  {
+   "code": "SLV",
+   "label": "EL SALVADOR"
+  },
+  {
+   "code": "GNQ",
+   "label": "EQUATORIAL GUINEA"
+  },
+  {
+   "code": "ERI",
+   "label": "ERITREA"
+  },
+  {
+   "code": "EST",
+   "label": "ESTONIA"
+  },
+  {
+   "code": "ETH",
+   "label": "ETHIOPIA"
+  },
+  {
+   "code": "EUE",
+   "label": "EUROPEAN UNION LAISSER PASSER"
+  },
+  {
+   "code": "FLK",
+   "label": "FALKLAND ISLAND (MALVINAS)"
+  },
+  {
+   "code": "FRO",
+   "label": "FAROE ISLANDS"
+  },
+  {
+   "code": "FJI",
+   "label": "FIJI"
+  },
+  {
+   "code": "FIN",
+   "label": "FINLAND"
+  },
+  {
+   "code": "FXX",
+   "label": "FINLAND, METROPOLITAN"
+  },
+  {
+   "code": "FRA",
+   "label": "FRANCE"
+  },
+  {
+   "code": "GUF",
+   "label": "FRENCH GUIANA"
+  },
+  {
+   "code": "PYF",
+   "label": "FRENCH POLYNESIA"
+  },
+  {
+   "code": "ATF",
+   "label": "FRENCH SOUTHERN TERRITORIES"
+  },
+  {
+   "code": "GAB",
+   "label": "GABON"
+  },
+  {
+   "code": "GMB",
+   "label": "GAMBIA"
+  },
+  {
+   "code": "GEO",
+   "label": "GEORGIA"
+  },
+  {
+   "code": "DEU",
+   "label": "GERMANY"
+  },
+  {
+   "code": "GHA",
+   "label": "GHANA"
+  },
+  {
+   "code": "GIB",
+   "label": "GIBRALTAR"
+  },
+  {
+   "code": "GRC",
+   "label": "GREECE"
+  },
+  {
+   "code": "GRL",
+   "label": "GREENLAND"
+  },
+  {
+   "code": "GRD",
+   "label": "GRENADA"
+  },
+  {
+   "code": "GLP",
+   "label": "GUADELOUPE"
+  },
+  {
+   "code": "GUM",
+   "label": "GUAM"
+  },
+  {
+   "code": "GTM",
+   "label": "GUATEMALA"
+  },
+  {
+   "code": "GNB",
+   "label": "GUIENA-BISSAU"
+  },
+  {
+   "code": "GIN",
+   "label": "GUINEA"
+  },
+  {
+   "code": "GUY",
+   "label": "GUYANA"
+  },
+  {
+   "code": "HTI",
+   "label": "HAITI"
+  },
+  {
+   "code": "HMD",
+   "label": "HEARD AND MCDONALD ISLANDS"
+  },
+  {
+   "code": "VAT",
+   "label": "HOLY SEE (VATICAN CITY STATE)"
+  },
+  {
+   "code": "HND",
+   "label": "HONDURAS"
+  },
+  {
+   "code": "HKG",
+   "label": "HONG KONG SAR"
+  },
+  {
+   "code": "HUN",
+   "label": "HUNGARY"
+  },
+  {
+   "code": "ISL",
+   "label": "ICELAND"
+  },
+  {
+   "code": "IND",
+   "label": "INDIA"
+  },
+  {
+   "code": "IDN",
+   "label": "INDONESIA"
+  },
+  {
+   "code": "IRN",
+   "label": "IRAN"
+  },
+  {
+   "code": "IRQ",
+   "label": "IRAQ"
+  },
+  {
+   "code": "IRL",
+   "label": "IRELAND"
+  },
+  {
+   "code": "ISR",
+   "label": "ISRAEL"
+  },
+  {
+   "code": "ITA",
+   "label": "ITALY"
+  },
+  {
+   "code": "JAM",
+   "label": "JAMAICA"
+  },
+  {
+   "code": "JPN",
+   "label": "JAPAN"
+  },
+  {
+   "code": "JOR",
+   "label": "JORDAN"
+  },
+  {
+   "code": "KAZ",
+   "label": "KAZAKHSTAN"
+  },
+  {
+   "code": "KEN",
+   "label": "KENYA"
+  },
+  {
+   "code": "KIR",
+   "label": "KIRIBATI"
+  },
+  {
+   "code": "KWT",
+   "label": "KUWAIT"
+  },
+  {
+   "code": "KGZ",
+   "label": "KYRGYZSTAN"
+  },
+  {
+   "code": "LAO",
+   "label": "LAO PDR"
+  },
+  {
+   "code": "LVA",
+   "label": "LATVIA"
+  },
+  {
+   "code": "LBN",
+   "label": "LEBANON"
+  },
+  {
+   "code": "LSO",
+   "label": "LESOTHO"
+  },
+  {
+   "code": "LBR",
+   "label": "LIBERIA"
+  },
+  {
+   "code": "LBY",
+   "label": "LIBYA"
+  },
+  {
+   "code": "LIE",
+   "label": "LIECHTENSTEIN"
+  },
+  {
+   "code": "LTU",
+   "label": "LITHUANIA"
+  },
+  {
+   "code": "LUX",
+   "label": "LUXEMBOURG"
+  },
+  {
+   "code": "MAC",
+   "label": "MACAO SAR"
+  },
+  {
+   "code": "MDG",
+   "label": "MADAGASCAR"
+  },
+  {
+   "code": "MWI",
+   "label": "MALAWI"
+  },
+  {
+   "code": "MYS",
+   "label": "MALAYSIA"
+  },
+  {
+   "code": "MDV",
+   "label": "MALDIVES"
+  },
+  {
+   "code": "MLI",
+   "label": "MALI"
+  },
+  {
+   "code": "MLT",
+   "label": "MALTA"
+  },
+  {
+   "code": "MHL",
+   "label": "MARSHALL ISLANDS"
+  },
+  {
+   "code": "MTQ",
+   "label": "MARTINIQUE"
+  },
+  {
+   "code": "MRT",
+   "label": "MAURITANIA"
+  },
+  {
+   "code": "MUS",
+   "label": "MAURITIUS"
+  },
+  {
+   "code": "MYT",
+   "label": "MAYOTTE"
+  },
+  {
+   "code": "MEX",
+   "label": "MEXICO"
+  },
+  {
+   "code": "FSM",
+   "label": "MICRONESIA,FEDERATED STATES OF"
+  },
+  {
+   "code": "MCO",
+   "label": "MONACO"
+  },
+  {
+   "code": "MNG",
+   "label": "MONGOLIA"
+  },
+  {
+   "code": "MNE",
+   "label": "MONTENEGRO"
+  },
+  {
+   "code": "MSR",
+   "label": "MONTSERRAT"
+  },
+  {
+   "code": "MAR",
+   "label": "MOROCCO"
+  },
+  {
+   "code": "MOZ",
+   "label": "MOZAMBIQUE"
+  },
+  {
+   "code": "MMR",
+   "label": "MYANMAR"
+  },
+  {
+   "code": "NAM",
+   "label": "NAMIBIA"
+  },
+  {
+   "code": "NRU",
+   "label": "NAURU"
+  },
+  {
+   "code": "NNS",
+   "label": "NEGARA-NEGARA SUMBER"
+  },
+  {
+   "code": "NPL",
+   "label": "NEPAL"
+  },
+  {
+   "code": "NLD",
+   "label": "NETHERLANDS"
+  },
+  {
+   "code": "ANT",
+   "label": "NETHERLANDS ANTILLES"
+  },
+  {
+   "code": "NTZ",
+   "label": "NEUTRAL ZONE"
+  },
+  {
+   "code": "NCL",
+   "label": "NEW CELEDONIA"
+  },
+  {
+   "code": "NZL",
+   "label": "NEW ZEALAND"
+  },
+  {
+   "code": "NIC",
+   "label": "NICARAGUA"
+  },
+  {
+   "code": "NER",
+   "label": "NIGER"
+  },
+  {
+   "code": "NGA",
+   "label": "NIGERIA"
+  },
+  {
+   "code": "ZZD",
+   "label": "NIL"
+  },
+  {
+   "code": "NIU",
+   "label": "NIUE"
+  },
+  {
+   "code": "NFK",
+   "label": "NORFOLK ISLAND"
+  },
+  {
+   "code": "MNP",
+   "label": "NORTHERN MARIANA ISLANDS"
+  },
+  {
+   "code": "NOR",
+   "label": "NORWAY"
+  },
+  {
+   "code": "OMN",
+   "label": "OMAN"
+  },
+  {
+   "code": "PAK",
+   "label": "PAKISTAN"
+  },
+  {
+   "code": "PLW",
+   "label": "PALAU"
+  },
+  {
+   "code": "PAL",
+   "label": "PALESTINE"
+  },
+  {
+   "code": "PSE",
+   "label": "PALESTINE"
+  },
+  {
+   "code": "PAN",
+   "label": "PANAMA"
+  },
+  {
+   "code": "PNG",
+   "label": "PAPUA NEW GUINEA"
+  },
+  {
+   "code": "PRY",
+   "label": "PARAGUAY"
+  },
+  {
+   "code": "PER",
+   "label": "PERU"
+  },
+  {
+   "code": "PHL",
+   "label": "PHILIPPINES"
+  },
+  {
+   "code": "PCN",
+   "label": "PITCAIRN ISLAND"
+  },
+  {
+   "code": "POL",
+   "label": "POLAND"
+  },
+  {
+   "code": "PRT",
+   "label": "PORTUGAL"
+  },
+  {
+   "code": "PRI",
+   "label": "PUERTO RICO"
+  },
+  {
+   "code": "QAT",
+   "label": "QATAR"
+  },
+  {
+   "code": "XXC",
+   "label": "REFUGEE"
+  },
+  {
+   "code": "XXB",
+   "label": "REFUGEE ARTICLE 1/1951"
+  },
+  {
+   "code": "MDA",
+   "label": "REP OF MOLDOVA"
+  },
+  {
+   "code": "RKS",
+   "label": "REP. KOSOVO"
+  },
+  {
+   "code": "KOR",
+   "label": "REPUBLIC OF KOREA"
+  },
+  {
+   "code": "KOS",
+   "label": "REPUBLIC OF KOSOVO"
+  },
+  {
+   "code": "MKD",
+   "label": "REPUBLIC OF MACEDONIA"
+  },
+  {
+   "code": "ROS",
+   "label": "REPUBLIC OF SOMALILAND"
+  },
+  {
+   "code": "SSD",
+   "label": "REPUBLIC OF SOUTH SUDAN"
+  },
+  {
+   "code": "REU",
+   "label": "REUNION"
+  },
+  {
+   "code": "ROM",
+   "label": "ROMANIA"
+  },
+  {
+   "code": "ROU",
+   "label": "ROMANIA"
+  },
+  {
+   "code": "RUS",
+   "label": "RUSSIA"
+  },
+  {
+   "code": "RWA",
+   "label": "RWANDA"
+  },
+  {
+   "code": "SHN",
+   "label": "SAINT HELENA"
+  },
+  {
+   "code": "KNA",
+   "label": "SAINT KITTS AND NEVIS"
+  },
+  {
+   "code": "LCA",
+   "label": "SAINT LUCIA"
+  },
+  {
+   "code": "SPM",
+   "label": "SAINT PIERRE AND MIQUELON"
+  },
+  {
+   "code": "VCT",
+   "label": "SAINT VINCENT AND THE GRENADINES"
+  },
+  {
+   "code": "WSM",
+   "label": "SAMOA"
+  },
+  {
+   "code": "SMR",
+   "label": "SAN MARINO"
+  },
+  {
+   "code": "STP",
+   "label": "SAO TOME AND PRINCIPE"
+  },
+  {
+   "code": "SAU",
+   "label": "SAUDI ARABIA"
+  },
+  {
+   "code": "SEN",
+   "label": "SENEGAL"
+  },
+  {
+   "code": "SER",
+   "label": "SERBIA"
+  },
+  {
+   "code": "SRB",
+   "label": "SERBIA"
+  },
+  {
+   "code": "SCG",
+   "label": "SERBIA AND MONTENEGRO"
+  },
+  {
+   "code": "SYC",
+   "label": "SEYCHELLES"
+  },
+  {
+   "code": "SLE",
+   "label": "SIERRA LEONE"
+  },
+  {
+   "code": "SGP",
+   "label": "SINGAPORE"
+  },
+  {
+   "code": "SVK",
+   "label": "SLOVAKIA"
+  },
+  {
+   "code": "SVN",
+   "label": "SLOVENIA"
+  },
+  {
+   "code": "SLB",
+   "label": "SOLOMON ISLANDS"
+  },
+  {
+   "code": "SOM",
+   "label": "SOMALIA"
+  },
+  {
+   "code": "ZAF",
+   "label": "SOUTH AFRICA"
+  },
+  {
+   "code": "SGS",
+   "label": "SOUTH GEORGIA & THE SOUTH SANDWICH IS"
+  },
+  {
+   "code": "ESP",
+   "label": "SPAIN"
+  },
+  {
+   "code": "LKA",
+   "label": "SRI LANKA"
+  },
+  {
+   "code": "ZZA",
+   "label": "STATELESS"
+  },
+  {
+   "code": "XXA",
+   "label": "STATELESS PERSON ARTICLE 1/1954"
+  },
+  {
+   "code": "SDN",
+   "label": "SUDAN"
+  },
+  {
+   "code": "SUR",
+   "label": "SURINAME"
+  },
+  {
+   "code": "SJM",
+   "label": "SVALBARD AND JAN MAYEN ISLANDS"
+  },
+  {
+   "code": "SWZ",
+   "label": "SWAZILAND"
+  },
+  {
+   "code": "SWE",
+   "label": "SWEDEN"
+  },
+  {
+   "code": "CHE",
+   "label": "SWITZERLAND"
+  },
+  {
+   "code": "SYR",
+   "label": "SYRIA"
+  },
+  {
+   "code": "TWN",
+   "label": "TAIWAN"
+  },
+  {
+   "code": "TJK",
+   "label": "TAJIKISTAN"
+  },
+  {
+   "code": "TZA",
+   "label": "TANZANIA"
+  },
+  {
+   "code": "THA",
+   "label": "THAILAND"
+  },
+  {
+   "code": "FYR",
+   "label": "THE FORMER YUGOSLAV REP. OF MACEDONIA"
+  },
+  {
+   "code": "ZZB",
+   "label": "TIDAK DINYATAKAN OLEH KLN"
+  },
+  {
+   "code": "TLS",
+   "label": "TIMOR LESTE"
+  },
+  {
+   "code": "TMP",
+   "label": "TIMOR LESTE"
+  },
+  {
+   "code": "TGO",
+   "label": "TOGO"
+  },
+  {
+   "code": "TKL",
+   "label": "TOKELAU"
+  },
+  {
+   "code": "TON",
+   "label": "TONGA"
+  },
+  {
+   "code": "TTO",
+   "label": "TRINIDAD AND TOBAGO"
+  },
+  {
+   "code": "TUN",
+   "label": "TUNISIA"
+  },
+  {
+   "code": "TUR",
+   "label": "TURKIYE"
+  },
+  {
+   "code": "TKM",
+   "label": "TURKMENISTAN"
+  },
+  {
+   "code": "TCA",
+   "label": "TURKS AND CAICOS ISLANDS"
+  },
+  {
+   "code": "TUV",
+   "label": "TUVALU"
+  },
+  {
+   "code": "UGA",
+   "label": "UGANDA"
+  },
+  {
+   "code": "GBD",
+   "label": "UK-DEPENDENT"
+  },
+  {
+   "code": "UKR",
+   "label": "UKRAINE"
+  },
+  {
+   "code": "UNA",
+   "label": "UN SPECIALIZED AGENCY"
+  },
+  {
+   "code": "UNH",
+   "label": "UNHCR"
+  },
+  {
+   "code": "ARE",
+   "label": "UNITED ARAB EMIRATES"
+  },
+  {
+   "code": "GBR",
+   "label": "UNITED KINGDOM"
+  },
+  {
+   "code": "UNO",
+   "label": "UNITED NATIONS ORGANIZATION"
+  },
+  {
+   "code": "UMI",
+   "label": "UNITED STATES MINOR OUTLYING ISLANDS"
+  },
+  {
+   "code": "ZZZ",
+   "label": "UNKNOWN"
+  },
+  {
+   "code": "ESH",
+   "label": "UNKNOWN / UNSPECIFIED NATIONALITY"
+  },
+  {
+   "code": "XXX",
+   "label": "UNSPECIFIED NATIONALITY"
+  },
+  {
+   "code": "URY",
+   "label": "URUGUAY"
+  },
+  {
+   "code": "USA",
+   "label": "USA"
+  },
+  {
+   "code": "UZB",
+   "label": "UZBEKISTAN"
+  },
+  {
+   "code": "VUT",
+   "label": "VANUATU"
+  },
+  {
+   "code": "VEN",
+   "label": "VENEZUELA"
+  },
+  {
+   "code": "VNM",
+   "label": "VIETNAM"
+  },
+  {
+   "code": "VGB",
+   "label": "VIRGIN ISLANDS (BRITISH)"
+  },
+  {
+   "code": "VIR",
+   "label": "VIRGIN ISLANDS (USA)"
+  },
+  {
+   "code": "WLF",
+   "label": "WALLIS AND FUTURA ISLANDS"
+  },
+  {
+   "code": "YEM",
+   "label": "YEMEN"
+  },
+  {
+   "code": "YUG",
+   "label": "YUGOSLAVIA"
+  },
+  {
+   "code": "ZAR",
+   "label": "ZAIRE"
+  },
+  {
+   "code": "ZMB",
+   "label": "ZAMBIA"
+  },
+  {
+   "code": "ZWE",
+   "label": "ZIMBABWE"
+  },
+  {
+   "code": "ZIM",
+   "label": "ZIMBABWE"
+  }
+ ],
+ "dialCodes": [
+  {
+   "code": "1",
+   "label": "CANADA"
+  },
+  {
+   "code": "1",
+   "label": "UNITED STATES"
+  },
+  {
+   "code": "1242",
+   "label": "BAHAMAS"
+  },
+  {
+   "code": "1246",
+   "label": "BARBADOS"
+  },
+  {
+   "code": "1264",
+   "label": "ANGUILLA"
+  },
+  {
+   "code": "1268",
+   "label": "ANTIGUA AND BARBUDA"
+  },
+  {
+   "code": "1284",
+   "label": "BRITISH VIRGIN ISLANDS"
+  },
+  {
+   "code": "1340",
+   "label": "U.S. VIRGIN ISLANDS"
+  },
+  {
+   "code": "1345",
+   "label": "CAYMAN ISLANDS"
+  },
+  {
+   "code": "1441",
+   "label": "BERMUDA"
+  },
+  {
+   "code": "1473",
+   "label": "GRENADA"
+  },
+  {
+   "code": "1649",
+   "label": "TURKS AND CAICOS ISLANDS"
+  },
+  {
+   "code": "1664",
+   "label": "MONTSERRAT"
+  },
+  {
+   "code": "1670",
+   "label": "NORTHERN MARIANA ISLANDS"
+  },
+  {
+   "code": "1671",
+   "label": "GUAM"
+  },
+  {
+   "code": "1684",
+   "label": "AMERICAN SAMOA"
+  },
+  {
+   "code": "1721",
+   "label": "SINT MAARTEN"
+  },
+  {
+   "code": "1758",
+   "label": "SAINT LUCIA"
+  },
+  {
+   "code": "1767",
+   "label": "DOMINICA"
+  },
+  {
+   "code": "1784",
+   "label": "SAINT VINCENT AND THE GRENADINES"
+  },
+  {
+   "code": "1787",
+   "label": "PUERTO RICO"
+  },
+  {
+   "code": "1809",
+   "label": "DOMINICAN REPUBLIC"
+  },
+  {
+   "code": "1829",
+   "label": "DOMINICAN REPUBLIC"
+  },
+  {
+   "code": "1849",
+   "label": "DOMINICAN REPUBLIC"
+  },
+  {
+   "code": "1868",
+   "label": "TRINIDAD AND TOBAGO"
+  },
+  {
+   "code": "1869",
+   "label": "SAINT KITTS AND NEVIS"
+  },
+  {
+   "code": "1876",
+   "label": "JAMAICA"
+  },
+  {
+   "code": "1939",
+   "label": "PUERTO RICO"
+  },
+  {
+   "code": "20",
+   "label": "EGYPT"
+  },
+  {
+   "code": "211",
+   "label": "SOUTH SUDAN"
+  },
+  {
+   "code": "212",
+   "label": "MOROCCO"
+  },
+  {
+   "code": "213",
+   "label": "ALGERIA"
+  },
+  {
+   "code": "216",
+   "label": "TUNISIA"
+  },
+  {
+   "code": "218",
+   "label": "LIBYA"
+  },
+  {
+   "code": "220",
+   "label": "GAMBIA"
+  },
+  {
+   "code": "221",
+   "label": "SENEGAL"
+  },
+  {
+   "code": "222",
+   "label": "MAURITANIA"
+  },
+  {
+   "code": "223",
+   "label": "MALI"
+  },
+  {
+   "code": "224",
+   "label": "GUINEA"
+  },
+  {
+   "code": "225",
+   "label": "IVORY COAST"
+  },
+  {
+   "code": "226",
+   "label": "BURKINA FASO"
+  },
+  {
+   "code": "227",
+   "label": "NIGER"
+  },
+  {
+   "code": "228",
+   "label": "TOGO"
+  },
+  {
+   "code": "229",
+   "label": "BENIN"
+  },
+  {
+   "code": "230",
+   "label": "MAURITIUS"
+  },
+  {
+   "code": "231",
+   "label": "LIBERIA"
+  },
+  {
+   "code": "232",
+   "label": "SIERRA LEONE"
+  },
+  {
+   "code": "233",
+   "label": "GHANA"
+  },
+  {
+   "code": "234",
+   "label": "NIGERIA"
+  },
+  {
+   "code": "235",
+   "label": "CHAD"
+  },
+  {
+   "code": "236",
+   "label": "CENTRAL AFRICAN REPUBLIC"
+  },
+  {
+   "code": "237",
+   "label": "CAMEROON"
+  },
+  {
+   "code": "238",
+   "label": "CAPE VERDE"
+  },
+  {
+   "code": "239",
+   "label": "SAO TOME AND PRINCIPE"
+  },
+  {
+   "code": "240",
+   "label": "EQUATORIAL GUINEA"
+  },
+  {
+   "code": "241",
+   "label": "GABON"
+  },
+  {
+   "code": "242",
+   "label": "REPUBLIC OF THE CONGO"
+  },
+  {
+   "code": "243",
+   "label": "DEMOCRATIC REPUBLIC OF THE CONGO"
+  },
+  {
+   "code": "244",
+   "label": "ANGOLA"
+  },
+  {
+   "code": "245",
+   "label": "GUINEABISSAU"
+  },
+  {
+   "code": "246",
+   "label": "BRITISH INDIAN OCEAN TERRITORY"
+  },
+  {
+   "code": "248",
+   "label": "SEYCHELLES"
+  },
+  {
+   "code": "249",
+   "label": "SUDAN"
+  },
+  {
+   "code": "250",
+   "label": "RWANDA"
+  },
+  {
+   "code": "251",
+   "label": "ETHIOPIA"
+  },
+  {
+   "code": "252",
+   "label": "SOMALIA"
+  },
+  {
+   "code": "253",
+   "label": "DJIBOUTI"
+  },
+  {
+   "code": "254",
+   "label": "KENYA"
+  },
+  {
+   "code": "255",
+   "label": "TANZANIA"
+  },
+  {
+   "code": "256",
+   "label": "UGANDA"
+  },
+  {
+   "code": "257",
+   "label": "BURUNDI"
+  },
+  {
+   "code": "258",
+   "label": "MOZAMBIQUE"
+  },
+  {
+   "code": "260",
+   "label": "ZAMBIA"
+  },
+  {
+   "code": "261",
+   "label": "MADAGASCAR"
+  },
+  {
+   "code": "262",
+   "label": "MAYOTTE"
+  },
+  {
+   "code": "262",
+   "label": "REUNION"
+  },
+  {
+   "code": "263",
+   "label": "ZIMBABWE"
+  },
+  {
+   "code": "264",
+   "label": "NAMIBIA"
+  },
+  {
+   "code": "265",
+   "label": "MALAWI"
+  },
+  {
+   "code": "266",
+   "label": "LESOTHO"
+  },
+  {
+   "code": "267",
+   "label": "BOTSWANA"
+  },
+  {
+   "code": "268",
+   "label": "SWAZILAND"
+  },
+  {
+   "code": "269",
+   "label": "COMOROS"
+  },
+  {
+   "code": "27",
+   "label": "SOUTH AFRICA"
+  },
+  {
+   "code": "290",
+   "label": "SAINT HELENA"
+  },
+  {
+   "code": "291",
+   "label": "ERITREA"
+  },
+  {
+   "code": "297",
+   "label": "ARUBA"
+  },
+  {
+   "code": "298",
+   "label": "FAROE ISLANDS"
+  },
+  {
+   "code": "299",
+   "label": "GREENLAND"
+  },
+  {
+   "code": "30",
+   "label": "GREECE"
+  },
+  {
+   "code": "31",
+   "label": "NETHERLANDS"
+  },
+  {
+   "code": "32",
+   "label": "BELGIUM"
+  },
+  {
+   "code": "33",
+   "label": "FRANCE"
+  },
+  {
+   "code": "34",
+   "label": "SPAIN"
+  },
+  {
+   "code": "350",
+   "label": "GIBRALTAR"
+  },
+  {
+   "code": "351",
+   "label": "PORTUGAL"
+  },
+  {
+   "code": "352",
+   "label": "LUXEMBOURG"
+  },
+  {
+   "code": "353",
+   "label": "IRELAND"
+  },
+  {
+   "code": "354",
+   "label": "ICELAND"
+  },
+  {
+   "code": "355",
+   "label": "ALBANIA"
+  },
+  {
+   "code": "356",
+   "label": "MALTA"
+  },
+  {
+   "code": "357",
+   "label": "CYPRUS"
+  },
+  {
+   "code": "358",
+   "label": "FINLAND"
+  },
+  {
+   "code": "359",
+   "label": "BULGARIA"
+  },
+  {
+   "code": "36",
+   "label": "HUNGARY"
+  },
+  {
+   "code": "370",
+   "label": "LITHUANIA"
+  },
+  {
+   "code": "371",
+   "label": "LATVIA"
+  },
+  {
+   "code": "372",
+   "label": "ESTONIA"
+  },
+  {
+   "code": "373",
+   "label": "MOLDOVA"
+  },
+  {
+   "code": "374",
+   "label": "ARMENIA"
+  },
+  {
+   "code": "375",
+   "label": "BELARUS"
+  },
+  {
+   "code": "376",
+   "label": "ANDORRA"
+  },
+  {
+   "code": "377",
+   "label": "MONACO"
+  },
+  {
+   "code": "378",
+   "label": "SAN MARINO"
+  },
+  {
+   "code": "379",
+   "label": "VATICAN"
+  },
+  {
+   "code": "380",
+   "label": "UKRAINE"
+  },
+  {
+   "code": "381",
+   "label": "SERBIA"
+  },
+  {
+   "code": "382",
+   "label": "MONTENEGRO"
+  },
+  {
+   "code": "383",
+   "label": "KOSOVO"
+  },
+  {
+   "code": "385",
+   "label": "CROATIA"
+  },
+  {
+   "code": "386",
+   "label": "SLOVENIA"
+  },
+  {
+   "code": "387",
+   "label": "BOSNIA AND HERZEGOVINA"
+  },
+  {
+   "code": "389",
+   "label": "MACEDONIA"
+  },
+  {
+   "code": "39",
+   "label": "ITALY"
+  },
+  {
+   "code": "40",
+   "label": "ROMANIA"
+  },
+  {
+   "code": "41",
+   "label": "SWITZERLAND"
+  },
+  {
+   "code": "420",
+   "label": "CZECH REPUBLIC"
+  },
+  {
+   "code": "421",
+   "label": "SLOVAKIA"
+  },
+  {
+   "code": "423",
+   "label": "LIECHTENSTEIN"
+  },
+  {
+   "code": "43",
+   "label": "AUSTRIA"
+  },
+  {
+   "code": "44",
+   "label": "UNITED KINGDOM"
+  },
+  {
+   "code": "441481",
+   "label": "GUERNSEY"
+  },
+  {
+   "code": "441534",
+   "label": "JERSEY"
+  },
+  {
+   "code": "441624",
+   "label": "ISLE OF MAN"
+  },
+  {
+   "code": "45",
+   "label": "DENMARK"
+  },
+  {
+   "code": "46",
+   "label": "SWEDEN"
+  },
+  {
+   "code": "47",
+   "label": "NORWAY"
+  },
+  {
+   "code": "47",
+   "label": "SVALBARD AND JAN MAYEN"
+  },
+  {
+   "code": "48",
+   "label": "POLAND"
+  },
+  {
+   "code": "49",
+   "label": "GERMANY"
+  },
+  {
+   "code": "500",
+   "label": "FALKLAND ISLANDS"
+  },
+  {
+   "code": "501",
+   "label": "BELIZE"
+  },
+  {
+   "code": "502",
+   "label": "GUATEMALA"
+  },
+  {
+   "code": "503",
+   "label": "EL SALVADOR"
+  },
+  {
+   "code": "504",
+   "label": "HONDURAS"
+  },
+  {
+   "code": "505",
+   "label": "NICARAGUA"
+  },
+  {
+   "code": "506",
+   "label": "COSTA RICA"
+  },
+  {
+   "code": "507",
+   "label": "PANAMA"
+  },
+  {
+   "code": "508",
+   "label": "SAINT PIERRE AND MIQUELON"
+  },
+  {
+   "code": "509",
+   "label": "HAITI"
+  },
+  {
+   "code": "51",
+   "label": "PERU"
+  },
+  {
+   "code": "52",
+   "label": "MEXICO"
+  },
+  {
+   "code": "53",
+   "label": "CUBA"
+  },
+  {
+   "code": "54",
+   "label": "ARGENTINA"
+  },
+  {
+   "code": "55",
+   "label": "BRAZIL"
+  },
+  {
+   "code": "56",
+   "label": "CHILE"
+  },
+  {
+   "code": "57",
+   "label": "COLOMBIA"
+  },
+  {
+   "code": "58",
+   "label": "VENEZUELA"
+  },
+  {
+   "code": "590",
+   "label": "SAINT BARTHELEMY"
+  },
+  {
+   "code": "590",
+   "label": "SAINT MARTIN"
+  },
+  {
+   "code": "591",
+   "label": "BOLIVIA"
+  },
+  {
+   "code": "592",
+   "label": "GUYANA"
+  },
+  {
+   "code": "593",
+   "label": "ECUADOR"
+  },
+  {
+   "code": "595",
+   "label": "PARAGUAY"
+  },
+  {
+   "code": "597",
+   "label": "SURINAME"
+  },
+  {
+   "code": "598",
+   "label": "URUGUAY"
+  },
+  {
+   "code": "599",
+   "label": "NETHERLANDS ANTILLES"
+  },
+  {
+   "code": "599",
+   "label": "CURACAO"
+  },
+  {
+   "code": "60",
+   "label": "MALAYSIA"
+  },
+  {
+   "code": "61",
+   "label": "AUSTRALIA"
+  },
+  {
+   "code": "61",
+   "label": "COCOS ISLANDS"
+  },
+  {
+   "code": "61",
+   "label": "CHRISTMAS ISLAND"
+  },
+  {
+   "code": "62",
+   "label": "INDONESIA"
+  },
+  {
+   "code": "63",
+   "label": "PHILIPPINES"
+  },
+  {
+   "code": "64",
+   "label": "NEW ZEALAND"
+  },
+  {
+   "code": "64",
+   "label": "PITCAIRN"
+  },
+  {
+   "code": "65",
+   "label": "SINGAPORE"
+  },
+  {
+   "code": "66",
+   "label": "THAILAND"
+  },
+  {
+   "code": "670",
+   "label": "EAST TIMOR"
+  },
+  {
+   "code": "672",
+   "label": "ANTARCTICA"
+  },
+  {
+   "code": "673",
+   "label": "BRUNEI"
+  },
+  {
+   "code": "674",
+   "label": "NAURU"
+  },
+  {
+   "code": "675",
+   "label": "PAPUA NEW GUINEA"
+  },
+  {
+   "code": "676",
+   "label": "TONGA"
+  },
+  {
+   "code": "677",
+   "label": "SOLOMON ISLANDS"
+  },
+  {
+   "code": "678",
+   "label": "VANUATU"
+  },
+  {
+   "code": "679",
+   "label": "FIJI"
+  },
+  {
+   "code": "680",
+   "label": "PALAU"
+  },
+  {
+   "code": "681",
+   "label": "WALLIS AND FUTUNA"
+  },
+  {
+   "code": "682",
+   "label": "COOK ISLANDS"
+  },
+  {
+   "code": "683",
+   "label": "NIUE"
+  },
+  {
+   "code": "685",
+   "label": "SAMOA"
+  },
+  {
+   "code": "686",
+   "label": "KIRIBATI"
+  },
+  {
+   "code": "687",
+   "label": "NEW CALEDONIA"
+  },
+  {
+   "code": "688",
+   "label": "TUVALU"
+  },
+  {
+   "code": "689",
+   "label": "FRENCH POLYNESIA"
+  },
+  {
+   "code": "690",
+   "label": "TOKELAU"
+  },
+  {
+   "code": "691",
+   "label": "MICRONESIA"
+  },
+  {
+   "code": "692",
+   "label": "MARSHALL ISLANDS"
+  },
+  {
+   "code": "7",
+   "label": "KAZAKHSTAN"
+  },
+  {
+   "code": "7",
+   "label": "RUSSIA"
+  },
+  {
+   "code": "81",
+   "label": "JAPAN"
+  },
+  {
+   "code": "82",
+   "label": "SOUTH KOREA"
+  },
+  {
+   "code": "84",
+   "label": "VIETNAM"
+  },
+  {
+   "code": "850",
+   "label": "NORTH KOREA"
+  },
+  {
+   "code": "852",
+   "label": "HONG KONG"
+  },
+  {
+   "code": "853",
+   "label": "MACAU"
+  },
+  {
+   "code": "855",
+   "label": "CAMBODIA"
+  },
+  {
+   "code": "856",
+   "label": "LAOS"
+  },
+  {
+   "code": "86",
+   "label": "CHINA"
+  },
+  {
+   "code": "880",
+   "label": "BANGLADESH"
+  },
+  {
+   "code": "886",
+   "label": "TAIWAN"
+  },
+  {
+   "code": "90",
+   "label": "TURKIYE"
+  },
+  {
+   "code": "91",
+   "label": "INDIA"
+  },
+  {
+   "code": "92",
+   "label": "PAKISTAN"
+  },
+  {
+   "code": "93",
+   "label": "AFGHANISTAN"
+  },
+  {
+   "code": "94",
+   "label": "SRI LANKA"
+  },
+  {
+   "code": "95",
+   "label": "MYANMAR"
+  },
+  {
+   "code": "960",
+   "label": "MALDIVES"
+  },
+  {
+   "code": "961",
+   "label": "LEBANON"
+  },
+  {
+   "code": "962",
+   "label": "JORDAN"
+  },
+  {
+   "code": "963",
+   "label": "SYRIA"
+  },
+  {
+   "code": "964",
+   "label": "IRAQ"
+  },
+  {
+   "code": "965",
+   "label": "KUWAIT"
+  },
+  {
+   "code": "966",
+   "label": "SAUDI ARABIA"
+  },
+  {
+   "code": "967",
+   "label": "YEMEN"
+  },
+  {
+   "code": "968",
+   "label": "OMAN"
+  },
+  {
+   "code": "970",
+   "label": "PALESTINE"
+  },
+  {
+   "code": "971",
+   "label": "UNITED ARAB EMIRATES"
+  },
+  {
+   "code": "972",
+   "label": "ISRAEL"
+  },
+  {
+   "code": "973",
+   "label": "BAHRAIN"
+  },
+  {
+   "code": "974",
+   "label": "QATAR"
+  },
+  {
+   "code": "975",
+   "label": "BHUTAN"
+  },
+  {
+   "code": "976",
+   "label": "MONGOLIA"
+  },
+  {
+   "code": "977",
+   "label": "NEPAL"
+  },
+  {
+   "code": "98",
+   "label": "IRAN"
+  },
+  {
+   "code": "992",
+   "label": "TAJIKISTAN"
+  },
+  {
+   "code": "993",
+   "label": "TURKMENISTAN"
+  },
+  {
+   "code": "994",
+   "label": "AZERBAIJAN"
+  },
+  {
+   "code": "995",
+   "label": "GEORGIA"
+  },
+  {
+   "code": "996",
+   "label": "KYRGYZSTAN"
+  },
+  {
+   "code": "998",
+   "label": "UZBEKISTAN"
+  }
+ ],
+ "cities": {
+  "10": [
+   {
+    "code": "1000",
+    "label": "SELANGOR"
+   },
+   {
+    "code": "1001",
+    "label": "AMPANG"
+   },
+   {
+    "code": "1002",
+    "label": "BANTING"
+   },
+   {
+    "code": "1003",
+    "label": "BTG.BERJUNTAI"
+   },
+   {
+    "code": "1004",
+    "label": "BATANG KALI"
+   },
+   {
+    "code": "1005",
+    "label": "BATU 9 CHERAS"
+   },
+   {
+    "code": "1006",
+    "label": "BATU ARANG"
+   },
+   {
+    "code": "1007",
+    "label": "BATU CAVES"
+   },
+   {
+    "code": "1008",
+    "label": "BERANANG"
+   },
+   {
+    "code": "1009",
+    "label": "BUKIT ROTAN"
+   },
+   {
+    "code": "1010",
+    "label": "DENGKIL"
+   },
+   {
+    "code": "1011",
+    "label": "HULU LANGAT"
+   },
+   {
+    "code": "1012",
+    "label": "JENJAROM"
+   },
+   {
+    "code": "1013",
+    "label": "JERAM"
+   },
+   {
+    "code": "1014",
+    "label": "KAJANG"
+   },
+   {
+    "code": "1015",
+    "label": "KAPAR"
+   },
+   {
+    "code": "1016",
+    "label": "KLANG"
+   },
+   {
+    "code": "1017",
+    "label": "KERLING"
+   },
+   {
+    "code": "1018",
+    "label": "K. KUBU BHARU"
+   },
+   {
+    "code": "1019",
+    "label": "KUALA LUMPUR"
+   },
+   {
+    "code": "1020",
+    "label": "KUALA SELANGOR"
+   },
+   {
+    "code": "1021",
+    "label": "NILAI"
+   },
+   {
+    "code": "1022",
+    "label": "MANTIN"
+   },
+   {
+    "code": "1023",
+    "label": "PELABUHAN KLANG"
+   },
+   {
+    "code": "1024",
+    "label": "PETALING JAYA"
+   },
+   {
+    "code": "1025",
+    "label": "PUCHONG"
+   },
+   {
+    "code": "1026",
+    "label": "PULAU CAREY"
+   },
+   {
+    "code": "1027",
+    "label": "PULAU KETAM"
+   },
+   {
+    "code": "1028",
+    "label": "PULAU INDAH"
+   },
+   {
+    "code": "1029",
+    "label": "RANTAU PANJANG"
+   },
+   {
+    "code": "1030",
+    "label": "RASA"
+   },
+   {
+    "code": "1031",
+    "label": "RAWANG"
+   },
+   {
+    "code": "1032",
+    "label": "SABAK BERNAM"
+   },
+   {
+    "code": "1033",
+    "label": "SEKINCHAN"
+   },
+   {
+    "code": "1034",
+    "label": "SEMENYIH"
+   },
+   {
+    "code": "1035",
+    "label": "SEPANG"
+   },
+   {
+    "code": "1036",
+    "label": "SERENDAH"
+   },
+   {
+    "code": "1037",
+    "label": "SERI KEMBANGAN"
+   },
+   {
+    "code": "1038",
+    "label": "SHAH ALAM"
+   },
+   {
+    "code": "1039",
+    "label": "SUBANG JAYA"
+   },
+   {
+    "code": "1040",
+    "label": "SG AYER TAWAR"
+   },
+   {
+    "code": "1041",
+    "label": "SUNGAI BESAR"
+   },
+   {
+    "code": "1042",
+    "label": "SUNGAI BULOH"
+   },
+   {
+    "code": "1043",
+    "label": "SUNGAI PELEK"
+   },
+   {
+    "code": "1044",
+    "label": "TANJONG KARANG"
+   },
+   {
+    "code": "1045",
+    "label": "TANJONG SEPAT"
+   },
+   {
+    "code": "1046",
+    "label": "TELOK P. GARANG"
+   },
+   {
+    "code": "1047",
+    "label": "UKM BANGI"
+   },
+   {
+    "code": "1048",
+    "label": "UPM SERDANG"
+   },
+   {
+    "code": "1049",
+    "label": "HULU BERNAM"
+   },
+   {
+    "code": "1050",
+    "label": "BDR. BARU BANGI"
+   },
+   {
+    "code": "1051",
+    "label": "PUTRAJAYA(1.2.2001)"
+   },
+   {
+    "code": "1052",
+    "label": "CYBERJAYA"
+   },
+   {
+    "code": "1053",
+    "label": "SELAYANG"
+   },
+   {
+    "code": "1087",
+    "label": "BANDAR BARU SUNGAI BULOH"
+   },
+   {
+    "code": "1088",
+    "label": "ULU YAM BARU"
+   },
+   {
+    "code": "1089",
+    "label": "GOMBAK"
+   },
+   {
+    "code": "1090",
+    "label": "SERDANG"
+   },
+   {
+    "code": "1091",
+    "label": "TASIK PUTERI"
+   },
+   {
+    "code": "1092",
+    "label": "CHERAS"
+   },
+   {
+    "code": "1095",
+    "label": "BANDAR PUNCAK ALAM"
+   },
+   {
+    "code": "1096",
+    "label": "BANDAR PUNCAK ALAM"
+   }
+  ],
+  "11": [
+   {
+    "code": "1100",
+    "label": "TERENGGANU"
+   },
+   {
+    "code": "1101",
+    "label": "AJIL"
+   },
+   {
+    "code": "1102",
+    "label": "BESUT"
+   },
+   {
+    "code": "1103",
+    "label": "BUKIT BESI"
+   },
+   {
+    "code": "1104",
+    "label": "DUNGUN"
+   },
+   {
+    "code": "1105",
+    "label": "JERTIH"
+   },
+   {
+    "code": "1106",
+    "label": "BDR PERMAISURI"
+   },
+   {
+    "code": "1107",
+    "label": "KEMAMAN"
+   },
+   {
+    "code": "1108",
+    "label": "KEMASEK"
+   },
+   {
+    "code": "1109",
+    "label": "KIJAL"
+   },
+   {
+    "code": "1110",
+    "label": "KUALA BERANG"
+   },
+   {
+    "code": "1111",
+    "label": "KUALA BESUT"
+   },
+   {
+    "code": "1112",
+    "label": "KUALA TERENGGANU"
+   },
+   {
+    "code": "1113",
+    "label": "MARANG"
+   },
+   {
+    "code": "1114",
+    "label": "PAKA"
+   },
+   {
+    "code": "1115",
+    "label": "KERTEH"
+   },
+   {
+    "code": "1116",
+    "label": "MUKTAFI BILLAH SHAH"
+   },
+   {
+    "code": "1117",
+    "label": "KAMPONG RAJA"
+   },
+   {
+    "code": "1118",
+    "label": "CUKAI"
+   },
+   {
+    "code": "1121",
+    "label": "KUALA NERUS"
+   },
+   {
+    "code": "1122",
+    "label": "BANDAR KETENGAH JAYA"
+   }
+  ],
+  "12": [
+   {
+    "code": "1200",
+    "label": "SABAH"
+   },
+   {
+    "code": "1201",
+    "label": "BEAUFORT"
+   },
+   {
+    "code": "1202",
+    "label": "BELURAN"
+   },
+   {
+    "code": "1203",
+    "label": "BONGAWAN"
+   },
+   {
+    "code": "1204",
+    "label": "INANAM"
+   },
+   {
+    "code": "1205",
+    "label": "KENINGAU"
+   },
+   {
+    "code": "1206",
+    "label": "KOTA BELUD"
+   },
+   {
+    "code": "1207",
+    "label": "KOTA KINABALU"
+   },
+   {
+    "code": "1208",
+    "label": "KOTA MARUDU"
+   },
+   {
+    "code": "1209",
+    "label": "KUALA PENYU"
+   },
+   {
+    "code": "1210",
+    "label": "KUDAT"
+   },
+   {
+    "code": "1211",
+    "label": "KUNAK"
+   },
+   {
+    "code": "1212",
+    "label": "LAHAD DATU"
+   },
+   {
+    "code": "1213",
+    "label": "LAMAG"
+   },
+   {
+    "code": "1214",
+    "label": "LIKAS"
+   },
+   {
+    "code": "1215",
+    "label": "MEMBAKUT"
+   },
+   {
+    "code": "1216",
+    "label": "MENUMBUK"
+   },
+   {
+    "code": "1217",
+    "label": "NABAWAN"
+   },
+   {
+    "code": "1218",
+    "label": "PAPAR"
+   },
+   {
+    "code": "1219",
+    "label": "PENAMPANG"
+   },
+   {
+    "code": "1220",
+    "label": "RANAU"
+   },
+   {
+    "code": "1221",
+    "label": "SANDAKAN"
+   },
+   {
+    "code": "1222",
+    "label": "SEMPORNA"
+   },
+   {
+    "code": "1223",
+    "label": "SIPITANG"
+   },
+   {
+    "code": "1224",
+    "label": "TAMBUNAN"
+   },
+   {
+    "code": "1225",
+    "label": "TAMPARULI"
+   },
+   {
+    "code": "1226",
+    "label": "TANJUNG ARU"
+   },
+   {
+    "code": "1227",
+    "label": "TAWAU"
+   },
+   {
+    "code": "1228",
+    "label": "TENOM"
+   },
+   {
+    "code": "1229",
+    "label": "TUARAN"
+   },
+   {
+    "code": "1230",
+    "label": "K. KINABATANGAN"
+   },
+   {
+    "code": "1232",
+    "label": "PUTATAN"
+   },
+   {
+    "code": "1233",
+    "label": "TELUPID"
+   }
+  ],
+  "13": [
+   {
+    "code": "1300",
+    "label": "SARAWAK"
+   },
+   {
+    "code": "1301",
+    "label": "ASAJAYA"
+   },
+   {
+    "code": "1302",
+    "label": "BALINGIAN"
+   },
+   {
+    "code": "1303",
+    "label": "BARAM"
+   },
+   {
+    "code": "1304",
+    "label": "BAU"
+   },
+   {
+    "code": "1305",
+    "label": "BEKENU"
+   },
+   {
+    "code": "1306",
+    "label": "BELAGA"
+   },
+   {
+    "code": "1307",
+    "label": "BELAWAI"
+   },
+   {
+    "code": "1308",
+    "label": "BETONG"
+   },
+   {
+    "code": "1309",
+    "label": "BINTANGOR"
+   },
+   {
+    "code": "1310",
+    "label": "BINTULU"
+   },
+   {
+    "code": "1311",
+    "label": "DALAT"
+   },
+   {
+    "code": "1312",
+    "label": "DARO"
+   },
+   {
+    "code": "1313",
+    "label": "DEBAK"
+   },
+   {
+    "code": "1314",
+    "label": "ENGKILILI"
+   },
+   {
+    "code": "1315",
+    "label": "JULAU"
+   },
+   {
+    "code": "1316",
+    "label": "KABONG"
+   },
+   {
+    "code": "1317",
+    "label": "KANOWIT"
+   },
+   {
+    "code": "1318",
+    "label": "KAPIT"
+   },
+   {
+    "code": "1319",
+    "label": "KOTA SAMARAHAN"
+   },
+   {
+    "code": "1320",
+    "label": "KUCHING"
+   },
+   {
+    "code": "1321",
+    "label": "LAWAS"
+   },
+   {
+    "code": "1322",
+    "label": "LIMBANG"
+   },
+   {
+    "code": "1323",
+    "label": "LINGGA"
+   },
+   {
+    "code": "1324",
+    "label": "LONG LAMA"
+   },
+   {
+    "code": "1325",
+    "label": "LUBOK ANTU"
+   },
+   {
+    "code": "1326",
+    "label": "LUNDU"
+   },
+   {
+    "code": "1327",
+    "label": "MATU"
+   },
+   {
+    "code": "1328",
+    "label": "MIRI"
+   },
+   {
+    "code": "1329",
+    "label": "MUKAH"
+   },
+   {
+    "code": "1330",
+    "label": "NANGA MEDAMIT"
+   },
+   {
+    "code": "1331",
+    "label": "NIAH"
+   },
+   {
+    "code": "1332",
+    "label": "PEKENU"
+   },
+   {
+    "code": "1333",
+    "label": "PUSA"
+   },
+   {
+    "code": "1334",
+    "label": "ROBAN"
+   },
+   {
+    "code": "1335",
+    "label": "SARATOK"
+   },
+   {
+    "code": "1336",
+    "label": "SARIKEI"
+   },
+   {
+    "code": "1337",
+    "label": "SEBAUH"
+   },
+   {
+    "code": "1338",
+    "label": "SEBUYAU"
+   },
+   {
+    "code": "1339",
+    "label": "SERIAN"
+   },
+   {
+    "code": "1340",
+    "label": "SIMUNJAN"
+   },
+   {
+    "code": "1341",
+    "label": "SONG"
+   },
+   {
+    "code": "1342",
+    "label": "SPAOH"
+   },
+   {
+    "code": "1343",
+    "label": "SRI AMAN"
+   },
+   {
+    "code": "1344",
+    "label": "SUNDAR"
+   },
+   {
+    "code": "1345",
+    "label": "TATAU"
+   },
+   {
+    "code": "1346",
+    "label": "TEBAKANG"
+   },
+   {
+    "code": "1347",
+    "label": "SIBU"
+   },
+   {
+    "code": "1348",
+    "label": "BINTANGOR"
+   },
+   {
+    "code": "1349",
+    "label": "TEBEDU"
+   },
+   {
+    "code": "1378",
+    "label": "PAKAN"
+   },
+   {
+    "code": "1379",
+    "label": "SIBUTI"
+   },
+   {
+    "code": "1380",
+    "label": "OYA"
+   },
+   {
+    "code": "1381",
+    "label": "LAPANGAN TERBANG KOTA KINABALU"
+   },
+   {
+    "code": "1382",
+    "label": "MARUDI"
+   },
+   {
+    "code": "1383",
+    "label": "SIBURAN"
+   }
+  ],
+  "14": [
+   {
+    "code": "1400",
+    "label": "W.PERSEKUTUAN"
+   },
+   {
+    "code": "1401",
+    "label": "KUALA LUMPUR"
+   },
+   {
+    "code": "1402",
+    "label": "CHERAS"
+   },
+   {
+    "code": "1403",
+    "label": "BATU CAVES"
+   }
+  ],
+  "15": [
+   {
+    "code": "1501",
+    "label": "W.P LABUAN"
+   }
+  ],
+  "16": [
+   {
+    "code": "1601",
+    "label": "PUTRAJAYA"
+   }
+  ],
+  "01": [
+   {
+    "code": "0100",
+    "label": "JOHOR"
+   },
+   {
+    "code": "0101",
+    "label": "ASAHAN, JOHOR"
+   },
+   {
+    "code": "0102",
+    "label": "AYER BALOI"
+   },
+   {
+    "code": "0103",
+    "label": "AYER HITAM"
+   },
+   {
+    "code": "0104",
+    "label": "BAKRI"
+   },
+   {
+    "code": "0105",
+    "label": "BATU ANAM"
+   },
+   {
+    "code": "0106",
+    "label": "BATU PAHAT"
+   },
+   {
+    "code": "0107",
+    "label": "BEKOK"
+   },
+   {
+    "code": "0108",
+    "label": "BENUT"
+   },
+   {
+    "code": "0109",
+    "label": "BUKIT GAMBIR"
+   },
+   {
+    "code": "0110",
+    "label": "BUKIT PASIR"
+   },
+   {
+    "code": "0111",
+    "label": "CHAAH"
+   },
+   {
+    "code": "0112",
+    "label": "ENDAU"
+   },
+   {
+    "code": "0113",
+    "label": "GELANG PATAH"
+   },
+   {
+    "code": "0114",
+    "label": "GEMAS"
+   },
+   {
+    "code": "0115",
+    "label": "GERSEK"
+   },
+   {
+    "code": "0116",
+    "label": "G. TAIB ANDAK"
+   },
+   {
+    "code": "0117",
+    "label": "JEMENTAH"
+   },
+   {
+    "code": "0118",
+    "label": "JOHOR BAHRU"
+   },
+   {
+    "code": "0119",
+    "label": "KAHANG"
+   },
+   {
+    "code": "0120",
+    "label": "KLUANG"
+   },
+   {
+    "code": "0121",
+    "label": "KG KNGAN T DR"
+   },
+   {
+    "code": "0122",
+    "label": "KOTA TINGGI"
+   },
+   {
+    "code": "0123",
+    "label": "KUKUP"
+   },
+   {
+    "code": "0124",
+    "label": "KULAI"
+   },
+   {
+    "code": "0125",
+    "label": "LABIS"
+   },
+   {
+    "code": "0126",
+    "label": "LAYANG-LAYANG"
+   },
+   {
+    "code": "0127",
+    "label": "MASAI"
+   },
+   {
+    "code": "0128",
+    "label": "MERSING"
+   },
+   {
+    "code": "0129",
+    "label": "MUAR"
+   },
+   {
+    "code": "0130",
+    "label": "PAGOH"
+   },
+   {
+    "code": "0131",
+    "label": "PALOH"
+   },
+   {
+    "code": "0132",
+    "label": "PANCHOR"
+   },
+   {
+    "code": "0133",
+    "label": "PARIT JAWA"
+   },
+   {
+    "code": "0134",
+    "label": "PARIT RAJA"
+   },
+   {
+    "code": "0135",
+    "label": "PARIT SULONG"
+   },
+   {
+    "code": "0136",
+    "label": "PASIR GUDANG"
+   },
+   {
+    "code": "0137",
+    "label": "PEKAN NANAS"
+   },
+   {
+    "code": "0138",
+    "label": "PENGERANG"
+   },
+   {
+    "code": "0139",
+    "label": "PONTIAN"
+   },
+   {
+    "code": "0140",
+    "label": "RENGIT"
+   },
+   {
+    "code": "0141",
+    "label": "SEGAMAT"
+   },
+   {
+    "code": "0142",
+    "label": "SKUDAI"
+   },
+   {
+    "code": "0143",
+    "label": "SEMERAH"
+   },
+   {
+    "code": "0144",
+    "label": "SENAI"
+   },
+   {
+    "code": "0145",
+    "label": "SENGGARANG"
+   },
+   {
+    "code": "0146",
+    "label": "SIMPANG RENGGAM"
+   },
+   {
+    "code": "0147",
+    "label": "SUNGAI MATI"
+   },
+   {
+    "code": "0148",
+    "label": "TANGKAK"
+   },
+   {
+    "code": "0149",
+    "label": "ULU TIRAM"
+   },
+   {
+    "code": "0150",
+    "label": "YONG PENG"
+   },
+   {
+    "code": "0151",
+    "label": "SAGIL"
+   },
+   {
+    "code": "0157",
+    "label": "BUKIT KEPONG"
+   },
+   {
+    "code": "0177",
+    "label": "LENGA"
+   },
+   {
+    "code": "0191",
+    "label": "SUNGAI BALANG"
+   },
+   {
+    "code": "0192",
+    "label": "GEMAS BARU"
+   },
+   {
+    "code": "0193",
+    "label": "RENGGAM"
+   },
+   {
+    "code": "0194",
+    "label": "BANDAR PENAWAR"
+   },
+   {
+    "code": "0195",
+    "label": "LEDANG"
+   },
+   {
+    "code": "0196",
+    "label": "ISKANDAR PUTERI"
+   },
+   {
+    "code": "0197",
+    "label": "KULAI JAYA"
+   },
+   {
+    "code": "0198",
+    "label": "KANGKAR PULAI"
+   }
+  ],
+  "02": [
+   {
+    "code": "0200",
+    "label": "KEDAH"
+   },
+   {
+    "code": "0201",
+    "label": "ALOR SETAR"
+   },
+   {
+    "code": "0202",
+    "label": "BALING"
+   },
+   {
+    "code": "0203",
+    "label": "BANDAR BAHARU"
+   },
+   {
+    "code": "0204",
+    "label": "BEDONG"
+   },
+   {
+    "code": "0205",
+    "label": "GURUN"
+   },
+   {
+    "code": "0206",
+    "label": "JITRA"
+   },
+   {
+    "code": "0207",
+    "label": "KARANGAN"
+   },
+   {
+    "code": "0208",
+    "label": "KEPALA BATAS"
+   },
+   {
+    "code": "0209",
+    "label": "KODIANG"
+   },
+   {
+    "code": "0210",
+    "label": "KOTA KUALA MUDA"
+   },
+   {
+    "code": "0211",
+    "label": "KUALA KEDAH"
+   },
+   {
+    "code": "0212",
+    "label": "KUALA KETIL"
+   },
+   {
+    "code": "0213",
+    "label": "KUALA NERANG"
+   },
+   {
+    "code": "0214",
+    "label": "KULIM"
+   },
+   {
+    "code": "0215",
+    "label": "KUPANG"
+   },
+   {
+    "code": "0216",
+    "label": "LANGGAR"
+   },
+   {
+    "code": "0217",
+    "label": "LANGKAWI"
+   },
+   {
+    "code": "0218",
+    "label": "LUNAS"
+   },
+   {
+    "code": "0219",
+    "label": "MERBOK"
+   },
+   {
+    "code": "0220",
+    "label": "PADANG SERAI"
+   },
+   {
+    "code": "0221",
+    "label": "PENDANG"
+   },
+   {
+    "code": "0222",
+    "label": "POKOK SENA"
+   },
+   {
+    "code": "0223",
+    "label": "SERDANG"
+   },
+   {
+    "code": "0224",
+    "label": "SIK"
+   },
+   {
+    "code": "0225",
+    "label": "SUNGAI PETANI"
+   },
+   {
+    "code": "0226",
+    "label": "YAN"
+   },
+   {
+    "code": "0234",
+    "label": "CHANGLOON"
+   },
+   {
+    "code": "0235",
+    "label": "SINTOK"
+   },
+   {
+    "code": "0281",
+    "label": "SG. BAKAP"
+   },
+   {
+    "code": "0282",
+    "label": "BUKIT KAYU HITAM"
+   },
+   {
+    "code": "0284",
+    "label": "SIMPANG EMPAT"
+   },
+   {
+    "code": "0285",
+    "label": "KOTA SARANG SEMUT"
+   },
+   {
+    "code": "0286",
+    "label": "JENIANG"
+   },
+   {
+    "code": "0287",
+    "label": "SINTOK"
+   }
+  ],
+  "03": [
+   {
+    "code": "0300",
+    "label": "KELANTAN"
+   },
+   {
+    "code": "0301",
+    "label": "AYER LANAS"
+   },
+   {
+    "code": "0302",
+    "label": "BACHOK"
+   },
+   {
+    "code": "0303",
+    "label": "CHERANG RUKU"
+   },
+   {
+    "code": "0304",
+    "label": "DABONG"
+   },
+   {
+    "code": "0305",
+    "label": "GUA MUSANG"
+   },
+   {
+    "code": "0306",
+    "label": "JELI"
+   },
+   {
+    "code": "0307",
+    "label": "K DESA PAHLAWAN"
+   },
+   {
+    "code": "0308",
+    "label": "KETEREH"
+   },
+   {
+    "code": "0309",
+    "label": "KOTA BHARU"
+   },
+   {
+    "code": "0310",
+    "label": "KUALA KRAI"
+   },
+   {
+    "code": "0311",
+    "label": "MACHANG"
+   },
+   {
+    "code": "0312",
+    "label": "MELOR"
+   },
+   {
+    "code": "0313",
+    "label": "PASIR MAS"
+   },
+   {
+    "code": "0314",
+    "label": "PASIR PUTEH"
+   },
+   {
+    "code": "0315",
+    "label": "PULAI CHONDONG"
+   },
+   {
+    "code": "0316",
+    "label": "RANTAU PANJANG"
+   },
+   {
+    "code": "0317",
+    "label": "TANAH MERAH"
+   },
+   {
+    "code": "0318",
+    "label": "TEMANGAN"
+   },
+   {
+    "code": "0319",
+    "label": "TUMPAT"
+   },
+   {
+    "code": "0320",
+    "label": "WAKAF BHARU"
+   },
+   {
+    "code": "0321",
+    "label": "SELISING"
+   },
+   {
+    "code": "0322",
+    "label": "KUALA BALAH"
+   }
+  ],
+  "04": [
+   {
+    "code": "0400",
+    "label": "MELAKA"
+   },
+   {
+    "code": "0401",
+    "label": "ALOR GAJAH"
+   },
+   {
+    "code": "0402",
+    "label": "ASAHAN"
+   },
+   {
+    "code": "0403",
+    "label": "BATANG MELAKA"
+   },
+   {
+    "code": "0404",
+    "label": "BEMBAN"
+   },
+   {
+    "code": "0405",
+    "label": "DURIAN TUNGGAL"
+   },
+   {
+    "code": "0406",
+    "label": "GEMAS"
+   },
+   {
+    "code": "0407",
+    "label": "JASIN"
+   },
+   {
+    "code": "0408",
+    "label": "K/SUNGAI BARU"
+   },
+   {
+    "code": "0409",
+    "label": "LUBOK CHINA"
+   },
+   {
+    "code": "0410",
+    "label": "MASJID TANAH"
+   },
+   {
+    "code": "0411",
+    "label": "MELAKA"
+   },
+   {
+    "code": "0412",
+    "label": "MERLIMAU"
+   },
+   {
+    "code": "0413",
+    "label": "SUNGAI RAMBAI"
+   },
+   {
+    "code": "0414",
+    "label": "SUNGAI UDANG"
+   },
+   {
+    "code": "0415",
+    "label": "TAMPIN"
+   },
+   {
+    "code": "0416",
+    "label": "TANJONG KELING"
+   },
+   {
+    "code": "0417",
+    "label": "SELANDAR"
+   },
+   {
+    "code": "0418",
+    "label": "BUKIT KATIL"
+   },
+   {
+    "code": "0419",
+    "label": "AYER KEROH"
+   },
+   {
+    "code": "0420",
+    "label": "BATU BERENDAM"
+   }
+  ],
+  "05": [
+   {
+    "code": "0500",
+    "label": "N SEMBILAN"
+   },
+   {
+    "code": "0501",
+    "label": "ASAHAN"
+   },
+   {
+    "code": "0502",
+    "label": "BAHAU"
+   },
+   {
+    "code": "0503",
+    "label": "BATANG MELAKA"
+   },
+   {
+    "code": "0504",
+    "label": "BATU KIKIR"
+   },
+   {
+    "code": "0505",
+    "label": "DURIAN TIPUS"
+   },
+   {
+    "code": "0506",
+    "label": "GEMAS"
+   },
+   {
+    "code": "0507",
+    "label": "GEMENCHEH"
+   },
+   {
+    "code": "0508",
+    "label": "JOHOL"
+   },
+   {
+    "code": "0509",
+    "label": "KOTA"
+   },
+   {
+    "code": "0510",
+    "label": "KUALA KLAWANG"
+   },
+   {
+    "code": "0511",
+    "label": "KUALA PILAH"
+   },
+   {
+    "code": "0512",
+    "label": "LABU"
+   },
+   {
+    "code": "0513",
+    "label": "LENGGENG"
+   },
+   {
+    "code": "0514",
+    "label": "LINGGI"
+   },
+   {
+    "code": "0515",
+    "label": "LUBOK CHINA"
+   },
+   {
+    "code": "0516",
+    "label": "MANTIN"
+   },
+   {
+    "code": "0517",
+    "label": "NILAI"
+   },
+   {
+    "code": "0518",
+    "label": "PASIR PANJANG"
+   },
+   {
+    "code": "0519",
+    "label": "PEDAS"
+   },
+   {
+    "code": "0520",
+    "label": "PORT DICKSON"
+   },
+   {
+    "code": "0521",
+    "label": "RANTAU"
+   },
+   {
+    "code": "0522",
+    "label": "REMBAU"
+   },
+   {
+    "code": "0523",
+    "label": "ROMPIN"
+   },
+   {
+    "code": "0524",
+    "label": "SELIAU"
+   },
+   {
+    "code": "0525",
+    "label": "SEREMBAN"
+   },
+   {
+    "code": "0526",
+    "label": "SRI MENANTI"
+   },
+   {
+    "code": "0527",
+    "label": "SI RUSA"
+   },
+   {
+    "code": "0528",
+    "label": "SILIAU"
+   },
+   {
+    "code": "0529",
+    "label": "SIMPANG PERTANG"
+   },
+   {
+    "code": "0530",
+    "label": "SUNGAI GADUT"
+   },
+   {
+    "code": "0531",
+    "label": "TAMPIN"
+   },
+   {
+    "code": "0532",
+    "label": "TANJUNG IPOH"
+   },
+   {
+    "code": "0533",
+    "label": "TITI"
+   },
+   {
+    "code": "0534",
+    "label": "BUKIT PELANDOK"
+   },
+   {
+    "code": "0535",
+    "label": "CHUAH"
+   },
+   {
+    "code": "0536",
+    "label": "LUKUT"
+   },
+   {
+    "code": "0537",
+    "label": "TELUK KEMANG"
+   },
+   {
+    "code": "0538",
+    "label": "PENG.KEMPAS"
+   },
+   {
+    "code": "0539",
+    "label": "JELEBU"
+   },
+   {
+    "code": "0540",
+    "label": "BANDAR SERI JEMPOL"
+   },
+   {
+    "code": "0541",
+    "label": "JUASSEH"
+   },
+   {
+    "code": "0542",
+    "label": "B BARU JEMPOL"
+   },
+   {
+    "code": "0543",
+    "label": "BANDAR ENSTEK"
+   },
+   {
+    "code": "0545",
+    "label": "PUSAT BANDAR PALONG"
+   }
+  ],
+  "06": [
+   {
+    "code": "0600",
+    "label": "PAHANG"
+   },
+   {
+    "code": "0601",
+    "label": "BANDAR JENGKA"
+   },
+   {
+    "code": "0602",
+    "label": "BENTA"
+   },
+   {
+    "code": "0603",
+    "label": "BENTONG"
+   },
+   {
+    "code": "0604",
+    "label": "BESERAH"
+   },
+   {
+    "code": "0605",
+    "label": "BUKIT FRASER"
+   },
+   {
+    "code": "0606",
+    "label": "CHENOR"
+   },
+   {
+    "code": "0607",
+    "label": "DONG"
+   },
+   {
+    "code": "0608",
+    "label": "GAMBANG"
+   },
+   {
+    "code": "0609",
+    "label": "GENTING"
+   },
+   {
+    "code": "0610",
+    "label": "JERANTUT"
+   },
+   {
+    "code": "0611",
+    "label": "KARAK"
+   },
+   {
+    "code": "0612",
+    "label": "KEMAYAN"
+   },
+   {
+    "code": "0613",
+    "label": "KUALA LIPIS"
+   },
+   {
+    "code": "0614",
+    "label": "KUALA ROMPIN"
+   },
+   {
+    "code": "0615",
+    "label": "KUANTAN"
+   },
+   {
+    "code": "0616",
+    "label": "LANCHANG"
+   },
+   {
+    "code": "0617",
+    "label": "LURAH BILUT"
+   },
+   {
+    "code": "0618",
+    "label": "MARAN"
+   },
+   {
+    "code": "0619",
+    "label": "MENGKARAK"
+   },
+   {
+    "code": "0620",
+    "label": "MENTAKAB"
+   },
+   {
+    "code": "0621",
+    "label": "MERSING"
+   },
+   {
+    "code": "0622",
+    "label": "MUADZAM SHAH"
+   },
+   {
+    "code": "0623",
+    "label": "PADANG TENGKU"
+   },
+   {
+    "code": "0624",
+    "label": "PEKAN"
+   },
+   {
+    "code": "0625",
+    "label": "RAUB"
+   },
+   {
+    "code": "0626",
+    "label": "RINGLET"
+   },
+   {
+    "code": "0627",
+    "label": "SEGAMAT"
+   },
+   {
+    "code": "0628",
+    "label": "SUNGAI LEMBING"
+   },
+   {
+    "code": "0629",
+    "label": "SUNGAI RUAN"
+   },
+   {
+    "code": "0630",
+    "label": "TANAH RATA"
+   },
+   {
+    "code": "0631",
+    "label": "TEMERLOH"
+   },
+   {
+    "code": "0632",
+    "label": "TRIANG"
+   },
+   {
+    "code": "0633",
+    "label": "BDR TUN RAZAK"
+   },
+   {
+    "code": "0634",
+    "label": "ROMPIN"
+   },
+   {
+    "code": "0635",
+    "label": "C HIGHLANDS"
+   },
+   {
+    "code": "0636",
+    "label": "BANDAR BERA"
+   },
+   {
+    "code": "0637",
+    "label": "SEGA"
+   },
+   {
+    "code": "0639",
+    "label": "BRINCHANG"
+   }
+  ],
+  "07": [
+   {
+    "code": "0700",
+    "label": "P PINANG"
+   },
+   {
+    "code": "0701",
+    "label": "AYER ITAM"
+   },
+   {
+    "code": "0702",
+    "label": "BALIK PULAU"
+   },
+   {
+    "code": "0703",
+    "label": "BATU FERRINGHI"
+   },
+   {
+    "code": "0704",
+    "label": "BAYAN LEPAS"
+   },
+   {
+    "code": "0705",
+    "label": "BUKIT MERTAJAM"
+   },
+   {
+    "code": "0706",
+    "label": "BUTTERWORTH"
+   },
+   {
+    "code": "0707",
+    "label": "GELUGOR"
+   },
+   {
+    "code": "0708",
+    "label": "GEORGETOWN"
+   },
+   {
+    "code": "0709",
+    "label": "KEPALA BATAS"
+   },
+   {
+    "code": "0710",
+    "label": "NIBONG TEBAL"
+   },
+   {
+    "code": "0711",
+    "label": "PENAGA"
+   },
+   {
+    "code": "0712",
+    "label": "PENANG HILL"
+   },
+   {
+    "code": "0713",
+    "label": "PERAI"
+   },
+   {
+    "code": "0714",
+    "label": "PERMATANG PAUH"
+   },
+   {
+    "code": "0715",
+    "label": "PULAU PINANG"
+   },
+   {
+    "code": "0716",
+    "label": "SIMPANG AMPAT"
+   },
+   {
+    "code": "0717",
+    "label": "SUNGAI JAWI"
+   },
+   {
+    "code": "0718",
+    "label": "TANJONG BUNGAH"
+   },
+   {
+    "code": "0719",
+    "label": "TASEK GELUGOR"
+   },
+   {
+    "code": "0720",
+    "label": "USM P/PINANG"
+   },
+   {
+    "code": "0721",
+    "label": "SUNGAI BAKAP"
+   },
+   {
+    "code": "0722",
+    "label": "JELUTONG"
+   },
+   {
+    "code": "0723",
+    "label": "MINDEN"
+   },
+   {
+    "code": "0724",
+    "label": "TANJONG TOKONG"
+   },
+   {
+    "code": "0725",
+    "label": "BAYAN BARU"
+   }
+  ],
+  "08": [
+   {
+    "code": "0800",
+    "label": "PERAK"
+   },
+   {
+    "code": "0801",
+    "label": "AYER TAWAR"
+   },
+   {
+    "code": "0802",
+    "label": "BAGAN DATOH"
+   },
+   {
+    "code": "0803",
+    "label": "BAGAN SERAI"
+   },
+   {
+    "code": "0804",
+    "label": "BATU GAJAH"
+   },
+   {
+    "code": "0805",
+    "label": "BATU KURAU"
+   },
+   {
+    "code": "0806",
+    "label": "BERUAS"
+   },
+   {
+    "code": "0807",
+    "label": "BIDOR"
+   },
+   {
+    "code": "0808",
+    "label": "BOTA"
+   },
+   {
+    "code": "0809",
+    "label": "CHKT KERUING"
+   },
+   {
+    "code": "0810",
+    "label": "CHEMOR"
+   },
+   {
+    "code": "0811",
+    "label": "CHENDERIANG"
+   },
+   {
+    "code": "0812",
+    "label": "CHENDERONG BALAI"
+   },
+   {
+    "code": "0813",
+    "label": "ENGGOR"
+   },
+   {
+    "code": "0814",
+    "label": "GERIK"
+   },
+   {
+    "code": "0815",
+    "label": "GOPENG"
+   },
+   {
+    "code": "0816",
+    "label": "HUTAN MELINTANG"
+   },
+   {
+    "code": "0817",
+    "label": "KLIAN INTAN"
+   },
+   {
+    "code": "0818",
+    "label": "IPOH"
+   },
+   {
+    "code": "0819",
+    "label": "KAMPAR"
+   },
+   {
+    "code": "0820",
+    "label": "KAMPONG GAJAH"
+   },
+   {
+    "code": "0821",
+    "label": "KG KEPAYANG"
+   },
+   {
+    "code": "0822",
+    "label": "KAMUNTING"
+   },
+   {
+    "code": "0823",
+    "label": "KUALA KANGSAR"
+   },
+   {
+    "code": "0824",
+    "label": "KUALA SEPETANG"
+   },
+   {
+    "code": "0825",
+    "label": "LAHAT"
+   },
+   {
+    "code": "0826",
+    "label": "LANGKAP"
+   },
+   {
+    "code": "0827",
+    "label": "LENGGONG"
+   },
+   {
+    "code": "0828",
+    "label": "LUMUT"
+   },
+   {
+    "code": "0829",
+    "label": "MALIM NAWAR"
+   },
+   {
+    "code": "0830",
+    "label": "MAMBANG DIAWAN"
+   },
+   {
+    "code": "0831",
+    "label": "MANONG"
+   },
+   {
+    "code": "0832",
+    "label": "MATANG"
+   },
+   {
+    "code": "0833",
+    "label": "MENGLEMBU"
+   },
+   {
+    "code": "0834",
+    "label": "PADANG RENGAS"
+   },
+   {
+    "code": "0835",
+    "label": "PANGKOR"
+   },
+   {
+    "code": "0836",
+    "label": "PANTAI REMIS"
+   },
+   {
+    "code": "0837",
+    "label": "PARIT"
+   },
+   {
+    "code": "0838",
+    "label": "PARIT BUNTAR"
+   },
+   {
+    "code": "0839",
+    "label": "PENGKALAN HULU"
+   },
+   {
+    "code": "0840",
+    "label": "PUSING"
+   },
+   {
+    "code": "0841",
+    "label": "SAUK"
+   },
+   {
+    "code": "0842",
+    "label": "SELAMA"
+   },
+   {
+    "code": "0843",
+    "label": "SELEKOH"
+   },
+   {
+    "code": "0844",
+    "label": "SEMANGGOL"
+   },
+   {
+    "code": "0845",
+    "label": "SIMPANG"
+   },
+   {
+    "code": "0846",
+    "label": "SIMPANG AMPAT"
+   },
+   {
+    "code": "0847",
+    "label": "SITIAWAN"
+   },
+   {
+    "code": "0848",
+    "label": "SLIM RIVER"
+   },
+   {
+    "code": "0849",
+    "label": "SUNGAI SIPUT"
+   },
+   {
+    "code": "0850",
+    "label": "SUNGAI SUMUN"
+   },
+   {
+    "code": "0851",
+    "label": "SUNGKAI"
+   },
+   {
+    "code": "0852",
+    "label": "TAIPING"
+   },
+   {
+    "code": "0853",
+    "label": "TANJUNG MALIM"
+   },
+   {
+    "code": "0854",
+    "label": "TG.PIANDANG"
+   },
+   {
+    "code": "0855",
+    "label": "TG.RAMBUTAN"
+   },
+   {
+    "code": "0856",
+    "label": "TANJONG TUALANG"
+   },
+   {
+    "code": "0857",
+    "label": "TAPAH"
+   },
+   {
+    "code": "0858",
+    "label": "TAPAH ROAD"
+   },
+   {
+    "code": "0859",
+    "label": "TELUK INTAN"
+   },
+   {
+    "code": "0860",
+    "label": "TEMOH"
+   },
+   {
+    "code": "0861",
+    "label": "TRONG"
+   },
+   {
+    "code": "0862",
+    "label": "TERONOH"
+   },
+   {
+    "code": "0863",
+    "label": "ULU KINTA"
+   },
+   {
+    "code": "0864",
+    "label": "ULU BERNAM"
+   },
+   {
+    "code": "0865",
+    "label": "SG SIPUT (U)"
+   },
+   {
+    "code": "0866",
+    "label": "BEHRANG STESEN"
+   },
+   {
+    "code": "0867",
+    "label": "TROLAK"
+   },
+   {
+    "code": "0880",
+    "label": "KUALA DIPANG"
+   },
+   {
+    "code": "0881",
+    "label": "KUALA KURAU"
+   },
+   {
+    "code": "0882",
+    "label": "SERI MANJUNG"
+   },
+   {
+    "code": "0886",
+    "label": "RANTAU PANJANG"
+   },
+   {
+    "code": "0887",
+    "label": "CHIKUS"
+   }
+  ],
+  "09": [
+   {
+    "code": "0900",
+    "label": "PERLIS"
+   },
+   {
+    "code": "0901",
+    "label": "ARAU"
+   },
+   {
+    "code": "0902",
+    "label": "KAKI BUKIT"
+   },
+   {
+    "code": "0903",
+    "label": "KANGAR"
+   },
+   {
+    "code": "0904",
+    "label": "KUALA PERLIS"
+   },
+   {
+    "code": "0905",
+    "label": "PADANG BESAR"
+   },
+   {
+    "code": "0906",
+    "label": "SIMPANG AMPAT"
+   }
+  ]
+ }
+}
