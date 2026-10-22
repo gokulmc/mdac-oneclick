@@ -685,3 +685,210 @@ describe('replaceWords', () => {
     expect(out.words.some((w) => w.text === 'STRAY')).toBe(false);
   });
 });
+
+// ---------- desktop mail-client screenshot ----------
+
+/**
+ * A Gmail-on-desktop capture (3456 x 2234) in source pixels, from a real failure where the parser found no
+ * values: text 20 px tall, label column x 676, colon x 1099, value column x 1128, rows 53 px apart
+ * (centre to centre), the one wrapped label ("Last Port of Embarkation before / Malaysia") 39 px between
+ * its lines. Around the email sits the mail client's chrome: a sidebar with a count column, a toolbar,
+ * a page heading and a rail of icons, and Tesseract stretched "Nationality" and "Citizenship" to 44 px.
+ */
+describe('desktop mail-client screenshot', () => {
+  const D = { labelX: 676, colonX: 1099, valueX: 1128, rowPitch: 53, wrapPitch: 39, charW: 13, spaceW: 10, firstCentre: 915, width: 3456, height: 2234 };
+
+  const DESKTOP_VALUES: Record<FieldKey, string> = {
+    fullName: 'TEST TRAVELLER ONE',
+    passportNo: 'T0000001',
+    nationality: 'INDIA',
+    dateOfBirth: '15/01/1990',
+    sex: 'MALE',
+    passportExpiry: '30/06/2036',
+    email: 'one@example.com',
+    mobile: '+6581234567',
+    arrival: '23/10/2026',
+    travelMode: 'LAND',
+    departure: '25/10/2026',
+    embarkPort: 'SINGAPORE',
+    transportNo: 'SGX1234A',
+    stayType: 'HOTEL/MOTEL/REST HOUSE',
+    address: 'JALAN WONG AH FOOK',
+    postcode: '81250',
+    city: 'JOHOR',
+    state: 'JOHOR',
+    pin: '7KQPx92a',
+  };
+
+  /** Extra centre-to-centre distance before a row: the personal/travel section gap (106 px in all) and the larger gap before PIN. */
+  const EXTRA_GAP: Partial<Record<FieldKey, number>> = { arrival: D.rowPitch, pin: 107 };
+
+  interface DesktopOptions {
+    email?: boolean;
+    chrome?: boolean;
+    /** Left-align the sidebar's count column at x 400 instead of right-aligning it, making it a stronger column of its own. */
+    countsLeft?: boolean;
+  }
+
+  function desktopPage(options: DesktopOptions = {}): OcrPage {
+    const { email = true, chrome = true, countsLeft = false } = options;
+    const words: OcrWord[] = [];
+    // Box heights vary 20-24 px like real OCR; `index` cycles through them.
+    let n = 0;
+    const word = (text: string, x0: number, centre: number, conf = 94, w = text.length * D.charW, h?: number): OcrWord => {
+      const height = h ?? 20 + (n++ % 3) * 2;
+      const y0 = Math.round(centre - height / 2);
+      const out = { text, conf, x0, y0, x1: x0 + w, y1: y0 + height };
+      words.push(out);
+      return out;
+    };
+    const line = (text: string, x: number, centre: number, inflate: string[] = [], conf = 94) => {
+      let cursor = x;
+      for (const t of text.split(' ')) {
+        const w = t.length * D.charW;
+        // The "/" between the stretched words keeps a normal box, as Tesseract gave it.
+        if (inflate.includes(t)) word(t, cursor, centre, conf, w, 44);
+        else word(t, cursor, centre, conf, w);
+        cursor += w + D.spaceW;
+      }
+    };
+
+    if (chrome) {
+      // Left sidebar: ~20 single words from x 60, 64 px apart, and the unread/total counts beside some of them.
+      const sidebar = ['Compose', 'Inbox', 'Starred', 'Snoozed', 'Important', 'Sent', 'Drafts', 'Purchases', 'Social', 'Updates', 'Forums', 'Promotions', 'More', 'Labels', 'Categories', 'Spam', 'Trash', 'Scheduled', 'Archive', 'Manage'];
+      sidebar.forEach((t, i) => word(t, 60, 360 + i * 64));
+      const counts: [number, string][] = [[1, '434'], [6, '7'], [3, '3,526'], [4, '2,420'], [9, '98,367'], [10, '1,303'], [8, '23,107']];
+      for (const [i, text] of counts) {
+        const w = text.length * D.charW;
+        word(text, countsLeft ? 400 : 470 - w, 360 + i * 64, 90, w);
+      }
+      // Toolbar: words spread across the width.
+      ['Search', 'mail', 'Active', 'Support', 'Settings', 'Help', 'Account', 'Gokul', 'Apps'].forEach((t, i) => word(t, 700 + i * 300, 280));
+      // Page heading and sub-heading, "n of N" pager, and a rail of single icons at the far right.
+      line('Malaysia Digital Arrival Card (MDAC)', 780, 560);
+      line('Details Registration Information :', D.labelX, 725);
+      line('22 of 88,376', 2880, 485);
+      for (let i = 0; i < 6; i++) word(['O', '@', '+', '=', 'o', '>'][i]!, 3400, 330 + i * 90, 80, 20, 20);
+    }
+    if (!email) return { name: 'desktop-chrome', width: D.width, height: D.height, words };
+
+    let top = D.firstCentre - D.rowPitch / 2;
+    for (const key of FIELD_KEYS) {
+      top += EXTRA_GAP[key] ?? 0;
+      const wraps = key === 'embarkPort';
+      const height = wraps ? D.rowPitch + D.wrapPitch : D.rowPitch;
+      const centre = top + height / 2;
+      top += height;
+      const label = LABELS[key].label;
+      const inflate = key === 'nationality' ? ['Nationality', 'Citizenship'] : [];
+      if (wraps) {
+        line('Last Port of Embarkation before', D.labelX, centre - D.wrapPitch / 2, inflate);
+        line('Malaysia', D.labelX, centre + D.wrapPitch / 2, inflate);
+      } else line(label, D.labelX, centre, inflate);
+      word(':', D.colonX, centre, 70, 6, 20);
+      line(DESKTOP_VALUES[key], D.valueX, centre);
+    }
+    return { name: 'desktop', width: D.width, height: D.height, words };
+  }
+
+  describe('the whole capture, chrome and stretched boxes included', () => {
+    const p = desktopPage();
+    const g = inspectPage(p);
+
+    it('finds the email columns, not the sidebar, the count column or the wrapped "before"', () => {
+      expect(g.labelStart).toBeGreaterThan(676 - 10);
+      expect(g.labelStart).toBeLessThan(676 + 10);
+      expect(g.valueStart).toBeGreaterThan(1128 - 10);
+      expect(g.valueStart).toBeLessThan(1128 + 10);
+    });
+
+    it('keeps "Passport No." and "Nationality / Citizenship" as separate label blocks', () => {
+      const passport = g.labelBlocks.filter((b) => b.row === 'passportNo');
+      const nationality = g.labelBlocks.filter((b) => b.row === 'nationality');
+      expect(passport).toHaveLength(1);
+      expect(nationality).toHaveLength(1);
+      expect(passport[0]).not.toBe(nationality[0]);
+      expect(passport[0]!.text).toBe('Passport No.');
+      expect(nationality[0]!.text).toMatch(/^Nationality\W*Citizenship$/);
+      expect(g.labelBlocks.filter((b) => /Nationality|Citizenship/.test(b.text))).toHaveLength(1);
+    });
+
+    it('keeps "Last Port of Embarkation before Malaysia" as one block', () => {
+      const blocks = g.labelBlocks.filter((b) => b.row === 'embarkPort');
+      expect(blocks).toHaveLength(1);
+      expect(blocks[0]!.text).toBe('Last Port of Embarkation before Malaysia');
+      expect(g.labelBlocks.filter((b) => b.text.includes('Embarkation'))).toHaveLength(1);
+    });
+
+    it('is accepted with all 19 labels', () => {
+      const r = parseConfirmation([p]);
+      expect(r.accepted).toBe(true);
+      expect(r.pageLabels).toEqual([19]);
+      expect(r.warnings).toEqual([]);
+    });
+
+    it('reads every value exactly, every field ok, the PIN kept out of the stored data', () => {
+      const r = parseConfirmation([p]);
+      const { placeOfBirth, ...traveller } = FIRST_FIELDS;
+      expect(placeOfBirth).toBe('IND');
+      expect(r.traveller).toMatchObject({ ...traveller, passportNo: 'T0000001' });
+      expect(r.preset).toMatchObject({ ...FIRST_PRESET, postcode: '81250', state: '01', city: '0100' });
+      expect(r.dates).toEqual({ arrival: '2026-10-23', departure: '2026-10-25' });
+      expect(r.pin).toBe('7KQPx92a');
+      // The PIN is display-only and never stored (see the phone tests), but a clean reading of it is still ok.
+      for (const key of FIELD_KEYS) expect(r.fields[key].status, key).toBe('ok');
+      expect(JSON.stringify({ t: r.traveller, p: r.preset })).not.toContain('7KQPx92a');
+      expect(r.fields.postcode.value).toBe('81250');
+      expect(r.fields.city.value).toBe('0100');
+      expect(r.fields.state.value).toBe('01');
+      expect(r.fields.nationality.value).toBe('IND');
+    });
+  });
+
+  it('the stretched boxes are what the synthetic page claims (sanity check on the helper)', () => {
+    const p = desktopPage();
+    const height = (t: string) => p.words.filter((w) => w.text === t).map((w) => w.y1 - w.y0);
+    expect(height('Nationality')).toEqual([44]);
+    expect(height('Citizenship')).toEqual([44]);
+    expect(height('/').every((h) => h <= 24)).toBe(true);
+    expect(Math.max(...p.words.filter((w) => !['Nationality', 'Citizenship'].includes(w.text)).map((w) => w.y1 - w.y0))).toBeLessThanOrEqual(24);
+    const before = p.words.find((w) => w.text === 'before')!;
+    const malaysia = p.words.find((w) => w.text === 'Malaysia' && w.x0 === 676)!;
+    expect(before.x1).toBeCloseTo(1068, -1);
+    expect((malaysia.y0 + malaysia.y1) / 2 - (before.y0 + before.y1) / 2).toBeCloseTo(39, 0);
+  });
+
+  it('the chrome alone is what fooled the old parser: the email still parses when the boxes are normal', () => {
+    const p = desktopPage();
+    const normal: OcrPage = { ...p, words: p.words.map((w) => (w.y1 - w.y0 === 44 ? { ...w, y0: w.y0 + 12, y1: w.y1 - 12 } : w)) };
+    const r = parseConfirmation([normal]);
+    expect(r.accepted).toBe(true);
+    expect(r.pageLabels).toEqual([19]);
+  });
+
+  describe('a capture that is only the mail client', () => {
+    it('sidebar and right-aligned counts, no email: not a confirmation', () => {
+      const r = parseConfirmation([desktopPage({ email: false })]);
+      expect(r.accepted).toBe(false);
+      expect(r.reason).toMatch(/doesn't look like an MDAC confirmation/);
+      for (const key of FIELD_KEYS) expect(r.fields[key].status).toBe('missing');
+      expect(r.traveller).toEqual({});
+      expect(r.preset).toEqual({});
+    });
+
+    it('sidebar and left-aligned counts (a clean two-column structure), no email: not a confirmation', () => {
+      const r = parseConfirmation([desktopPage({ email: false, countsLeft: true })]);
+      expect(r.accepted).toBe(false);
+      expect(r.reason).toMatch(/doesn't look like an MDAC confirmation/);
+      for (const key of FIELD_KEYS) expect(r.fields[key].status).toBe('missing');
+    });
+
+    it('an email with no chrome parses the same as one with chrome', () => {
+      const bare = parseConfirmation([desktopPage({ chrome: false })]);
+      const full = parseConfirmation([desktopPage()]);
+      expect(bare.accepted).toBe(true);
+      expect(bare.traveller).toEqual(full.traveller);
+      expect(bare.preset).toEqual(full.preset);
+    });
+  });
+});

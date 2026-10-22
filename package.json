@@ -1,6 +1,6 @@
 {
   "name": "mdac-oneclick",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Chrome extension: fill the Malaysia Digital Arrival Card (MDAC) from saved travellers in one click.",
   "license": "MIT",

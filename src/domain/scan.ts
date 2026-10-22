@@ -97,7 +97,7 @@ export const FIELD_KEYS: FieldKey[] = TEMPLATE.map((t) => t.key);
 /** Geometry thresholds in units of the page's median word height. Tuned on real phone screenshots (Phase 0). */
 export const GEOMETRY = {
   /**
-   * Row split. Top-to-top pitches between consecutive lines of a column form two groups: lines wrapped
+   * Row split. Centre-to-centre pitches between consecutive lines of a column form two groups: lines wrapped
    * inside one cell (measured 1.45–1.85 line heights, varying with ascenders) and the step to the next
    * row (≥ 2.03). The split sits at the largest jump in the sorted pitches, accepted when the jump is at
    * least this ratio; otherwise nothing wraps and `blockGap` applies.
@@ -123,6 +123,8 @@ interface Line {
   words: OcrWord[];
   y0: number;
   y1: number;
+  /** Median of the words' vertical centres: steadier than the box edges, which OCR inflates on some words. */
+  centre: number;
 }
 
 interface Block {
@@ -142,28 +144,17 @@ function median(values: number[]): number {
 }
 
 /**
- * The x where most of `words` start: cluster x0 values that lie within `tolerance` of their neighbour
- * and return the mean of the biggest cluster (undefined below three words). Gap clustering rather
- * than fixed bins, so a column never splits across a bin edge.
+ * Groups words of one column into lines by vertical overlap. Word boxes OCR has inflated far beyond
+ * a line of text (Tesseract stretches "Nationality" to 2+ line heights) are shrunk around their
+ * centre first, so they can neither bridge two lines nor drag a line's edges outward.
  */
-function columnStart(words: OcrWord[], tolerance: number): number | undefined {
-  const xs = words.map((w) => w.x0).sort((a, b) => a - b);
-  let best: number[] = [];
-  let current: number[] = [];
-  for (const x of xs) {
-    if (current.length && x - current[current.length - 1]! > tolerance) {
-      if (current.length > best.length) best = current;
-      current = [];
-    }
-    current.push(x);
-  }
-  if (current.length > best.length) best = current;
-  return best.length >= 3 ? best.reduce((a, b) => a + b, 0) / best.length : undefined;
-}
-
-/** Groups words of one column into lines by vertical overlap. */
 function toLines(words: OcrWord[], lineHeight: number): Line[] {
-  const sorted = [...words].sort((a, b) => (a.y0 + a.y1) / 2 - (b.y0 + b.y1) / 2 || a.x0 - b.x0);
+  const clamp = (w: OcrWord): OcrWord => {
+    if (w.y1 - w.y0 <= 1.4 * lineHeight) return w;
+    const c = (w.y0 + w.y1) / 2;
+    return { ...w, y0: c - 0.7 * lineHeight, y1: c + 0.7 * lineHeight };
+  };
+  const sorted = words.map(clamp).sort((a, b) => (a.y0 + a.y1) / 2 - (b.y0 + b.y1) / 2 || a.x0 - b.x0);
   const lines: Line[] = [];
   for (const w of sorted) {
     const last = lines[lines.length - 1];
@@ -172,8 +163,9 @@ function toLines(words: OcrWord[], lineHeight: number): Line[] {
       last.words.push(w);
       last.y0 = Math.min(last.y0, w.y0);
       last.y1 = Math.max(last.y1, w.y1);
-    } else lines.push({ words: [w], y0: w.y0, y1: w.y1 });
+    } else lines.push({ words: [w], y0: w.y0, y1: w.y1, centre });
   }
+  for (const line of lines) line.centre = median(line.words.map((w) => (w.y0 + w.y1) / 2));
   return lines;
 }
 
@@ -189,22 +181,34 @@ type RowSplit = (prev: Line, next: Line) => boolean;
 function rowSplit(lines: Line[], lineHeight: number): RowSplit {
   const gapRule: RowSplit = (prev, next) => next.y0 - prev.y1 > GEOMETRY.blockGap * lineHeight;
   // Keep only pitches that can be a wrapped line or a row step: anything under 1.2 line heights is
-  // one line that OCR split in two (toolbar text), anything over 3 is a section gap or footer paragraph.
+  // one line that OCR split in two (toolbar text); anything over 4 is a section gap or footer
+  // paragraph (rows measured 2.6–3.1 line heights across phone, desktop and low-res captures).
   const pitches = lines
     .slice(1)
-    .map((l, i) => l.y0 - lines[i]!.y0)
-    .filter((p) => p > 1.2 * lineHeight && p < 3 * lineHeight)
+    .map((l, i) => l.centre - lines[i]!.centre)
+    .filter((p) => p > 1.2 * lineHeight && p < 4 * lineHeight)
     .sort((a, b) => a - b);
-  let best = { ratio: 1, at: -1 };
-  for (let i = 1; i < pitches.length; i++) {
-    const ratio = pitches[i]! / pitches[i - 1]!;
-    if (ratio > best.ratio) best = { ratio, at: i };
+  if (pitches.length < 2) return gapRule;
+  // Otsu's threshold: the split of the sorted pitches into two groups that maximises the separation
+  // between the groups' means, weighted by their sizes — so one stray toolbar pitch cannot move it.
+  let best = { at: -1, score: -1 };
+  for (let k = 1; k < pitches.length; k++) {
+    const lo = pitches.slice(0, k);
+    const hi = pitches.slice(k);
+    const m1 = lo.reduce((a, b) => a + b, 0) / lo.length;
+    const m2 = hi.reduce((a, b) => a + b, 0) / hi.length;
+    const score = lo.length * hi.length * (m2 - m1) ** 2;
+    if (score > best.score) best = { at: k, score };
   }
-  if (best.at < 0 || best.ratio < GEOMETRY.minPitchJump) return gapRule;
-  // Only the smaller group can be wrapped lines; if it is already row-sized, nothing on the page wraps.
-  if (pitches[best.at - 1]! > 1.9 * lineHeight) return gapRule;
-  const limit = (pitches[best.at - 1]! + pitches[best.at]!) / 2;
-  return (prev, next) => next.y0 - prev.y0 > limit;
+  const lo = pitches.slice(0, best.at);
+  const hi = pitches.slice(best.at);
+  const m1 = lo.reduce((a, b) => a + b, 0) / lo.length;
+  const m2 = hi.reduce((a, b) => a + b, 0) / hi.length;
+  // Only the smaller group can be wrapped lines: it must sit clearly below the rows and be wrap-sized.
+  // Otherwise nothing on the page wraps and the plain gap rule applies.
+  if (m2 / m1 < GEOMETRY.minPitchJump || m1 > 2.2 * lineHeight) return gapRule;
+  const limit = (lo[lo.length - 1]! + hi[0]!) / 2;
+  return (prev, next) => next.centre - prev.centre > limit;
 }
 
 /** Groups a column's lines into row blocks. */
@@ -432,21 +436,34 @@ interface Columns {
   valueBlocks: Block[];
 }
 
-function columns(page: OcrPage): Columns {
-  const words = page.words.filter((w) => w.text.trim());
-  const lineHeight = median(words.filter((w) => w.text.length >= 3).map((w) => w.y1 - w.y0)) || 1;
-  const W = page.width;
-  // Divider tokens (the colon, however it was read) are narrow; leave them out of the column vote.
-  const wide = words.filter((w) => w.x1 - w.x0 >= 0.8 * lineHeight);
-  const labelStart = columnStart(wide.filter((w) => w.x0 < 0.35 * W), 0.5 * lineHeight);
-  const valueStart = columnStart(wide.filter((w) => w.x0 >= 0.35 * W && w.x0 < 0.75 * W), 0.5 * lineHeight);
-  if (labelStart === undefined || valueStart === undefined || valueStart - labelStart < 0.2 * W) {
-    return { lineHeight, labelStart, valueStart, labelBlocks: [], valueBlocks: [] };
+/** Every x where at least three words start (clustered within `tolerance`), left to right, with the count. */
+function columnStarts(words: OcrWord[], tolerance: number): { x: number; n: number }[] {
+  const xs = words.map((w) => w.x0).sort((a, b) => a - b);
+  const out: { x: number; n: number }[] = [];
+  let current: number[] = [];
+  const flush = () => {
+    if (current.length >= 3) out.push({ x: current.reduce((a, b) => a + b, 0) / current.length, n: current.length });
+    current = [];
+  };
+  for (const x of xs) {
+    if (current.length && x - current[current.length - 1]! > tolerance) flush();
+    current.push(x);
   }
+  flush();
+  return out;
+}
+
+/** Splits the page's words into the label and value columns that start at `labelStart` / `valueStart`. */
+function columnsAt(words: OcrWord[], labelStart: number, valueStart: number, lineHeight: number): Columns {
   const labelWords: OcrWord[] = [];
   const valueWords: OcrWord[] = [];
   const edge = valueStart - 0.6 * lineHeight;
+  // Nothing left of the label column is the email (a desktop screenshot has the mail client's sidebar there),
+  // and values end well before anything a screen width away (toolbars, a right-hand rail).
+  const leftmost = labelStart - 0.5 * lineHeight;
+  const rightmost = valueStart + 40 * lineHeight;
   for (const w of words) {
+    if (w.x0 < leftmost || w.x0 > rightmost) continue;
     const narrow = w.x1 - w.x0 < 0.8 * lineHeight;
     // Narrow tokens are mostly the divider or speckle, but a lone confident digit or letter ("9", "A")
     // is real text: keep those, except inside the divider's own band just left of the value column.
@@ -465,6 +482,44 @@ function columns(page: OcrPage): Columns {
     labelBlocks: blocks(labelWords, lineHeight, split),
     valueBlocks: blocks(valueWords, lineHeight, split),
   };
+}
+
+/**
+ * Finds the email's two columns among everything on the page. Every pair of x positions where words
+ * start is a candidate; the winner is the pair whose left column reads most like the template labels
+ * and whose rows have values beside them — so neither a mail client's sidebar (many lines, wrong words)
+ * nor a far-off toolbar can pass for the table, whatever the screenshot's width.
+ */
+function columns(page: OcrPage): Columns {
+  const words = page.words.filter((w) => w.text.trim());
+  const lineHeight = median(words.filter((w) => w.text.length >= 3).map((w) => w.y1 - w.y0)) || 1;
+  // Divider tokens (the colon, however it was read) are narrow; leave them out of the column vote.
+  const wide = words.filter((w) => w.x1 - w.x0 >= 0.8 * lineHeight);
+  const starts = columnStarts(wide, 0.5 * lineHeight);
+  const MIN_LABEL = 0.6;
+  let best: { columns: Columns; score: number; size: number; span: number } | undefined;
+  for (const { x: labelStart } of starts) {
+    for (const { x: valueStart, n: size } of starts) {
+      const span = valueStart - labelStart;
+      if (span < 3 * lineHeight) continue;
+      const cols = columnsAt(words, labelStart, valueStart, lineHeight);
+      // Quality, not just count: "Date of Birth" (1.0) must outrank "Date of" (0.67), or the column where
+      // labels' second words start would tie with the real value column.
+      const quality = cols.labelBlocks
+        .map((b) => Math.max(...TEMPLATE.map((t) => labelScore(b.text, t.label))))
+        .filter((q) => q >= MIN_LABEL);
+      if (quality.length < 2) continue;
+      const paired = cols.labelBlocks.filter((l) =>
+        cols.valueBlocks.some((v) => rowDistance(l, v) <= GEOMETRY.maxRowDistance * lineHeight),
+      ).length;
+      const score = quality.reduce((a, q) => a + q, 0) * 2 + paired;
+      // Ties: the real value column is where most values start, not a stray word that happens to line up.
+      const better =
+        !best || score > best.score || (score === best.score && (size > best.size || (size === best.size && span < best.span)));
+      if (better) best = { columns: cols, score, size, span };
+    }
+  }
+  return best?.columns ?? { lineHeight, labelBlocks: [], valueBlocks: [] };
 }
 
 // ---------- retry pass ----------
