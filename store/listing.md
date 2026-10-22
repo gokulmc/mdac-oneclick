@@ -41,6 +41,12 @@ Fill the official Malaysia Digital Arrival Card registration form with traveller
 https://gokulmc.github.io/mdac-oneclick/privacy (from docs/privacy.md via GitHub Pages)
 
 ## Assets
-- Icon 128×128: dist/icons/128.png
-- Screenshots 1280×800: store/screenshots/*.png (made from the QC run with dummy data; never show the government crest prominently)
+All generated from the built extension with dummy data only (TEST TRAVELLER ONE, T0000001, @example.com); no government crest, flag or branding. Regenerate with `pnpm store-assets` (builds first; script: scripts/store-assets.mjs).
+- Icon 128×128: dist/icons/128.png (source: public/icons/128.png)
+- Screenshots 1280×800 PNG, in store/screenshots/:
+  1. 1-popup.png: the popup ready to fill ("Fill the whole MDAC in one click")
+  2. 2-family-queue.png: family queue, one confirmed, next traveller's turn
+  3. 3-filled-form.png: filled register form (local fixture) with the hand-off banner above the slider
+  4. 4-travellers.png: saved travellers in settings
+  5. 5-presets.png: the included trip presets
 - Small promo tile 440×280: store/promo-440x280.png

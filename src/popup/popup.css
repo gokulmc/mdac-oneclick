@@ -32,7 +32,23 @@ p { color: var(--text-2); }
 .field > label, .field > small { display: block; font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
 .warn {
   background: var(--handoff-soft); border: 1px solid var(--handoff); color: var(--handoff-text);
-  border-radius: var(--radius-sm); padding: 9px 11px; font-size: 12.5px; display: grid; gap: 4px;
+  border-radius: var(--radius-sm); font-size: 12.5px; overflow: hidden;
+}
+.warn-toggle {
+  width: 100%; display: flex; align-items: center; gap: 6px; border: 0; background: none; color: inherit;
+  font: inherit; font-size: 12.5px; text-align: left; padding: 8px 11px 0;
+}
+.warn-toggle .chev {
+  margin-left: auto; width: 7px; height: 7px; flex: none; margin-right: 3px; margin-top: 3px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-135deg);
+}
+.warn[data-open=true] .warn-toggle .chev { transform: rotate(45deg); margin-top: -3px; }
+.warn-list { display: grid; gap: 4px; padding: 2px 11px 8px 29px; cursor: pointer; }
+.warn[data-open=true] .warn-list { max-height: 180px; overflow-y: auto; cursor: default; padding-top: 4px; }
+/* Collapsed: only the first warning shows, clamped to one line (line-clamp, so no sideways overflow). */
+.warn[data-open=false] [data-testid=warning]:not(:first-child) { display: none; }
+.warn[data-open=false] [data-testid=warning] {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;
 }
 .warn b { font-weight: 700; }
 .error {
@@ -40,9 +56,13 @@ p { color: var(--text-2); }
   border-radius: var(--radius-sm); padding: 9px 11px; font-size: 12.5px;
 }
 .fill { width: 100%; }
-/* Keep Fill on screen when warnings push it below the fold (found by tests/e2e/ui.qc.ts). */
-#ready .fill { position: sticky; bottom: 8px; box-shadow: 0 0 0 8px var(--bg); }
-.foot { font-size: 12px; color: var(--text-2); text-align: center; margin-top: -6px; }
+/* Fill, its warnings summary and the footnote form one footer that is always on screen: warnings can never
+   scroll away behind Fill, and Fill can never scroll away behind warnings (tests/e2e/ui.qc.ts). */
+.ready-foot {
+  position: sticky; bottom: 0; z-index: 1; display: grid; gap: 8px; background: var(--bg);
+  margin: 0 -16px -16px; padding: 10px 16px 12px; border-top: 1px solid var(--line);
+}
+.foot { font-size: 12px; color: var(--text-2); text-align: center; }
 
 /* queue */
 .trip { font-size: 12.5px; color: var(--text-2); }

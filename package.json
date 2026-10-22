@@ -1,6 +1,6 @@
 {
   "name": "mdac-oneclick",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Chrome extension: fill the Malaysia Digital Arrival Card (MDAC) from saved travellers in one click.",
   "license": "MIT",
@@ -12,7 +12,8 @@
     "test:e2e": "pnpm build && playwright test --project=e2e",
     "qc": "pnpm build && playwright test --project=qc",
     "zip": "pnpm build && node scripts/zip.mjs",
-    "reference": "node scripts/build-reference.mjs"
+    "reference": "node scripts/build-reference.mjs",
+    "store-assets": "pnpm build && node scripts/store-assets.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

@@ -31,6 +31,28 @@ async function assertLayout(page: Page) {
   expect(clipped, 'text overflowing its box').toEqual([]);
 }
 
+/** Two elements' boxes must not intersect. */
+async function expectNoOverlap(page: Page, first: string, second: string) {
+  const a = (await page.locator(first).boundingBox())!;
+  const b = (await page.locator(second).boundingBox())!;
+  const overlap = a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
+  expect(overlap, `${first} ${JSON.stringify(a)} overlaps ${second} ${JSON.stringify(b)}`).toBe(false);
+}
+
+/** Whatever is painted at each warning's centre must be that warning (or inside it): nothing sits on top. */
+async function expectWarningsUncovered(page: Page) {
+  const covered = await page.evaluate(() =>
+    [...document.querySelectorAll<HTMLElement>('[data-testid=warning]')]
+      .filter((w) => w.offsetParent !== null)
+      .flatMap((w) => {
+        const r = w.getBoundingClientRect();
+        const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+        return top && w.contains(top) ? [] : [`"${(w.textContent ?? '').slice(0, 40)}" covered by ${top?.tagName}#${top?.id}`];
+      }),
+  );
+  expect(covered, 'warnings covered by another element').toEqual([]);
+}
+
 const FOUR_TRAVELLERS: SavedData = {
   ...SAVED,
   travellers: [
@@ -74,9 +96,41 @@ test.describe('popup (360x640)', () => {
     await expect(warnings.first()).toBeVisible();
     expect(await warnings.count()).toBeGreaterThanOrEqual(2); // seeded preset + arrival window
     await shot(popup, 'popup-ready-warnings');
-    for (const w of await warnings.all()) await expect(w).toBeVisible();
     await expect(popup.locator('button#fill')).toBeVisible();
     await expect(popup.locator('button#fill')).toBeInViewport({ ratio: 1 });
+    await assertLayout(popup);
+
+    // Collapsed: the count and the first warning are readable at once, and nothing overlaps Fill.
+    const count = await warnings.count();
+    const toggle = popup.locator('button#warn-toggle');
+    await expect(toggle).toHaveText(new RegExp(`${count} things to check`));
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeInViewport({ ratio: 1 });
+    await expect(warnings.first()).toBeInViewport({ ratio: 1 });
+    await expectNoOverlap(popup, '#warn-box', '#fill');
+    await expectNoOverlap(popup, '#warn-toggle', '#fill');
+
+    // Expanded: every warning is fully readable and not covered by anything (Fill included).
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    for (const w of await warnings.all()) await expect(w).toBeVisible();
+    for (const w of await warnings.all()) await expect(w).toBeInViewport({ ratio: 1 });
+    await expect(popup.locator('button#fill')).toBeInViewport({ ratio: 1 });
+    await expectNoOverlap(popup, '#warn-box', '#fill');
+    await expectWarningsUncovered(popup);
+    await shot(popup, 'popup-ready-warnings-expanded');
+    await assertLayout(popup);
+
+    // Dark mode shows the same layout.
+    await popup.emulateMedia({ colorScheme: 'dark' });
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeInViewport({ ratio: 1 });
+    await expect(popup.locator('button#fill')).toBeInViewport({ ratio: 1 });
+    await shot(popup, 'popup-ready-warnings-dark');
+    await toggle.click();
+    await expectWarningsUncovered(popup);
+    await shot(popup, 'popup-ready-warnings-expanded-dark');
     await assertLayout(popup);
   });
 

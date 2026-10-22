@@ -68,7 +68,18 @@ export function renderReady(root: HTMLElement, data: SavedData, onStarted: () =>
   const departureInput = departure.querySelector('input')!;
   const transportLabel = h('label', { for: 'transportNo', id: 'transport-label' }, TRANSPORT_LABEL['2']);
   const transportInput = h('input', { id: 'transportNo', type: 'text', autocomplete: 'off' });
-  const warnings = h('div', { class: 'warn', id: 'warnings', role: 'status' });
+  // Warnings never block Fill, but they must be seen first: they live in the footer next to Fill, collapsed to
+  // a count plus the first warning, and expand in place (the footer is sticky, so it grows upwards).
+  const warningLabel = h('b', {});
+  const warningToggle = h(
+    'button',
+    { class: 'warn-toggle', id: 'warn-toggle', type: 'button', 'aria-expanded': 'false', 'aria-controls': 'warnings' },
+    h('span', { 'aria-hidden': 'true' }, '⚠'),
+    warningLabel,
+    h('span', { class: 'chev', 'aria-hidden': 'true' }),
+  );
+  const warnings = h('div', { class: 'warn-list', id: 'warnings', role: 'status' });
+  const warnBox = h('div', { class: 'warn', id: 'warn-box', 'data-open': 'false', hidden: true }, warningToggle, warnings);
   const error = h('div', { class: 'error', id: 'fill-error', role: 'alert', hidden: true });
   const fill = h('button', { class: 'primary fill', id: 'fill', type: 'button' }, 'Fill MDAC');
 
@@ -101,12 +112,19 @@ export function renderReady(root: HTMLElement, data: SavedData, onStarted: () =>
     return [...shared.values(), ...personal];
   }
 
+  function setWarningsOpen(open: boolean) {
+    warnBox.dataset.open = String(open);
+    warningToggle.setAttribute('aria-expanded', String(open));
+  }
+
   function refresh() {
     const count = selected().length;
     fill.disabled = count === 0 || !preset();
     fill.textContent = count > 1 ? `Fill MDAC for ${count} travellers` : 'Fill MDAC';
     const lines = warningLines();
-    warnings.hidden = lines.length === 0;
+    warnBox.hidden = lines.length === 0;
+    warningLabel.textContent = `${lines.length} ${lines.length === 1 ? 'thing' : 'things'} to check`;
+    if (lines.length === 0) setWarningsOpen(false);
     replace(
       warnings,
       ...lines.map((l) =>
@@ -155,6 +173,9 @@ export function renderReady(root: HTMLElement, data: SavedData, onStarted: () =>
   departureInput.addEventListener('change', refresh);
   transportInput.addEventListener('input', refresh);
   fill.addEventListener('click', () => void start());
+  warningToggle.addEventListener('click', () => setWarningsOpen(warnBox.dataset.open !== 'true'));
+  // Mouse users can also tap the collapsed first-warning line itself.
+  warnings.addEventListener('click', () => setWarningsOpen(warnBox.dataset.open !== 'true'));
 
   replace(
     root,
@@ -162,10 +183,14 @@ export function renderReady(root: HTMLElement, data: SavedData, onStarted: () =>
     h('section', { class: 'field' }, h('div', { class: 'label' }, 'Trip preset'), presetSelect),
     h('section', { class: 'row' }, arrival, departure),
     h('section', { class: 'field' }, transportLabel, transportInput),
-    warnings,
-    error,
-    fill,
-    h('div', { class: 'foot' }, "You'll complete the slider and press Submit yourself."),
+    h(
+      'footer',
+      { class: 'ready-foot' },
+      warnBox,
+      error,
+      fill,
+      h('div', { class: 'foot' }, "You'll complete the slider and press Submit yourself."),
+    ),
   );
   syncPreset();
   refresh();
