@@ -49,5 +49,5 @@ All generated from the built extension with dummy data only (TEST TRAVELLER ONE,
   2. 2-family-queue.png: family queue, one confirmed, next traveller's turn
   3. 3-filled-form.png: filled register form (local fixture) with the hand-off banner above the slider
   4. 4-travellers.png: saved travellers in settings
-  5. 5-presets.png: the included trip presets
+  5. 5-scan-email.png: Scan a confirmation email, review state ("Filed before? Scan the email"; two dummy email screenshots read on-device)
 - Small promo tile 440×280: store/promo-440x280.png

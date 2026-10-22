@@ -1,12 +1,12 @@
 // Generates the Chrome Web Store assets from the BUILT extension (dist/) with dummy data only:
-//   store/screenshots/1-popup.png ... 5-presets.png  (1280x800)
+//   store/screenshots/1-popup.png ... 5-scan-email.png  (1280x800)
 //   store/promo-440x280.png                          (small promo tile)
 // Run with `pnpm store-assets` (builds first). Re-runnable; output depends only on dist/ and today's date.
 //
 // Real extension pages (popup.html, options.html) and the real fill run against the hand-written
 // fixture of the register form, served through tests/fixtures/mdac-site.ts. The real government
 // site is never contacted (host-resolver rule + route). No government crest/flag/branding is used.
-import { existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
@@ -89,7 +89,7 @@ const ext = await chromium.launchPersistentContext('', {
   args: [
     `--disable-extensions-except=${DIST}`,
     `--load-extension=${DIST}`,
-    '--host-resolver-rules=MAP imigresen-online.imi.gov.my 127.0.0.1',
+    '--host-resolver-rules=MAP imigresen-online.imi.gov.my 127.0.0.1, MAP * ~NOTFOUND',
   ],
 });
 const composer = await chromium.launch({ channel: 'chromium', headless: true });
@@ -150,6 +150,7 @@ try {
     console.log('wrote', file.replace(root + '/', ''));
   }
 
+  const SCAN_CROP_H = 760;
   const slideFile = (n) => join(SHOTS, n);
 
   // 1. Popup, ready to fill.
@@ -234,7 +235,7 @@ try {
     await mdac.close();
   }
 
-  // 4 + 5. Settings: saved travellers and trip presets (starter presets, as a new user sees them).
+  // 4. Settings: saved travellers (starter presets, as a new user sees them).
   await clearRun();
   await seed(data(SEEDED_PRESETS));
   async function optionsPng(view) {
@@ -260,11 +261,36 @@ try {
     caption: 'Kept only in this browser. No account, no server, no analytics.',
     img: dataUri(await optionsPng('travellers')), imgWidth: 790, imgRadius: 12, textWidth: 330, headSize: 40, gap: 48, pad: 56,
   }), 1280, 800);
-  await compose(slideFile('5-presets.png'), slide({
-    headline: 'Presets for the Causeway, KL, Melaka and Penang',
-    caption: 'Start from a ready-made trip and edit the address to where you will stay.',
-    img: dataUri(await optionsPng('presets')), imgWidth: 790, imgRadius: 12, textWidth: 330, headSize: 40, gap: 48, pad: 56,
-  }), 1280, 800);
+
+  // 5. Scan view in the review state: a past confirmation email (dummy screenshots) read on-device by the built OCR.
+  // The fixture email carries traveller one's passport, so scan against a store that does not have it yet.
+  rmSync(join(SHOTS, '5-presets.png'), { force: true });
+  await seed({ ...data(SEEDED_PRESETS), travellers: [TRAVELLERS[1]] });
+  {
+    const page = await ext.newPage();
+    await page.setViewportSize({ width: 860, height: 1400 });
+    await page.goto(`chrome-extension://${extensionId}/options.html#scan`);
+    await page.locator('#scan-drop').waitFor();
+    await page.setInputFiles('#scan-file', [join(root, 'tests/fixtures/email-dark-head.png'), join(root, 'tests/fixtures/email-dark-tail.png')]);
+    await page.locator('#scan-save').waitFor({ state: 'visible', timeout: 120_000 });
+    await page.locator('[data-testid=scan-chip]').first().waitFor();
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(400);
+    // Crop just below the last whole field row that fits, so no label is sliced in half.
+    const height = await page.evaluate((cap) => {
+      const bottoms = [...document.querySelectorAll('.scan-review .f, .scan-review button, .scan-review input, .scan-review select')]
+        .map((el) => el.getBoundingClientRect().bottom)
+        .filter((b) => b <= cap - 10);
+      return Math.ceil(Math.max(...bottoms) + 14);
+    }, SCAN_CROP_H);
+    const png = await page.screenshot({ clip: { x: 0, y: 0, width: 860, height } });
+    await page.close();
+    await compose(slideFile('5-scan-email.png'), slide({
+      headline: 'Filed before? Scan the email',
+      caption: 'Drop a screenshot of your past MDAC confirmation. Read on your device, nothing uploaded.',
+      img: dataUri(png), imgWidth: 790, imgRadius: 12, textWidth: 330, headSize: 40, gap: 48, pad: 56,
+    }), 1280, 800);
+  }
 
   // Small promo tile.
   await compose(join(root, 'store', 'promo-440x280.png'), promo(), 440, 280);
