@@ -25,8 +25,13 @@ async function assertLayout(page: Page) {
     [...document.querySelectorAll<HTMLElement>('button, label, a, h1, h2, h3, li, select, input, [data-testid=warning], .item, small, .sub')]
       .filter((el) => el.offsetParent !== null && el.clientWidth > 0)
       .filter((el) => el.scrollWidth > el.clientWidth + 1)
-      // Native selects and inputs scroll their own value; only flag them when the box itself overflows its parent.
-      .filter((el) => !['SELECT', 'INPUT'].includes(el.tagName) || el.scrollWidth > (el.parentElement?.clientWidth ?? Infinity) + 1)
+      // Native selects and inputs scroll their own value (scrollWidth measures the value, not the box);
+      // only flag them when the box itself is wider than its parent.
+      .filter(
+        (el) =>
+          !['SELECT', 'INPUT'].includes(el.tagName) ||
+          el.getBoundingClientRect().width > (el.parentElement?.clientWidth ?? Infinity) + 1,
+      )
       .map((el) => `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''} "${(el.textContent ?? '').trim().slice(0, 40)}" ${el.scrollWidth}>${el.clientWidth}`),
   );
   expect(clipped, 'text overflowing its box').toEqual([]);
