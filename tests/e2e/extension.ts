@@ -75,8 +75,9 @@ export const test = base.extend<Fixtures>({
       args: [
         `--disable-extensions-except=${DIST}`,
         `--load-extension=${DIST}`,
-        // Tests must never reach the real government site: anything the fixture route misses fails to connect.
-        '--host-resolver-rules=MAP imigresen-online.imi.gov.my 127.0.0.1',
+        // Tests must never reach the network: the government host maps to a local port (where the fixture route
+        // answers) and every other host fails to resolve.
+        '--host-resolver-rules=MAP imigresen-online.imi.gov.my 127.0.0.1, MAP * ~NOTFOUND',
       ],
     });
     await site.install(context);

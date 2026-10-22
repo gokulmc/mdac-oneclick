@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, addMonths, daysBetween, isIsoDate, localIsoDate, toFormDate } from '../../src/domain/dates';
+import { addDays, addMonths, daysBetween, isIsoDate, localIsoDate, parseFormDate, toFormDate } from '../../src/domain/dates';
 
 describe('toFormDate', () => {
   it('converts ISO to dd/mm/yyyy', () => {
@@ -66,5 +66,23 @@ describe('localIsoDate', () => {
   it('uses the local calendar day', () => {
     expect(localIsoDate(new Date(2026, 9, 2, 23, 59))).toBe('2026-10-02');
     expect(localIsoDate(new Date(2026, 0, 1, 0, 0))).toBe('2026-01-01');
+  });
+});
+
+describe('parseFormDate', () => {
+  it('reads dd/mm/yyyy and the dash and dot variants', () => {
+    expect(parseFormDate('22/11/1994')).toEqual({ iso: '1994-11-22', repaired: false });
+    expect(parseFormDate('22-11-1994')).toEqual({ iso: '1994-11-22', repaired: false });
+    expect(parseFormDate('22.11.1994')).toEqual({ iso: '1994-11-22', repaired: false });
+    expect(parseFormDate(' 5/1/2027. ')).toEqual({ iso: '2027-01-05', repaired: false });
+  });
+  it('repairs OCR digit look-alikes and says so', () => {
+    expect(parseFormDate('3O/O5/2026')).toEqual({ iso: '2026-05-30', repaired: true });
+  });
+  it('rejects impossible dates and other shapes', () => {
+    expect(parseFormDate('31/02/2026')).toBeUndefined();
+    expect(parseFormDate('2026-05-30')).toBeUndefined();
+    expect(parseFormDate('')).toBeUndefined();
+    expect(parseFormDate('soon')).toBeUndefined();
   });
 });

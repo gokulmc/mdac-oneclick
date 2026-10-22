@@ -1,0 +1,132 @@
+<!doctype html>
+<!--
+  Replica of the MDAC confirmation email as rendered in the Gmail phone app (DUMMY data only).
+  Driven by a JSON object: set `window.__fixture` before load, or pass `?data=<url-encoded JSON>`.
+  Any field may be omitted; defaults are below. Rendered to PNGs by scripts/render-fixture.mjs.
+  Fields: theme ('light'|'dark'), align ('middle'|'top'), chrome (bool, Gmail toolbar+subject above the table, default true),
+  bar (bool, sticky Reply/Forward bar, default true), above (px of blank space above the table, default 0), plus the record values.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDAC confirmation email (fixture)</title>
+<style>
+  :root {
+    --page: #ffffff; --card: #ffffff; --text: #202124; --link: #1a73e8; --muted: #5f6368;
+    --bar: #f1f3f4; --line: #dadce0; --red: #d93025;
+  }
+  :root[data-theme="dark"] {
+    --page: #000000; --card: #1c1c1e; --text: #e8eaed; --link: #8ab4f8; --muted: #9aa0a6;
+    --bar: #121212; --line: #3c4043; --red: #ff6b60;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page); color: var(--text);
+    font-family: system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column;
+    -webkit-text-size-adjust: 100%;
+  }
+  /* ---- phone chrome ---- */
+  .status { height: 28px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between;
+            font-size: 14px; font-weight: 600; background: var(--page); }
+  .status .icons { display: flex; gap: 6px; align-items: center; }
+  .status .sig { width: 16px; height: 10px; background: var(--text); clip-path: polygon(0 100%,0 70%,25% 70%,25% 100%,35% 100%,35% 45%,60% 45%,60% 100%,70% 100%,70% 0,100% 0,100% 100%); }
+  .status .bat { width: 22px; height: 11px; border: 1.5px solid var(--text); border-radius: 3px; position: relative; }
+  .status .bat::after { content: ""; position: absolute; inset: 1px; right: 5px; background: var(--text); border-radius: 1px; }
+  .toolbar { height: 52px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: var(--page); }
+  .toolbar .ic { display: flex; gap: 26px; }
+  .toolbar i { display: block; width: 22px; height: 22px; border: 2px solid var(--muted); border-radius: 50%; }
+  .toolbar i.sq { border-radius: 4px; }
+  .toolbar .back { font-size: 26px; line-height: 1; color: var(--text); }
+  .head { padding: 6px 26px 14px; background: var(--page); }
+  .head h1 { margin: 0 0 8px; font-size: 20px; font-weight: 400; line-height: 26px; }
+  .head .from { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+  .head .av { width: 36px; height: 36px; border-radius: 50%; background: #5f6368; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .head b { color: var(--text); font-weight: 500; display: block; font-size: 15px; }
+  /* ---- email body ---- */
+  main { flex: 1; background: var(--card); padding: 10px 26px 30px; }
+  table.rec { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 17px; line-height: 24px; }
+  table.rec td { padding: 7px 0; vertical-align: middle; overflow-wrap: anywhere; }
+  table.rec td.l { width: 40%; font-weight: 700; padding-right: 6px; }
+  table.rec td.c { width: 5%; font-weight: 700; text-align: center; }
+  table.rec td.v { width: 55%; font-weight: 400; padding-left: 6px; padding-right: 28px; }
+  :root[data-align="top"] table.rec td { vertical-align: top; }
+  table.rec tr.gap td { padding: 0; height: 26px; }
+  table.rec tr.pin td { font-size: 40px; line-height: 48px; }
+  table.rec tr.pin td.v { white-space: nowrap; letter-spacing: -0.5px; padding-right: 0; }
+  table.rec a { color: var(--link); text-decoration: underline; }
+  .note { margin: 18px 0 0; font-size: 17px; line-height: 24px; }
+  .note.red { color: var(--red); font-weight: 700; }
+  .note.small { font-size: 15px; }
+  /* ---- bottom chrome (sticky so viewport screenshots always carry it) ---- */
+  .bottom { position: sticky; padding-top: 8px !important; padding-bottom: 6px !important; bottom: 0; z-index: 5; background: var(--bar); border-top: 1px solid var(--line); padding: 10px 26px 8px; }
+  .bottom .btns { display: flex; gap: 14px; }
+  .bottom .btn { flex: 1; height: 36px; border: 1px solid var(--line); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500; color: var(--text); }
+  .bottom .home { width: 134px; height: 5px; border-radius: 3px; background: var(--text); opacity: .85; margin: 8px auto 0; }
+</style>
+</head>
+<body>
+<div class="status"><span>9:41</span><span class="icons"><span class="sig"></span><span>5G</span><span class="bat"></span></span></div>
+<div class="toolbar" id="tb"><span class="back">&#8592;</span><span class="ic"><i class="sq"></i><i class="sq"></i><i></i></span></div>
+<div class="head" id="hd">
+  <h1 id="subject">MDAC Confirmation</h1>
+  <div class="from"><span class="av">M</span><span><b>MDAC Malaysia</b>to me</span></div>
+</div>
+<div id="above" style="background:var(--page)"></div>
+<main>
+  <table class="rec" id="rec"></table>
+  <p class="note red">**Use PIN to check registration information and visit pass information.</p>
+  <p class="note">Thank you.</p>
+  <p class="note small">(Attention: This is a computerized print. Signature not required.)</p>
+  <p class="note small">This is a system generated email. Please do not reply to it.</p>
+</main>
+<div class="bottom" id="bar"><div class="btns"><span class="btn">Reply</span><span class="btn">Forward</span></div><div class="home"></div></div>
+
+<script>
+(function () {
+  // Defaults: TRAVELLERS[0] from tests/e2e/extension.ts (dummy) + a dummy JB hotel trip.
+  var DEFAULTS = {
+    theme: 'dark', align: 'middle', chrome: true, bar: true, above: 0,
+    name: 'TEST TRAVELLER ONE', passportNo: 'T0000001', nationality: 'INDIA', dateOfBirth: '15/01/1990',
+    sex: 'MALE', passportExpiry: '30/06/2036', email: 'one@example.com', mobile: '+6581234567',
+    arrival: '23/10/2026', mode: 'LAND', departure: '25/10/2026', port: 'SINGAPORE', transportNo: 'SGX1234A',
+    accommodation: 'HOTEL/MOTEL/REST HOUSE', address: 'JALAN WONG AH FOOK', postcode: '80000',
+    city: 'JOHOR BAHRU', state: 'JOHOR', pin: '7KQPx92a',
+  };
+  var fromUrl = {};
+  try { var q = new URLSearchParams(location.search).get('data'); if (q) fromUrl = JSON.parse(q); } catch (e) {}
+  var d = Object.assign({}, DEFAULTS, fromUrl, window.__fixture || {});
+
+  document.documentElement.dataset.theme = d.theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.align = d.align === 'top' ? 'top' : 'middle';
+
+  if (!d.chrome) { document.getElementById('tb').hidden = true; document.getElementById('hd').hidden = true; }
+  if (!d.bar) document.getElementById('bar').hidden = true;
+  document.getElementById('above').style.height = (+d.above || 0) + 'px';
+
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
+  var ROWS = [
+    ['name', 'Name', d.name], ['passport', 'Passport No.', d.passportNo], ['nationality', 'Nationality / Citizenship', d.nationality],
+    ['dob', 'Date of Birth', d.dateOfBirth], ['sex', 'Sex', d.sex], ['expiry', 'Date of Passport Expiry', d.passportExpiry],
+    ['email', 'Email Address', '<a href="mailto:' + esc(d.email) + '">' + esc(d.email) + '</a>', true], ['mobile', 'Mobile No.', d.mobile],
+    null,
+    ['arrival', 'Date of Arrival', d.arrival], ['mode', 'Mode of Travel', d.mode], ['departure', 'Date of Departure', d.departure],
+    ['port', 'Last Port of Embarkation before Malaysia', d.port], ['transportNo', 'Transportation No.', d.transportNo],
+    ['stay', 'Accommodation of Stay', d.accommodation], ['address', 'Address (In Malaysia)', d.address],
+    null,
+    ['postcode', 'Postcode', d.postcode], ['city', 'City', d.city], ['state', 'State', d.state],
+    null,
+    ['pin', 'PIN', d.pin],
+  ];
+  document.getElementById('rec').innerHTML = ROWS.map(function (r) {
+    if (!r) return '<tr class="gap"><td colspan="3"></td></tr>';
+    return '<tr data-row="' + r[0] + '"' + (r[0] === 'pin' ? ' class="pin"' : '') + '><td class="l">' + esc(r[1]) +
+      '</td><td class="c">:</td><td class="v">' + (r[3] ? r[2] : esc(r[2])) + '</td></tr>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

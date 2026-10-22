@@ -16,7 +16,7 @@ export const ARRIVAL_WINDOW_DAYS = 2;
 export const PASSPORT_VALIDITY_MONTHS = 6;
 
 // Same pattern the register form uses in checkEmail().
-const EMAIL = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+export const EMAIL = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 const NOT_ALLOWED_ADDRESSES = ['NA', 'N/A', 'NULL', 'NIL'];
 
 const has = (options: { code: string }[], code: string) => options.some((o) => o.code === code);

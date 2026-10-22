@@ -15,6 +15,7 @@ Filing the Malaysia Digital Arrival Card (MDAC) means typing 21 fields for every
 • On the day: click the icon, pick who's travelling and the dates, press Fill. The official form fills in about 2 seconds.
 • Families: tick several travellers and each form fills automatically after the previous one is confirmed.
 • Warnings before you file: arrival outside the 3-day window, a passport expiring within 6 months, addresses the form will reject.
+• Filed before? Scan a screenshot of your past MDAC confirmation email and the traveller and trip details are read on your device — review, save, done.
 
 You stay in control: the extension never submits the form and never touches the "Drag To Verify" slider. Check the details, complete the slider and press Submit yourself.
 
@@ -31,7 +32,7 @@ Fill the official Malaysia Digital Arrival Card registration form with traveller
 - **storage**: keeps the user's saved travellers and trip presets in chrome.storage.local, and the in-progress family queue in chrome.storage.session.
 - **scripting**: writes the saved details into the MDAC register form when the user presses Fill.
 - **Host permission imigresen-online.imi.gov.my/mdac/***: the only site the extension works on; needed to fill the form and to know when a registration was confirmed so the next family member's form can be filled.
-- **Remote code:** none. All code ships in the package.
+- **Remote code:** none. All code ships in the package, including the OCR engine (Tesseract compiled to WebAssembly under `ocr/`; the manifest CSP adds `'wasm-unsafe-eval'` for it). No model or script is downloaded at runtime.
 
 ## Data usage disclosures
 - Collects: Personally identifiable information (name, passport number, date of birth, email, phone) — stored locally only, entered by the user, used solely to fill the MDAC form.

@@ -1,0 +1,178 @@
+<!-- @dsCard group="Options" name="Options · scan a confirmation email" viewport="1100x900" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Options scan review</title>
+<style>
+:root{--bg:#F7F7F4;--surface:#FFF;--surface-2:#F0F1EC;--line:#DCDED6;--text:#1C1F1A;--text-2:#5B6157;--accent:#1F6F43;--accent-soft:#E3F1E8;--handoff:#E0B400;--handoff-soft:#FFF6D6;--handoff-text:#3D3000;--danger:#B42318;--danger-soft:#FDECEA;--radius:10px;--radius-sm:7px;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,monospace;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#141613;--surface:#1C1F1B;--surface-2:#252923;--line:#353A33;--text:#ECEEE8;--text-2:#A3AA9E;--accent:#3FA56C;--accent-soft:#1E3326;--handoff-soft:#3A3210;--handoff-text:#FBEAA8;--danger:#F97066;--danger-soft:#3A1D1A}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);font:14px/1.45 var(--font);color:var(--text)}
+.top{display:flex;align-items:center;gap:12px;padding:18px 28px;border-bottom:1px solid var(--line);background:var(--surface)}
+.logo{width:32px;height:32px;border-radius:9px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px}
+.top h1{font-size:17px;margin:0}
+.top .sub{font-size:12.5px;color:var(--text-2)}
+.privacy{margin-left:auto;font-size:12.5px;color:var(--text-2)}
+.wrap{display:grid;grid-template-columns:200px 300px 1fr;min-height:690px}
+nav{padding:20px 12px;border-right:1px solid var(--line);display:grid;align-content:start;gap:2px}
+nav a{display:flex;justify-content:space-between;gap:8px;padding:9px 12px;border-radius:var(--radius-sm);color:var(--text);text-decoration:none;font-weight:600}
+nav a.on{background:var(--accent-soft);color:var(--accent)}
+nav a span{color:var(--text-2);font-weight:500}
+.list{padding:20px 16px;border-right:1px solid var(--line);display:grid;align-content:start;gap:12px;min-width:0}
+.list h3{margin:0;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2)}
+.shots{display:flex;gap:14px}
+.shot{display:grid;gap:6px;justify-items:start}
+.shot .cap{font-size:12.5px;font-weight:600}
+.shotbox{position:relative}
+.phone-img{width:120px;height:260px;border-radius:14px;background:#14181A;border:1px solid var(--line);overflow:hidden;padding:12px 10px;display:grid;align-content:start;gap:7px}
+.phone-img i{display:block;height:5px;border-radius:3px;background:#C9D1CB;opacity:.85}
+.phone-img i.s{background:#6C7770;opacity:.8}
+.phone-img i.h{height:8px;background:#E8EEEA;width:70%}
+.phone-img .sb{display:flex;justify-content:space-between;margin-bottom:4px}
+.phone-img .sb i{width:22px;height:4px;background:#8A948D}
+.phone-img .blk{height:44px;border-radius:5px;background:#222A26;border:1px solid #2F3934;margin-top:3px}
+.x{position:absolute;top:-7px;right:-7px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text-2);font:600 14px/1 var(--font);padding:0;display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.x:hover{color:var(--danger);border-color:var(--danger)}
+.add{border:1px dashed var(--accent);background:none;color:var(--accent);font:600 14px var(--font);border-radius:var(--radius-sm);padding:10px;cursor:pointer}
+.addbox{height:64px}
+.note-s{font-size:12px;color:var(--text-2)}
+.editor{padding:24px 32px;max-width:720px;min-width:0}
+.editor h2{margin:0 0 4px;font-size:20px}
+.hint{color:var(--text-2);margin:0 0 14px}
+.callout{background:var(--handoff-soft);border:1px solid var(--handoff);color:var(--handoff-text);border-radius:var(--radius-sm);padding:9px 12px;font-size:13px;margin:0 0 18px}
+fieldset{border:0;padding:0;margin:0 0 20px;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 16px}
+legend{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:10px;padding:0;width:100%}
+.f{display:grid;gap:5px;align-content:start;min-width:0}
+.f.wide{grid-column:1/-1}
+.f>.lr{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:20px}
+.f label{font-weight:600;font-size:13px}
+input,select{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 10px;width:100%}
+.f .note{font-size:12px;color:var(--text-2)}
+.f.bad input,.f.bad select{border-color:var(--handoff);background:var(--handoff-soft)}
+.f.bad .note{color:var(--handoff-text)}
+.f.miss input,.f.miss select{border-color:var(--danger);background:var(--danger-soft)}
+.f.miss .note{color:var(--danger)}
+.phone{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px;align-items:start}
+.chip{flex:none;font-size:11px;font-weight:700;line-height:1.5;border-radius:999px;padding:0 8px;border:1px solid transparent;white-space:nowrap}
+.chip.ok{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-soft)}
+.chip.unsure{background:var(--handoff-soft);color:var(--handoff-text);border-color:var(--handoff)}
+.chip.missing{background:var(--danger-soft);color:var(--danger);border-color:var(--danger-soft)}
+.chip.saved{background:var(--surface-2);color:var(--text-2);border-color:var(--line)}
+.crop{display:grid;gap:3px;justify-items:start}
+.crop small{font-size:11px;color:var(--text-2)}
+.strip{width:220px;max-width:100%;height:28px;border-radius:5px;background:#14181A;border:1px solid var(--line);color:#E3EAE5;font:11.5px/26px var(--mono);padding:0 9px;white-space:nowrap;overflow:hidden}
+.strip em{font-style:normal;color:#8A948D;margin-right:8px}
+.trip{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 12px;font-size:13px;color:var(--text-2);margin:0 0 20px}
+.trip b{color:var(--text)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.save{border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font:700 14px var(--font);padding:10px 20px}
+.ghost{border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 13px var(--font);border-radius:var(--radius-sm);padding:9px 14px}
+.status{color:var(--text-2);font-size:12.5px;margin-left:auto}
+.legend{display:flex;gap:8px;margin:0 0 14px}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">M1</div>
+  <div><h1>MDAC One-Click</h1><div class="sub">Travellers and trip presets</div></div>
+  <div class="privacy">🔒 Saved only in this browser</div>
+</div>
+<div class="wrap">
+  <nav>
+    <a href="#">Travellers <span>3</span></a>
+    <a href="#">Trip presets <span>6</span></a>
+    <a class="on" href="#">Scan a confirmation email</a>
+    <a href="#">Backup &amp; import</a>
+  </nav>
+  <div class="list">
+    <h3>Screenshots</h3>
+    <div class="shots">
+      <div class="shot">
+        <div class="shotbox">
+          <div class="phone-img" aria-label="Top of the email screenshot">
+            <div class="sb"><i></i><i></i></div>
+            <i class="h"></i><i class="s" style="width:45%"></i>
+            <div class="blk"></div>
+            <i></i><i style="width:88%"></i><i class="s" style="width:60%"></i>
+            <i></i><i style="width:76%"></i><i class="s" style="width:52%"></i>
+            <i></i><i style="width:92%"></i><i class="s" style="width:38%"></i>
+            <i></i><i style="width:64%"></i>
+          </div>
+          <button class="x" aria-label="Remove Top screenshot">×</button>
+        </div>
+        <span class="cap">Top</span>
+      </div>
+      <div class="shot">
+        <div class="shotbox">
+          <div class="phone-img" aria-label="Bottom of the email screenshot">
+            <div class="sb"><i></i><i></i></div>
+            <i></i><i style="width:80%"></i><i class="s" style="width:55%"></i>
+            <i></i><i style="width:90%"></i><i class="s" style="width:42%"></i>
+            <i></i><i style="width:70%"></i><i class="s" style="width:58%"></i>
+            <div class="blk"></div>
+            <i></i><i style="width:84%"></i><i class="s" style="width:36%"></i>
+            <i></i><i style="width:60%"></i>
+          </div>
+          <button class="x" aria-label="Remove Bottom screenshot">×</button>
+        </div>
+        <span class="cap">Bottom</span>
+      </div>
+    </div>
+    <button class="add addbox">+ Add screenshot</button>
+    <p class="note-s" style="margin:0">Read on this device, kept only in memory, never uploaded.</p>
+  </div>
+  <div class="editor">
+    <h2>Review what was read</h2>
+    <p class="hint">Fix anything yellow or red, then save. Dates and PIN are from that trip and are not saved.</p>
+    <div class="legend" hidden>
+      <span class="chip ok">Read</span><span class="chip unsure">Unsure</span><span class="chip saved">From saved</span><span class="chip missing">Missing</span>
+      <div class="f miss" style="width:240px"><div class="lr"><label>Example</label><span class="chip missing">Missing</span></div><input value=""><span class="note">Not found in the email. Fill it in.</span></div>
+    </div>
+    <div class="callout">Updating <b>TEST TRAVELLER ONE</b> (same passport number)</div>
+
+    <fieldset>
+      <legend>Traveller</legend>
+      <div class="f wide"><div class="lr"><label>Full name</label><span class="chip ok">Read</span></div><input value="TEST TRAVELLER ONE"></div>
+      <div class="f"><div class="lr"><label>Passport no.</label><span class="chip ok">Read</span></div><input value="T0000001"></div>
+      <div class="f"><div class="lr"><label>Sex</label><span class="chip ok">Read</span></div><select><option>Male</option></select></div>
+      <div class="f"><div class="lr"><label>Nationality</label><span class="chip ok">Read</span></div><select><option>INDIA</option></select></div>
+      <div class="f bad"><div class="lr"><label>Place of birth</label><span class="chip unsure">Unsure</span></div><select><option>INDIA</option></select>
+        <span class="note">Not in the email; defaulted to nationality</span>
+        <div class="crop"><div class="strip"><em>Nationality</em>INDIA</div><small>From screenshot</small></div></div>
+      <div class="f"><div class="lr"><label>Date of birth</label><span class="chip ok">Read</span></div><input value="15/01/1990"></div>
+      <div class="f"><div class="lr"><label>Passport expiry</label><span class="chip ok">Read</span></div><input value="14/01/2031"></div>
+      <div class="f wide"><div class="lr"><label>Email</label><span class="chip saved">From saved</span></div><input value="test.one@example.com"><span class="note">Kept from the saved traveller</span></div>
+      <div class="f wide bad"><div class="lr"><label>Mobile</label><span class="chip unsure">Unsure</span></div>
+        <div class="phone"><select><option>+65 Singapore</option></select><input value="80000001"></div>
+        <span class="note">Country code guessed from +65</span>
+        <div class="crop"><div class="strip"><em>Mobile</em>+65 80000001</div><small>From screenshot</small></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Trip preset</legend>
+      <div class="f wide"><div class="lr"><label>Preset name</label><span class="chip ok">Read</span></div><input value="Johor Bahru · Land"></div>
+      <div class="f"><div class="lr"><label>Travel mode</label><span class="chip ok">Read</span></div><select><option>Land</option></select></div>
+      <div class="f"><div class="lr"><label>Vehicle no.</label><span class="chip ok">Read</span></div><input value="TEST1234"></div>
+      <div class="f"><div class="lr"><label>Last port of embarkation</label><span class="chip ok">Read</span></div><select><option>SINGAPORE</option></select></div>
+      <div class="f"><div class="lr"><label>Accommodation</label><span class="chip ok">Read</span></div><select><option>Hotel</option></select></div>
+      <div class="f"><div class="lr"><label>Address line 1</label><span class="chip ok">Read</span></div><input value="1 TEST STREET"></div>
+      <div class="f"><div class="lr"><label>Address line 2</label><span class="chip ok">Read</span></div><input value="TEST BUILDING"></div>
+      <div class="f"><div class="lr"><label>State</label><span class="chip ok">Read</span></div><select><option>Johor</option></select></div>
+      <div class="f"><div class="lr"><label>City</label><span class="chip ok">Read</span></div><select><option>Johor Bahru</option></select></div>
+      <div class="f"><div class="lr"><label>Postcode</label><span class="chip ok">Read</span></div><input value="80000"></div>
+    </fieldset>
+
+    <div class="trip"><b>From that trip (not saved):</b> Arrival 23/10/2026 · Departure 25/10/2026 · PIN 7KQP…</div>
+
+    <div class="bar">
+      <button class="save">Save traveller and preset</button>
+      <button class="ghost">Cancel</button>
+      <span class="status">Nothing saved yet</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

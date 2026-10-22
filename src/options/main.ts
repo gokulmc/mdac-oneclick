@@ -1,17 +1,19 @@
 import { checkPreset, checkTraveller } from '../domain/checks';
 import { localIsoDate } from '../domain/dates';
 import { emptyData, mergeImport, parseExport, toExport } from '../domain/io';
-import { cityLabel, citiesOf, labelOf, reference } from '../domain/reference';
+import { cityLabel, labelOf, reference } from '../domain/reference';
 import type { SavedData, Traveller, TripPreset } from '../domain/types';
 import { byId, h, replace } from '../shared/dom';
 import { loadData, saveData } from '../shared/storage';
-import { createForm, setOptions, toOptions, type FormHandle, type SectionSpec } from './forms';
+import { createForm, type FormHandle, type SectionSpec } from './forms';
+import { blankPreset, blankTraveller, normalisePreset, normaliseTraveller, presetSections, travellerSections, wireStateCity } from './records';
+import { renderScanView } from './scan';
 import './options.css';
 
-type View = 'travellers' | 'presets' | 'data';
+type View = 'travellers' | 'presets' | 'scan' | 'data';
 type Kind = 'traveller' | 'preset';
 
-const VIEWS: View[] = ['travellers', 'presets', 'data'];
+const VIEWS: View[] = ['travellers', 'presets', 'scan', 'data'];
 const wrap = byId('wrap');
 const list = byId('list');
 const editor = byId('editor');
@@ -25,6 +27,8 @@ const selected: Record<'travellers' | 'presets', string | undefined> = {
 /** A record being created: lives only in the editor until it is saved. */
 let draft: Traveller | TripPreset | undefined;
 let justSaved = false;
+/** Tears down the Scan view (OCR worker, object URLs, paste listener) when another view takes over. */
+let unmountScan: (() => void) | undefined;
 
 const today = () => localIsoDate(new Date());
 
@@ -32,94 +36,6 @@ const today = () => localIsoDate(new Date());
 async function commit(change: (current: SavedData) => SavedData) {
   data = change(await loadData());
   await saveData(data);
-}
-
-// ---------- travellers ----------
-
-const travellerSections = (): SectionSpec[] => [
-  {
-    legend: 'Passport',
-    items: [
-      { name: 'fullName', label: 'Full name', type: 'text', wide: true },
-      { name: 'passportNo', label: 'Passport no.', type: 'text' },
-      { name: 'sex', label: 'Sex', type: 'select', options: toOptions(reference.sexes) },
-      { name: 'nationality', label: 'Nationality', type: 'select', options: toOptions(reference.nationalities) },
-      { name: 'placeOfBirth', label: 'Place of birth', type: 'select', options: toOptions(reference.nationalities) },
-      { name: 'dateOfBirth', label: 'Date of birth', type: 'date' },
-      { name: 'passportExpiry', label: 'Passport expiry', type: 'date' },
-    ],
-  },
-  {
-    legend: 'Contact (MDAC confirmation is emailed here)',
-    items: [
-      { name: 'email', label: 'Email', type: 'email', wide: true },
-      {
-        label: 'Mobile',
-        fields: [
-          { name: 'dialCode', label: 'Country code', type: 'select', options: toOptions(reference.dialCodes, true) },
-          { name: 'mobile', label: 'Mobile number', type: 'tel' },
-        ],
-      },
-    ],
-  },
-];
-
-const blankTraveller = (): Traveller => ({
-  id: crypto.randomUUID(), fullName: '', passportNo: '', dateOfBirth: '', nationality: '', placeOfBirth: '',
-  sex: '' as Traveller['sex'], passportExpiry: '', email: '', dialCode: '', mobile: '',
-});
-
-function normaliseTraveller(base: Traveller, v: Partial<Traveller>): Traveller {
-  return {
-    ...base,
-    ...v,
-    fullName: (v.fullName ?? '').trim().toUpperCase(),
-    passportNo: (v.passportNo ?? '').trim().toUpperCase(),
-    email: (v.email ?? '').trim(),
-    mobile: (v.mobile ?? '').trim(),
-  };
-}
-
-// ---------- trip presets ----------
-
-const presetSections = (): SectionSpec[] => [
-  {
-    legend: 'Journey',
-    items: [
-      { name: 'name', label: 'Preset name', type: 'text', wide: true },
-      { name: 'travelMode', label: 'Mode of travel', type: 'select', options: toOptions(reference.travelModes) },
-      { name: 'transportNo', label: 'Flight / vehicle / vessel no.', type: 'text' },
-      { name: 'embarkPort', label: 'Last port before Malaysia', type: 'select', options: toOptions(reference.ports), wide: true },
-    ],
-  },
-  {
-    legend: 'Where you will stay',
-    items: [
-      { name: 'stayType', label: 'Accommodation', type: 'select', options: toOptions(reference.stayTypes), wide: true },
-      { name: 'address1', label: 'Address line 1', type: 'text', wide: true },
-      { name: 'address2', label: 'Address line 2 (optional)', type: 'text', wide: true },
-      { name: 'state', label: 'State', type: 'select', options: toOptions(reference.states) },
-      { name: 'city', label: 'City', type: 'select', options: [] },
-      { name: 'postcode', label: 'Postcode', type: 'text' },
-    ],
-  },
-];
-
-const blankPreset = (): TripPreset => ({
-  id: crypto.randomUUID(), name: '', travelMode: '' as TripPreset['travelMode'], transportNo: '', embarkPort: '',
-  stayType: '' as TripPreset['stayType'], address1: '', address2: '', state: '', city: '', postcode: '',
-});
-
-function normalisePreset(base: TripPreset, v: Partial<TripPreset>): TripPreset {
-  const { seeded: _seeded, ...rest } = { ...base, ...v };
-  return {
-    ...rest,
-    name: (v.name ?? '').trim() || 'Untitled trip preset',
-    transportNo: (v.transportNo ?? '').trim(),
-    address1: (v.address1 ?? '').trim(),
-    address2: (v.address2 ?? '').trim(),
-    postcode: (v.postcode ?? '').trim(),
-  };
 }
 
 // ---------- shared list + editor chrome ----------
@@ -157,8 +73,8 @@ function renderNav() {
 }
 
 function renderList() {
-  wrap.classList.toggle('no-list', view === 'data');
-  if (view === 'data') return replace(list);
+  wrap.classList.toggle('no-list', view === 'data' || view === 'scan');
+  if (view === 'data' || view === 'scan') return replace(list); // the Scan view fills the list column itself
   const isTraveller = view === 'travellers';
   const add = h('button', { id: isTraveller ? 'add-traveller' : 'add-preset', type: 'button', class: 'add' }, isTraveller ? '+ Add traveller' : '+ Add trip preset');
   add.addEventListener('click', () => {
@@ -166,12 +82,14 @@ function renderList() {
     justSaved = false;
     render();
   });
+  const scanOpen = h('button', { id: 'scan-open', type: 'button', class: 'ghost' }, 'Scan a confirmation email…');
+  scanOpen.addEventListener('click', () => go('scan'));
   const id = selected[view];
   const items = isTraveller
     ? data.travellers.map((t) => listItem('traveller-item', t.id, t.fullName || 'Unnamed traveller', travellerDetail(t), !draft && t.id === id))
     : data.presets.map((p) => listItem('preset-item', p.id, p.name, presetDetail(p), !draft && p.id === id, p.seeded ? 'Starting point' : undefined));
   const draftItem = draft && h('div', { class: 'item on' }, h('b', {}, isTraveller ? 'New traveller' : 'New trip preset'), h('small', {}, 'Not saved yet'));
-  replace(list, add, draftItem, ...items);
+  replace(list, add, scanOpen, draftItem, ...items);
 }
 
 /** Save / delete bar with the in-page delete confirmation (window.confirm would block automation). */
@@ -311,12 +229,7 @@ function renderPresetEditor() {
       callout.hidden = warnings.length === 0;
       callout.textContent = warnings.map((w) => w.message).join(' ');
     },
-    onBuilt: ({ controls }) => {
-      const state = controls.state as HTMLSelectElement;
-      const city = controls.city as HTMLSelectElement;
-      setOptions(city, toOptions(citiesOf(record.state)), record.city, 'Select a city…');
-      state.addEventListener('change', () => setOptions(city, toOptions(citiesOf(state.value)), '', 'Select a city…'));
-    },
+    onBuilt: (handle) => wireStateCity(handle, record.state, record.city),
     onSaved: async (p) => {
       await commit((cur) => ({ ...cur, presets: upsert(cur.presets, p) }));
       draft = undefined;
@@ -423,21 +336,47 @@ function renderDataView() {
 // ---------- routing ----------
 
 function render() {
+  unmountScan?.();
+  unmountScan = undefined;
   renderNav();
   renderList();
   if (view === 'travellers') renderTravellerEditor();
   else if (view === 'presets') renderPresetEditor();
+  else if (view === 'scan') unmountScan = renderScanView(editor, scanDeps());
   else renderDataView();
 }
+
+function go(next: View) {
+  view = next;
+  draft = undefined;
+  justSaved = false;
+  history.replaceState(null, '', `#${view}`);
+  render();
+}
+
+const scanDeps = () => ({
+  list,
+  wrap,
+  getData: () => data,
+  today,
+  save: (t: Traveller, p: TripPreset) =>
+    commit((cur) => ({ ...cur, travellers: upsert(cur.travellers, t), presets: [...cur.presets, p] })),
+  onDone: (travellerId: string) => {
+    selected.travellers = travellerId;
+    view = 'travellers';
+    draft = undefined;
+    justSaved = true;
+    history.replaceState(null, '', '#travellers');
+    render();
+  },
+});
 
 document.querySelectorAll<HTMLAnchorElement>('nav a').forEach((a) =>
   a.addEventListener('click', (e) => {
     e.preventDefault();
-    view = a.dataset.view as View;
-    draft = undefined;
-    justSaved = false;
-    history.replaceState(null, '', `#${view}`);
-    render();
+    const next = a.dataset.view as View;
+    if (next === 'scan' && view === 'scan') return; // already here: keep the screenshots
+    go(next);
   }),
 );
 

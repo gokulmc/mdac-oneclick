@@ -1,6 +1,7 @@
 // Visual QC: screenshots into test-results/qc/ plus layout assertions that catch clipped text,
 // horizontal scroll and an off-screen Fill button. Read the screenshots too: assertions do not see ugly.
 import { mkdirSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Page } from '@playwright/test';
 import type { SavedData } from '../../src/domain/types';
 import {
@@ -187,18 +188,52 @@ test.describe('popup (360x640)', () => {
 });
 
 test.describe('options (1100x760)', () => {
-  for (const view of ['travellers', 'presets', 'data'] as const) {
+  for (const view of ['travellers', 'presets', 'scan', 'data'] as const) {
     test(`${view} view`, async ({ context, worker, extensionId }) => {
       await seed(worker, FOUR_TRAVELLERS);
       const page = await context.newPage();
       await page.setViewportSize({ width: 1100, height: 760 });
       await page.goto(`chrome-extension://${extensionId}/options.html#${view}`);
       await expect(page.locator(`nav a[data-view=${view}]`)).toHaveClass(/on/);
-      if (view !== 'data') await page.locator('#list .item').first().click();
-      await shot(page, `options-${view}`);
+      if (view === 'travellers' || view === 'presets') await page.locator('#list .item').first().click();
+      if (view === 'scan') await expect(page.locator('#scan-drop')).toBeVisible();
+      await shot(page, view === 'scan' ? 'scan-empty' : `options-${view}`);
       await assertLayout(page);
     });
   }
+
+  // The review screen is the busiest page in the extension: two forms, a chip and a note per field, crops of the screenshot.
+  test('scan review (two screenshots) at 1100 and 900 wide', async ({ context, worker, extensionId }) => {
+    test.slow();
+    await seed(worker, FOUR_TRAVELLERS);
+    const page = await context.newPage();
+    await page.setViewportSize({ width: 1100, height: 760 });
+    await page.goto(`chrome-extension://${extensionId}/options.html#scan`);
+    const fixtures = join(process.cwd(), 'tests', 'fixtures');
+    await page.setInputFiles('#scan-file', ['email-dark-head.png', 'email-dark-tail.png'].map((f) => join(fixtures, f)));
+    await expect(page.locator('#scan-save')).toBeVisible({ timeout: 90_000 });
+    await expect(page.locator('#scan-progress')).toHaveCount(0);
+
+    for (const width of [1100, 900]) {
+      await page.setViewportSize({ width, height: 760 });
+      await shot(page, width === 1100 ? 'scan-review' : 'scan-review-900', true);
+      await assertLayout(page);
+
+      const chips = page.locator('[data-testid=scan-chip]');
+      expect(await chips.count(), 'a chip per scanned field').toBeGreaterThanOrEqual(15);
+      for (const chip of await chips.all()) await expect(chip).toBeVisible();
+      const overflow = await page.evaluate(() => ({ sw: document.scrollingElement!.scrollWidth, cw: document.scrollingElement!.clientWidth }));
+      expect(overflow.sw, `no horizontal overflow at ${width}`).toBeLessThanOrEqual(overflow.cw);
+
+      const save = page.locator('#scan-save');
+      await save.scrollIntoViewIfNeeded();
+      await expect(save).toBeVisible();
+      await expect(save).toBeInViewport({ ratio: 1 });
+      await expect(page.locator('#scan-cancel')).toBeInViewport({ ratio: 1 });
+      await expectNoOverlap(page, '#scan-save', '#scan-cancel');
+      await page.evaluate(() => window.scrollTo(0, 0));
+    }
+  });
 
   test('editing the long-named traveller', async ({ context, worker, extensionId }) => {
     await seed(worker, FOUR_TRAVELLERS);

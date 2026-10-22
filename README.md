@@ -19,9 +19,15 @@ Independent open-source project, not affiliated with the Immigration Department 
 - **Chrome Web Store:** _listing pending review_.
 - **From source:** download the latest `mdac-oneclick-<version>.zip` from [Releases](https://github.com/gokulmc/mdac-oneclick/releases) and unzip it. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and choose the unzipped folder.
 
+## Scan a past confirmation email instead of typing
+
+If you have filed an MDAC before, the confirmation email the Immigration Department sent already holds every field. In the extension's settings, open **Scan a confirmation email**, drop in a screenshot of that email (two screenshots if it doesn't fit on one phone screen) and review what was read. One click saves a Traveller and a Trip preset. Place of birth isn't in the email, so it's prefilled with your nationality and flagged for you to check.
+
+The reading happens on your own device: the OCR engine (Tesseract, as WebAssembly) ships inside the extension and nothing is uploaded. Yellow fields are the ones to double-check; the crop they came from is shown next to them.
+
 ## Privacy
 
-Everything is stored in `chrome.storage.local` in your browser. It is not synced and not sent anywhere except into the MDAC form when you press Fill. No analytics, no server. Full policy: [docs/privacy.md](docs/privacy.md).
+Everything is stored in `chrome.storage.local` in your browser. It is not synced and not sent anywhere except into the MDAC form when you press Fill. Screenshots you scan are read in memory on this device and discarded. No analytics, no server. Full policy: [docs/privacy.md](docs/privacy.md).
 
 ## Trip presets included
 
@@ -56,6 +62,8 @@ pnpm zip            # → release/mdac-oneclick-<version>.zip for the Web Store
 - `src/page/watcher.ts`: content script that reports which MDAC page is showing and when you submit.
 - `src/background/`: runs the Queue across page loads.
 - `src/reference/data.json`: the form's own code lists (countries, dial codes, states, 509 cities), regenerated with `pnpm reference <saved register page.html>` plus `reference/cities.txt`.
+- `src/domain/scan.ts`: turns OCR words of a confirmation-email screenshot into a draft Traveller + Trip preset by geometry (two columns, row pitch), then normalises each value to form codes. `src/options/ocr.ts` wraps tesseract.js; `scripts/ocr-fixture.mjs` regenerates the golden OCR output (`tests/fixtures/*.words.json`) from the committed fixture PNGs through the built extension, so unit tests run on real OCR output without WASM.
+- The OCR engine adds ~7 MB to the package (`dist/ocr/`, copied from node_modules at build time; see `THIRD_PARTY_NOTICES.md`).
 - `CONTEXT.md`: the project's vocabulary. `docs/adr/`: decisions.
 
 The e2e tests run against a hand-written fixture that reproduces the form's contract (field ids, option codes, AJAX lookups, datepicker limits), because the live site blocks headless browsers. The fill itself was verified against the live form with dummy data on 2026-10-22, without submitting.

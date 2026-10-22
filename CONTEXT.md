@@ -58,12 +58,17 @@ _Avoid_: batch, session, job
 A Run with more than one Traveller: after each Confirmation the extension opens a fresh Register form and Fills the next Traveller.
 _Avoid_: family mode, bulk, multi-submit
 
+**Scan**:
+Reading one or two screenshots of a Confirmation email on this device into a draft Traveller and Trip preset for the traveller to review and save.
+_Avoid_: import (that is the backup file), OCR upload, autofill from email
+
 ## Relationships
 
 - A **Run** uses exactly one **Trip preset**, one pair of **Travel dates** and one or more **Travellers**
 - A **Queue** produces one **Confirmation** per **Traveller**, each gated by its own **Hand-off**
 - A **Traveller** is never bound to a **Trip preset**; any Traveller can be Filled with any preset
 - A **Seeded preset** is a **Trip preset** with no owner; editing it makes it an ordinary Trip preset
+- A **Scan** produces at most one **Traveller** and one **Trip preset**; a Traveller with the same passport number is updated rather than duplicated; Travel dates seen in the Confirmation are shown but never saved
 
 ## Example dialogue
 

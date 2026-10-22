@@ -76,6 +76,10 @@ export function createForm<T extends object>(opts: {
   /** Warnings that belong to no field of this form (e.g. the Seeded preset notice). */
   onExtra?: (warnings: Warning[]) => void;
   onEdit?: (name: string) => void;
+  /** Called once per field right after it is built, e.g. to attach a status chip. `wrap` is the field's container. */
+  decorate?: (name: string, wrap: HTMLElement, control: HTMLElement) => void;
+  /** Stops Enter from submitting the form (a form with no submit handler of its own). */
+  preventSubmit?: boolean;
 }): FormHandle<T> {
   const controls: Record<string, Control> = {};
   const notes: Record<string, HTMLElement> = {};
@@ -87,13 +91,15 @@ export function createForm<T extends object>(opts: {
     const note = h('span', { class: 'note', 'data-note-for': spec.name });
     controls[spec.name] = control;
     notes[spec.name] = note;
-    return (wraps[spec.name] = h(
+    const wrap = (wraps[spec.name] = h(
       'div',
       { class: `f${spec.wide ? ' wide' : ''}` },
       label !== null && h('label', { for: control.id }, label),
       control,
       note,
     ));
+    opts.decorate?.(spec.name, wrap, control);
+    return wrap;
   };
 
   const item = (it: FieldSpec | RowSpec) =>
@@ -125,6 +131,7 @@ export function createForm<T extends object>(opts: {
     opts.onEdit?.(name);
     refresh();
   };
+  if (opts.preventSubmit) form.addEventListener('submit', (e) => e.preventDefault());
   form.addEventListener('input', onEdit);
   form.addEventListener('change', onEdit);
   refresh();

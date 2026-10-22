@@ -20,6 +20,10 @@ Only into the MDAC register form on `https://imigresen-online.imi.gov.my/mdac/`,
 
 The extension has no server, no analytics, no tracking and no remote code. Its only host permission is `https://imigresen-online.imi.gov.my/mdac/*`.
 
+## Scanning a confirmation email
+
+If you use **Scan a confirmation email**, the screenshots you choose are read by an OCR engine (Tesseract, shipped inside the extension as WebAssembly) on your own device. The images and the text read from them are kept only in memory while you review them and are discarded afterwards; only the traveller and trip-preset fields you choose to save are stored, locally, like any other entry. Nothing is uploaded.
+
 ## Your control
 
 - Edit or delete any traveller or preset on the extension's options page.

@@ -44,3 +44,22 @@ export function addMonths(iso: string, months: number): string {
   d.setUTCDate(Math.min(day, lastDay));
   return d.toISOString().slice(0, 10);
 }
+
+// OCR confuses these glyphs with digits; applied only to a date that does not parse as-is.
+const DIGIT_LOOKALIKES: Record<string, string> = { O: '0', o: '0', I: '1', l: '1', '|': '1', S: '5', B: '8', Z: '2' };
+
+const FORM_DATE = /^([0-9OoIl|SBZ]{1,2})\s*[/.-]\s*([0-9OoIl|SBZ]{1,2})\s*[/.-]\s*([0-9OoIl|SBZ]{4})$/;
+
+/**
+ * Reads a dd/mm/yyyy date as printed on the MDAC site or in its emails (also dd-mm-yyyy, dd.mm.yyyy), tolerating
+ * stray punctuation and OCR digit look-alikes. `repaired` says a look-alike was replaced.
+ */
+export function parseFormDate(text: string): { iso: string; repaired: boolean } | undefined {
+  const m = FORM_DATE.exec(text.trim().replace(/^[^0-9A-Za-z|]+|[^0-9A-Za-z|]+$/g, ''));
+  if (!m) return undefined;
+  const fix = (part: string) => part.replace(/[^0-9]/g, (c) => DIGIT_LOOKALIKES[c] ?? c);
+  const [day, month, year] = [m[1]!, m[2]!, m[3]!].map(fix) as [string, string, string];
+  const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  if (!isIsoDate(iso)) return undefined;
+  return { iso, repaired: `${m[1]}${m[2]}${m[3]}` !== `${day}${month}${year}` };
+}
