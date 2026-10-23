@@ -2,26 +2,47 @@
   "manifest_version": 3,
   "name": "MDAC One-Click",
   "short_name": "MDAC One-Click",
-  "version": "0.2.2",
+  "version": "0.2.3",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA163Sq7OsSxO9zwYrcXcJhrnKWj3rZLUtbVzwbcnXSLbyBzyu9rgbRXxonMM9QO/4KGp89X5Fb8To75J0/ltXig9Itc70J3jtJKVC+5in9klPdsvszKJkluW2+3bhVdwcUG23JA9GvHttrfjXMysW8VkxnOrwZclK9TB7CpmKjW6Yye+s1Mh0ol4ndb94cA48lfEziidKfqk8ytgmI4Z+OTEKmNEKl8hHpQFljNpDDFTDJtrWPgOWrXTW1qHahdD3vKhy1qDfpBVWp8Y3KJBWjkel1cxkfbPthFi832yA36ktyVJBCfGDv/SwdjDo4ZkrBJqlTBF+GC14jKiwmuB8dQIDAQAB",
   "description": "Fill the Malaysia Digital Arrival Card from saved travellers in one click. You still complete the slider and press Submit.",
   "minimum_chrome_version": "116",
-  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
   "action": {
     "default_title": "Fill MDAC",
     "default_popup": "popup.html",
-    "default_icon": { "16": "icons/16.png", "32": "icons/32.png" }
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    }
   },
   "options_page": "options.html",
-  "background": { "service_worker": "background.js", "type": "module" },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
   },
-  "permissions": ["storage", "scripting"],
-  "host_permissions": ["https://imigresen-online.imi.gov.my/mdac/*"],
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://imigresen-online.imi.gov.my/mdac/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://imigresen-online.imi.gov.my/mdac/*"],
-      "js": ["page/watcher.js"],
+      "matches": [
+        "https://imigresen-online.imi.gov.my/mdac/*"
+      ],
+      "js": [
+        "page/watcher.js"
+      ],
       "run_at": "document_idle"
     }
   ]

@@ -18,6 +18,8 @@ Independent open-source project, not affiliated with the Immigration Department 
 
 - **Chrome Web Store:** _listing pending review_.
 - **From source:** download the latest `mdac-oneclick-<version>.zip` from [Releases](https://github.com/gokulmc/mdac-oneclick/releases) and unzip it. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and choose the unzipped folder.
+- **Updating:** from v0.2.3 on, every release has the same extension ID (pinned by the manifest `key`), so your saved travellers and presets carry over whichever folder you unzip it to. Load the new folder, then remove the old copy. Before v0.2.3 the ID followed the folder, so a new folder started empty: if you are on 0.2.2 or older, use **Settings → Backup & import → Export** first, then **Import** the file into 0.2.3.
+- Keep the unzipped folder outside iCloud/Drive-synced folders if you can: Chrome reads the extension from that folder every time it starts.
 
 ## Scan a past confirmation email instead of typing
 

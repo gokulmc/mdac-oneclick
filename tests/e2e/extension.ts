@@ -89,7 +89,10 @@ export const test = base.extend<Fixtures>({
     await use(worker);
   },
   extensionId: async ({ worker }, use) => {
-    await use(new URL(worker.url()).host);
+    const id = new URL(worker.url()).host;
+    // The manifest key pins the ID wherever the build is loaded from; saved data depends on it.
+    expect(id, 'extension ID pinned by the manifest key').toBe('oiijdmbibokdnnfpfhomjjddbggbgldf');
+    await use(id);
   },
 });
 

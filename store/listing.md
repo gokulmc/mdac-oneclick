@@ -41,6 +41,9 @@ Fill the official Malaysia Digital Arrival Card registration form with traveller
 ## Privacy policy URL
 https://gokulmc.github.io/mdac-oneclick/privacy (from docs/privacy.md via GitHub Pages)
 
+## Upload
+Upload `release/mdac-oneclick-<version>-webstore.zip` (made by `pnpm zip`): it is the release build with the manifest `key` removed, which the Web Store rejects. The store assigns its own extension ID, so people moving from the GitHub build should Export from Backup & import and Import into the store version.
+
 ## Assets
 All generated from the built extension with dummy data only (TEST TRAVELLER ONE, T0000001, @example.com); no government crest, flag or branding. Regenerate with `pnpm store-assets` (builds first; script: scripts/store-assets.mjs).
 - Icon 128×128: dist/icons/128.png (source: public/icons/128.png)
