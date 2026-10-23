@@ -24,6 +24,8 @@ The extension has no server, no analytics, no tracking and no remote code. Its o
 
 If you use **Scan a confirmation email**, the screenshots you choose are read by an OCR engine (Tesseract, shipped inside the extension as WebAssembly) on your own device. The images and the text read from them are kept only in memory while you review them and are discarded afterwards; only the traveller and trip-preset fields you choose to save are stored, locally, like any other entry. Nothing is uploaded.
 
+This is a local text-recognition engine, not an AI service or large language model: no image, text or result is sent to Anthropic, OpenAI, Google or anyone else, and no account or API key is involved. Every value it reads is shown to you for review — marked as read, unsure, missing, kept from your saved traveller, or edited by you — and nothing is saved until you press Save.
+
 ## Your control
 
 - Edit or delete any traveller or preset on the extension's options page.

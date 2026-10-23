@@ -23,7 +23,14 @@ Independent open-source project, not affiliated with the Immigration Department 
 
 If you have filed an MDAC before, the confirmation email the Immigration Department sent already holds every field. In the extension's settings, open **Scan a confirmation email**, drop in a screenshot of that email (two screenshots if it doesn't fit on one phone screen) and review what was read. One click saves a Traveller and a Trip preset. Place of birth isn't in the email, so it's prefilled with your nationality and flagged for you to check.
 
-The reading happens on your own device: the OCR engine (Tesseract, as WebAssembly) ships inside the extension and nothing is uploaded. Yellow fields are the ones to double-check; the crop they came from is shown next to them.
+### How the scan works, and what happens to your data
+
+- **A local OCR model, not an AI service.** The reader is Tesseract (the open-source OCR engine, Apache-2.0) compiled to WebAssembly, with its English model file, all shipped inside the extension (about 7 MB). There is no language model, no API key, no server and no account. It works with the network cable unplugged, and the end-to-end tests fail if a single request leaves `chrome-extension://`.
+- **Where the pixels go.** The screenshot is decoded in the extension's settings page, handed to a Web Worker inside the extension, and comes back as words with positions and confidences. A rule-based parser then maps those words to the form's fields by the email's layout. Screenshots and the raw text are held in memory only while you review, then discarded; nothing is written to disk until you press Save, and only the fields you save are stored.
+- **Nothing is guessed silently.** Every field shows where it came from: **Read** (exact, high-confidence), **Unsure** (low confidence, a repaired character such as O→0, or an ambiguous match — always with the crop it was read from), **Missing**, **From saved** (kept from your existing traveller) or **Edited** (you changed it). A reading never overwrites a saved value unless it was read with confidence; the inferred place of birth never overwrites a saved one; the PIN is shown but never stored.
+- **You are the last check.** Nothing is saved until you press Save on the review screen, and the official MDAC form is still filled from what you saved and submitted by you.
+
+Yellow fields are the ones to double-check; the crop they came from is shown next to them.
 
 ## Privacy
 

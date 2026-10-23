@@ -110,25 +110,59 @@ export function mapToSource<T extends { x0: number; y0: number; x1: number; y1: 
 
 let workerPromise: Promise<TessWorker> | null = null;
 let progressListener: ((p: number) => void) | undefined;
+let stageListener: ((stage: string) => void) | undefined;
 let appliedPsm: string = PSM.SINGLE_BLOCK;
 let queue: Promise<unknown> = Promise.resolve();
+
+/** How long the engine may take to start before we give up and say so (first start compiles 4 MB of WASM). */
+export const WORKER_START_TIMEOUT_MS = 45_000;
+
+/** Receives the engine's start-up stages ("loading tesseract core", "loading language traineddata", …). */
+export function onOcrStage(listener: ((stage: string) => void) | undefined): void {
+  stageListener = listener;
+}
 
 /** The shared worker, created on first use. `onProgress` (0..1) receives recognition progress. */
 export function getWorker(onProgress?: (p: number) => void): Promise<TessWorker> {
   if (onProgress) progressListener = onProgress;
   workerPromise ??= (async () => {
-    const worker = await createWorker('eng', OEM.LSTM_ONLY, {
+    let lastStage = 'starting';
+    const create = createWorker('eng', OEM.LSTM_ONLY, {
       workerPath: chrome.runtime.getURL('ocr/worker.min.js'),
       corePath: chrome.runtime.getURL('ocr/tesseract-core-simd-lstm.wasm.js'),
       langPath: chrome.runtime.getURL('ocr'),
       workerBlobURL: false,
       cacheMethod: 'none',
       gzip: true,
-      logger: (m) => { if (m.status === 'recognizing text') progressListener?.(m.progress); },
+      logger: (m) => {
+        if (m.status === 'recognizing text') progressListener?.(m.progress);
+        else if (m.status && m.status !== lastStage) {
+          lastStage = m.status;
+          stageListener?.(m.status);
+        }
+      },
     });
-    await worker.setParameters({ tessedit_pageseg_mode: PSM.SINGLE_BLOCK, preserve_interword_spaces: '1', user_defined_dpi: '300' });
-    appliedPsm = PSM.SINGLE_BLOCK;
-    return worker;
+    // tesseract.js waits for the worker's first message forever; a worker that failed to load or
+    // crashed would leave the page on "Loading…" with no error, so we give it a deadline.
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const deadline = new Promise<never>((_, reject) => {
+      timer = setTimeout(
+        () => reject(new Error(`The OCR engine did not start within ${WORKER_START_TIMEOUT_MS / 1000} s (last stage: ${lastStage}). Reload the extension at chrome://extensions and try again.`)),
+        WORKER_START_TIMEOUT_MS,
+      );
+    });
+    try {
+      const worker = await Promise.race([create, deadline]);
+      await worker.setParameters({ tessedit_pageseg_mode: PSM.SINGLE_BLOCK, preserve_interword_spaces: '1', user_defined_dpi: '300' });
+      appliedPsm = PSM.SINGLE_BLOCK;
+      return worker;
+    } catch (e) {
+      // A worker that eventually does start after the deadline must not linger.
+      create.then((w) => w.terminate()).catch(() => undefined);
+      throw e;
+    } finally {
+      clearTimeout(timer);
+    }
   })();
   const mine = workerPromise;
   mine.catch(() => { if (workerPromise === mine) workerPromise = null; });

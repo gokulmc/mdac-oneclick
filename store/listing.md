@@ -15,7 +15,7 @@ Filing the Malaysia Digital Arrival Card (MDAC) means typing 21 fields for every
 • On the day: click the icon, pick who's travelling and the dates, press Fill. The official form fills in about 2 seconds.
 • Families: tick several travellers and each form fills automatically after the previous one is confirmed.
 • Warnings before you file: arrival outside the 3-day window, a passport expiring within 6 months, addresses the form will reject.
-• Filed before? Scan a screenshot of your past MDAC confirmation email and the traveller and trip details are read on your device — review, save, done.
+• Filed before? Scan a screenshot of your past MDAC confirmation email and the traveller and trip details are read on your device by a built-in OCR engine — not an AI service, nothing uploaded. Every field is shown for review before anything is saved.
 
 You stay in control: the extension never submits the form and never touches the "Drag To Verify" slider. Check the details, complete the slider and press Submit yourself.
 

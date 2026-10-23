@@ -8,7 +8,7 @@ import { parseConfirmation, type Box, type ScanField, type ScanResult } from '..
 import type { SavedData, Traveller, TripPreset } from '../domain/types';
 import { h, replace } from '../shared/dom';
 import { createForm, type FormHandle } from './forms';
-import { MAX_FILES, MAX_PIXELS, createScanController } from './ocr';
+import { MAX_FILES, MAX_PIXELS, createScanController, onOcrStage } from './ocr';
 import {
   blankPreset, blankTraveller, normalisePreset, normaliseTraveller, presetSections, travellerSections, wireStateCity,
 } from './records';
@@ -246,7 +246,7 @@ export function renderScanView(root: HTMLElement, deps: ScanDeps): () => void {
   let shots: Shot[] = [];
   let nextId = 1;
   let phase: Phase = 'idle';
-  let progress = { index: 0, total: 0, started: false, p: 0, check: undefined as { done: number; total: number } | undefined };
+  let progress = { index: 0, total: 0, started: false, p: 0, stage: '' as string, check: undefined as { done: number; total: number } | undefined };
   let progressRefs: { text: HTMLElement; bar: HTMLProgressElement } | undefined;
   let review: Review | undefined;
   let failure = '';
@@ -345,7 +345,12 @@ export function renderScanView(root: HTMLElement, deps: ScanDeps): () => void {
       return render();
     }
     phase = 'scanning';
-    progress = { index: 0, total: valid.length, started: false, p: 0, check: undefined };
+    progress = { index: 0, total: valid.length, started: false, p: 0, stage: '', check: undefined };
+    onOcrStage((stage) => {
+      if (id !== runId) return;
+      progress = { ...progress, stage };
+      updateProgress();
+    });
     render();
     try {
       const pages = await controller.scan(
@@ -389,7 +394,7 @@ export function renderScanView(root: HTMLElement, deps: ScanDeps): () => void {
       return;
     }
     if (!progress.started) {
-      text.textContent = 'Loading OCR model…';
+      text.textContent = progress.stage ? `Loading OCR model… (${progress.stage})` : 'Loading OCR model…';
       bar.removeAttribute('value');
       return;
     }
@@ -623,7 +628,7 @@ export function renderScanView(root: HTMLElement, deps: ScanDeps): () => void {
       h('h3', { class: 'scan-h' }, 'Screenshots'),
       h('div', { class: 'scan-shots' }, ...shots.map(thumb)),
       addBox,
-      h('p', { class: 'scan-privacy' }, 'Read on this device, kept only in memory, never uploaded.'),
+      h('p', { class: 'scan-privacy' }, 'Read on this device by a built-in OCR engine — no AI service, nothing uploaded. Kept in memory only until you save.'),
       noticeEl(),
     );
   }
@@ -636,7 +641,7 @@ export function renderScanView(root: HTMLElement, deps: ScanDeps): () => void {
       { id: 'scan-drop', class: 'scan-drop' },
       h('div', { class: 'scan-ic', 'aria-hidden': 'true' }, '+'),
       h('b', {}, 'Drop 1–2 screenshots of your MDAC confirmation email here, or paste'),
-      h('span', { class: 'scan-sub' }, 'Screenshots are read on this device, kept only in memory, and never uploaded.'),
+      h('span', { class: 'scan-sub' }, 'Read on this device by the OCR engine built into the extension (Tesseract) — not an AI service. Nothing is uploaded; screenshots stay in memory only until you save, and you review every field first.'),
       add,
     );
     acceptDrops(drop);
